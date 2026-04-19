@@ -2792,14 +2792,14 @@
           }
         });
       });
-      // Import the functions you need from the SDKs you need
-      import { initializeApp } from "firebase/app";
-      // TODO: Add SDKs for Firebase products that you want to use
-      // https://firebase.google.com/docs/web/setup#available-libraries
+    </script>
+    <!-- FIREBASE (SAFE VERSION) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
-      // Your web app's Firebase configuration
+    <script>
       const firebaseConfig = {
-        apiKey: "AIzaSyBYX5BZGRvpdFE9OpbtjSGXGWw0359M2JA",
+        apiKey: "AIzaSyBX5BZGRvpdFE9QbtjSGXGWw0359M2JA",
         authDomain: "vvis-bd919.firebaseapp.com",
         projectId: "vvis-bd919",
         storageBucket: "vvis-bd919.firebasestorage.app",
@@ -2807,8 +2807,49 @@
         appId: "1:367433126112:web:17413f9a43349a189cc085",
       };
 
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
+      // INIT
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+
+      // LOAD EVENTS
+      db.collection("events").onSnapshot((snapshot) => {
+        const eventList = document.getElementById("eventList");
+        eventList.innerHTML = "";
+
+        snapshot.forEach((doc) => {
+          const data = doc.data();
+
+          eventList.innerHTML += `
+      <div class="event-card">
+        <div class="event-card-content">
+          <h4>${data.title}</h4>
+          <p>${data.description}</p>
+          <div class="event-date-tag">📅 ${data.date}</div>
+        </div>
+      </div>
+    `;
+        });
+      });
+
+      // SAVE EVENT
+      document.getElementById("saveEvent").onclick = async () => {
+        const title = document.getElementById("eventTitle").value;
+        const desc = document.getElementById("eventDesc").value;
+        const date = document.getElementById("eventDate").value;
+
+        if (!title || !desc || !date) {
+          alert("Fill all fields");
+          return;
+        }
+
+        await db.collection("events").add({
+          title,
+          description: desc,
+          date,
+        });
+
+        alert("Event Added!");
+      };
     </script>
   </body>
 </html>
