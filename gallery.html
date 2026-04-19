@@ -1,0 +1,1083 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery | Vidya Vihar International School</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+     <link rel="stylesheet" href="./navbar.css">
+    <link rel="stylesheet" href="./footer.css">
+     <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      :root {
+        --primary-bg: #a1105d;
+        --accent-gold: #ffcc00;
+        --text-white: #ffffff;
+        --text-dark: #333333;
+        --bg-light: #f9f9f9;
+        --font-heading: "Poppins", sans-serif;
+        --font-body: "Inter", sans-serif;
+        --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        --frame-border: 3px solid var(--accent-gold);
+        --frame-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        
+      }
+
+      body {
+        font-family: var(--font-body);
+        background-color: var(--bg-light);
+        color: var(--text-dark);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+     /* Hero Section with Enhanced Visibility */ .hero { position: relative; height:
+45vh; min-height: 350px; display: flex; align-items: center; justify-content:
+center; text-align: center; background-color: #000; /* Darker base for better
+image pop */ width: 100%; overflow: hidden; } .hero-img-bg { position: absolute;
+top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position:
+center; z-index: 0; opacity: 0.85; /* Increased opacity for more visibility */ }
+.hero::before { content: ""; position: absolute; top: 0; left: 0; width: 100%;
+height: 100%; /* Lighter, more transparent gradient to show the image clearly */
+background: linear-gradient( 135deg, rgba(161, 16, 93, 0.6), rgba(0, 0, 0, 0.4)
+); z-index: 1; } .hero-content { position: relative; z-index: 2; padding: 0
+20px; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Added shadow for text
+legibility over clearer image */ } .hero h1 { font-family: var(--font-heading);
+color: var(--accent-gold); font-size: clamp(2.2rem, 10vw, 4rem); text-transform:
+uppercase; margin-bottom: 10px; } .breadcrumb { color: rgba(255, 255, 255, 0.9);
+font-size: 0.9rem; font-weight: 500; }
+
+      /* --- GALLERY SECTION --- */
+      .section-header {
+        padding: 80px 20px 40px;
+        text-align: center;
+      }
+
+      .section-header h2 {
+        font-family: var(--font-heading);
+        font-size: 2.5rem;
+        display: inline-block;
+        position: relative;
+        padding-bottom: 15px;
+      }
+
+      .section-header h2::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 5px;
+        background-color: var(--accent-gold);
+      }
+
+      /* SCRAPBOOK CONTAINER */
+      .gallery-container {
+        max-width: 1500px;
+        margin: 0 auto;
+        padding: 0 20px 100px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      /* --- COLLAGE BLOCKS --- */
+      .collage-row {
+        display: grid;
+         content-visibility: auto;
+  contain-intrinsic-size: 300px;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+
+      .collage-row.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Photo Frame Base */
+      .photo-frame {
+        background: #ffffff;
+        border: var(--frame-border);
+        padding: 10px;
+        box-shadow: var(--frame-shadow);
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .photo-inner {
+        position: relative;
+        flex: 1;
+        width: 100%;
+        overflow: hidden;
+        background: #f0f0f0;
+      }
+
+      .photo-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.6s ease;
+      }
+
+      /* Interaction */
+      .photo-frame:hover img {
+        transform: scale(1.08);
+      }
+
+      .photo-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(161, 16, 93, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: var(--transition);
+      }
+
+      .photo-frame:hover .photo-overlay {
+        opacity: 1;
+      }
+
+      .view-icon svg {
+        width: 45px;
+        height: 45px;
+        fill: white;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+      }
+
+      /* --- ADVANCED COLLAGE TYPES --- */
+      @media (min-width: 768px) {
+        .collage-row {
+          grid-template-columns: repeat(12, 1fr);
+        }
+
+        /* Type A: Big highlight + 2 stacked */
+        .row-type-a .main {
+          grid-column: span 8;
+          height: 500px;
+        }
+        .row-type-a .side {
+          grid-column: span 4;
+          display: grid;
+          gap: 20px;
+        }
+        .row-type-a .side-item {
+          height: 240px;
+        }
+
+        /* Type B: Three equal vertical columns */
+        .row-type-b .item {
+          grid-column: span 4;
+          height: 400px;
+        }
+
+        /* Type C: 2x2 Grid of Squares */
+        .row-type-c {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        .row-type-c .item {
+          grid-column: span 1;
+          height: 250px;
+        }
+
+        /* Type D: Panoramic center + 2 flanking */
+        .row-type-d .flank {
+          grid-column: span 3;
+          height: 350px;
+        }
+        .row-type-d .center {
+          grid-column: span 6;
+          height: 350px;
+        }
+
+        /* Type E: Mixed Masonry Style */
+        .row-type-e .large-v {
+          grid-column: span 4;
+          height: 620px;
+        }
+        .row-type-e .group {
+          grid-column: span 8;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 20px;
+        }
+        .row-type-e .group-item {
+          height: 300px;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .photo-frame {
+          height: 300px !important;
+        }
+      }
+
+      /* --- LIGHTBOX --- */
+      #lightbox {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+        padding: 20px;
+      }
+
+      #lightbox.active {
+        display: flex;
+      }
+
+      #lightbox img {
+        max-width: 95%;
+        max-height: 85vh;
+        border: 4px solid var(--accent-gold);
+       box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        color: white;
+        font-size: 50px;
+        cursor: pointer;
+        line-height: 0.5;
+      }
+    </style>
+  </head>
+  <body>
+     <!-- TOP BAR -->
+    <div class="top-bar">
+      <div class="top-bar-container">
+        <div class="top-bar-left">
+          <i class="fas fa-graduation-cap"></i>
+          <span>A FAMILY OF LEARNING</span>
+        </div>
+
+        <div class="marquee-wrapper">
+          <div class="marquee-content">
+            ADMISSION OPEN FOR ACADEMIC YEAR 2026-27 • APPLY NOW TO SECURE YOUR
+            CHILD'S FUTURE • WORLD-CLASS FACILITIES • LIMITED SEATS AVAILABLE •
+          </div>
+        </div>
+
+        <div class="top-bar-socials">
+          <a href="#" aria-label="Facebook"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="#" aria-label="Instagram"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN HEADER -->
+    <header class="main-header" id="header">
+      <div class="navbar-container">
+        <!-- Brand -->
+        <a href="./index.html" class="brand">
+          <img
+            src="./assets/logo.avif"
+            alt="Vidya Vihar Logo"
+            class="logo-img"
+          />
+          <div class="brand-text">
+            <span class="school-name">VIDYA VIHAR</span>
+            <span class="school-tagline">International School</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
+          <ul class="desk-nav-list">
+            <li class="desk-nav-item">
+              <a href="./index.html" class="desk-nav-link">HOME</a>
+            </li>
+            <li class="desk-nav-item">
+              <a href="./about.html" class="desk-nav-link"
+                >ABOUT
+                <i class="fas fa-chevron-down" style="font-size: 11px"></i
+              ></a>
+              <ul class="desk-dropdown">
+                <li class="desk-dropdown-item">
+                  <a href="./about.html">About Us</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="#">Mandatory Disclosure</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./faculty.html">Faculties</a>
+                </li>
+              </ul>
+            </li>
+            <li class="desk-nav-item">
+              <a href="#" class="desk-nav-link"
+                >ACADEMICS
+                <i class="fas fa-chevron-down" style="font-size: 11px"></i
+              ></a>
+              <ul class="desk-dropdown">
+                <li class="desk-dropdown-item">
+                  <a href="./foundational.html"
+                    >Foundational Stage(Pre KG-Grade 2)</a
+                  >
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./preparatory.html">Preparatory Stage(Grade 3-5)</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./middlestage.html">Middle Stage (Grade 6-8)</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./secondary.html">Secondary Stage (Grade 9-10)</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./parental.html">Parental Synergy</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="#">Event calender</a>
+                </li>
+                <!-- <li class="desk-dropdown-item">
+                  <a href="#">Innovative Student-Centric Pedagogy</a>
+                </li> -->
+                <!-- <li class="desk-dropdown-item">
+                  <a href="#">Outstanding Academic Results and Awards</a>
+                </li> -->
+                <!-- <li class="desk-dropdown-item">
+                  <a href="#">Annual School Activity Calendar</a>
+                </li> -->
+                <!-- <li class="desk-dropdown-item">
+                  <a href="#">Prescribed Textbooks and Resource List</a>
+                </li> -->
+              </ul>
+            </li>
+            <li class="desk-nav-item">
+              <a href="#" class="desk-nav-link"
+                >FACILITIES
+                <i class="fas fa-chevron-down" style="font-size: 11px"></i
+              ></a>
+              <ul class="desk-dropdown">
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Tech as an Enabler</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Innovation Center</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Information Center</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">ICT Labs</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Science & Maths Laboratories</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html"
+                    >VVIS Venues (The Happening Places)</a
+                  >
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Indoor & Outdoor</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Music & Dance Rooms</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Cafeteria</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Transport</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Infirmary</a>
+                </li>
+              </ul>
+            </li>
+            <li class="desk-nav-item">
+              <a href="./gallery.html" class="desk-nav-link"
+                >GALLERY
+                <!-- <i class="fas fa-chevron-down" style="font-size: 11px"></i
+              ></a> -->
+              <!-- <ul class="desk-dropdown">
+                <li class="desk-dropdown-item">
+                  <a href="./gallery.html">GALLERY(2025-26)</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="#">GALLERY(2025-26)</a>
+                </li>
+                
+              </ul> -->
+            </li>
+            <li class="desk-nav-item">
+              <a href="./contact.html" class="desk-nav-link">CONTACT</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Action Buttons -->
+        <div class="desktop-buttons">
+          <a href="./admission.html" class="btn btn-admission">Admission</a>
+          <!-- <a href="#" class="btn btn-admin">Admin Portal</a> -->
+        </div>
+
+        <!-- Mobile Toggle -->
+        <button class="hamburger-btn" id="menuToggle" aria-label="Toggle Menu">
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+        </button>
+      </div>
+    </header>
+
+    <!-- MOBILE OVERLAY -->
+    <div class="mobile-menu-overlay" id="mobileOverlay">
+      <div class="mobile-menu-content">
+        <ul class="mob-nav-list">
+          <li class="mob-nav-item">
+            <a href="./index.html" class="mob-nav-link">HOME</a>
+          </li>
+          <li class="mob-nav-item">
+            <div class="mob-nav-link mob-drop-trigger">
+              ABOUT <i class="fas fa-plus mob-dropdown-toggle"></i>
+            </div>
+            <ul class="mob-dropdown-list">
+              <li class="mob-dropdown-item">
+                <a href="./about.html">About Us</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./faculty.html">Faculties</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="#">Mandatory Disclosure</a>
+              </li>
+            </ul>
+          </li>
+          <li class="mob-nav-item">
+            <div class="mob-nav-link mob-drop-trigger">
+              ACADEMICS <i class="fas fa-plus mob-dropdown-toggle"></i>
+            </div>
+            <ul class="mob-dropdown-list">
+              <li class="mob-dropdown-item">
+                <a href="./foundational.html"
+                  >Foundational Stage(Pre KG-Grade 2)</a
+                >
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./preparatory.html">Preparatory Stage(Grade 3-5)</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./middlestage.html">Middle Stage (Grade 6-8)</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./secondary.html">Secondary Stage (Grade 9-10)</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./parental.html">Parental Synergy</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="#">Event Calender</a>
+              </li>
+            </ul>
+          </li>
+          <li class="mob-nav-item">
+            <div class="mob-nav-link mob-drop-trigger">
+              FACILITIES <i class="fas fa-plus mob-dropdown-toggle"></i>
+            </div>
+            <ul class="mob-dropdown-list">
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Tech as an Enabler</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Innovation Center</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Information Center</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">ICT Labs</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Science & Maths Laboratories</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html"
+                  >VVIS Venues (The Happening Places)</a
+                >
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Indoor & Outdoor</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Cafeteria</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Transport</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Infirmary</a>
+              </li>
+            </ul>
+          </li>
+          <li class="mob-nav-item">
+            <a href="./gallery.html" class="mob-nav-link">GALLERY</a>
+          </li>
+          <li class="mob-nav-item">
+            <a href="./contact.html" class="mob-nav-link">CONTACT</a>
+          </li>
+        </ul>
+        <div class="mob-buttons">
+          <a href="./admission.html" class="btn btn-admission"
+            >Admission Open</a
+          >
+          <!-- <a href="#" class="btn btn-admin">Admin Login</a> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN BODY CONTENT -->
+    <!-- <div style="height: 2000px; padding: 120px 5%; background: #fafafa">
+      <h1
+        style="
+          font-family: var(--font-poppins);
+          color: var(--text-dark);
+          line-height: 1.2;
+        "
+      >
+        Excellence in Global Education
+      </h1>
+      <p
+        style="
+          margin-top: 25px;
+          font-size: 1.2rem;
+          color: #555;
+          max-width: 800px;
+          line-height: 1.8;
+        "
+      >
+        Welcome to Vidya Vihar International School. The gap between the brand
+        logo and the navigation links has been increased for a cleaner, more
+        spacious layout.
+      </p>
+    </div> -->
+   <header class="hero">
+      <!-- Hero Background Image Tag -->
+      <img
+        src="./assets/school-contact.jpg"
+        alt="Hero Background"
+        class="hero-img-bg"
+      />
+
+      <div class="hero-content">
+        <h1>Gallery</h1>
+        <div class="breadcrumb">Home &nbsp;|&nbsp; Gallery</div>
+      </div>
+    </header>
+
+    <div class="section-header">
+      <h2>School Memories</h2>
+    </div>
+
+    <div class="gallery-container" id="gallery">
+      <!-- Layout Pattern 1: Row Type A -->
+      <div class="collage-row row-type-a">
+        <div class="photo-frame main">
+          <div class="photo-inner">
+            <img src="./assets/contact2.jpg" alt="Gallery Image" loading="lazy"/>
+            <div class="photo-overlay">
+              <div class="view-icon">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="side">
+          <div class="photo-frame side-item">
+            <div class="photo-inner">
+              <img src="./assets/bg1.png" alt="Gallery Image" loading="lazy"/>
+              <div class="photo-overlay">
+                <div class="view-icon">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="photo-frame side-item">
+            <div class="photo-inner">
+              <img src="./assets/i2.webp" alt="Gallery Image" loading="lazy"/>
+              <div class="photo-overlay">
+                <div class="view-icon">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Layout Pattern 2: Row Type B -->
+      <div class="collage-row row-type-b">
+        <div class="photo-frame item">
+          <div class="photo-inner">
+            <img src="./assets/i1.webp" alt="Gallery Image" loading="lazy"/>
+            <div class="photo-overlay">
+              <div class="view-icon">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="photo-frame item">
+          <div class="photo-inner">
+            <img src="./assets/i3.webp" alt="Gallery Image" loading="lazy"/>
+            <div class="photo-overlay">
+              <div class="view-icon">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="photo-frame item">
+          <div class="photo-inner">
+            <img src="./assets/i4.webp" alt="Gallery Image" loading="lazy"/>
+            <div class="photo-overlay">
+              <div class="view-icon">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Layout Pattern 3: Row Type E -->
+      <div class="collage-row row-type-e">
+        <div class="photo-frame large-v">
+          <div class="photo-inner">
+            <img src="./assets/i5.webp" alt="Gallery Image" loading="lazy"/>
+            <div class="photo-overlay">
+              <div class="view-icon">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="group">
+          <div class="photo-frame group-item">
+            <div class="photo-inner">
+              <img src="./assets/i6.webp" alt="Gallery Image" loading="lazy"/>
+              <div class="photo-overlay">
+                <div class="view-icon">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="photo-frame group-item">
+            <div class="photo-inner">
+              <img src="./assets/i7.webp" alt="Gallery Image" loading="lazy"/>
+              <div class="photo-overlay">
+                <div class="view-icon">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="photo-frame group-item">
+            <div class="photo-inner">
+              <img src="./assets/i8.webp" alt="Gallery Image" loading="lazy"/>
+              <div class="photo-overlay">
+                <div class="view-icon">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="photo-frame group-item">
+            <div class="photo-inner">
+              <img src="./assets/i9.webp" alt="Gallery Image" loading="lazy"/>
+              <div class="photo-overlay">
+                <div class="view-icon">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Layout Pattern 4: Row Type C -->
+      <div class="collage-row row-type-c">
+        <div class="photo-frame item">
+          <div class="photo-inner">
+            <img src="./assets/i10.webp" alt="Gallery Image" loading="lazy"/>
+            <div class="photo-overlay">
+              <div class="view-icon">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="photo-frame item">
+          <div class="photo-inner">
+            <img src="./assets/i11.webp" alt="Gallery Image" loading="lazy"/>
+            <div class="photo-overlay">
+              <div class="view-icon">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="photo-frame item">
+          <div class="photo-inner">
+            <img src="./assets/i12.webp" alt="Gallery Image" loading="lazy"/>
+            <div class="photo-overlay">
+              <div class="view-icon">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="photo-frame item">
+          <div class="photo-inner">
+            <img src="./assets/i13.webp" alt="Gallery Image" loading="lazy"/>
+            <div class="photo-overlay">
+              <div class="view-icon">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Note: This structure will be cloned by JS to reach 40 placeholders -->
+    </div>
+
+    <div id="lightbox">
+      <span class="close-btn">&times;</span>
+      <img src="" alt="Full view" id="lightbox-img" />
+    </div>
+ <!-- START FOOTER SECTION -->
+    <footer class="arzSiteFooter">
+      <div class="arzFooterContainer">
+        <!-- School Branding -->
+        <div class="arzFooterBrand">
+          <img
+            src="./assets/vvislogo.jpeg"
+            alt="Vidya Vihar Logo"
+            class="arzSchoolLogo"
+          />
+          <div class="arzSchoolName">
+            <h2>VIDYA VIHAR</h2>
+            <p>INTERNATIONAL SCHOOL</p>
+          </div>
+          <div class="arzSocialLinks">
+            <a href="#" class="arzSocialIcon"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" class="arzSocialIcon"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" class="arzSocialIcon"><i class="fab fa-youtube"></i></a>
+            <a
+              href="https://wa.me/919538424583"
+              class="arzSocialIcon"
+              target="_blank"
+            >
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Campus Location -->
+        <div class="arzFooterLocations">
+          <h3 class="arzFooterHeading">Campus Location</h3>
+          <div class="arzCampusBlock">
+            <!-- Location 1 -->
+            <div class="arzLocationItem">
+              <div class="arzMapFrame">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3895.7301770453605!2d77.0263876741121!3d12.467681425727907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baf076500614e6f%3A0x65b53efa9332b4c2!2sVidya%20Vihar%20International%20School!5e0!3m2!1sen!2sin!4v1770357339459!5m2!1sen!2sin"
+                  width="600"
+                  height="450"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+              <img src="./assets/vvis.jpeg" alt="QR Code NY" class="arzQrImg" />
+            </div>
+            <!-- Location 2 -->
+            <div class="arzLocationItem">
+              <div class="arzMapFrame">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3895.4820376472485!2d77.03253737411231!3d12.48417642537924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baf079ab765efb9%3A0xc27d29ee81a8409e!2sVidya%20Vihar%20Wonder%20Kidz!5e0!3m2!1sen!2sin!4v1770357947662!5m2!1sen!2sin"
+                  width="600"
+                  height="450"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+              <img src="./assets/vvwk.jpeg" alt="QR Code CA" class="arzQrImg" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="arzFooterContact">
+          <h3 class="arzFooterHeading">Contact Information</h3>
+          <div class="arzContactGrid">
+            <!-- Column 1 -->
+            <div class="arzContactCol">
+              <div class="arzInfoRow">
+                <i data-lucide="map-pin"></i>
+                <div class="arzInfoText">
+                  <strong>Vidya Vihar International School</strong><br />
+                  Near APMC Market, Gudigere Road, <br />
+                  Manigere, Bharathinagar, Maddur Taluk <br />
+                  Mandya District, Karnataka- 571422
+                  <br />
+                </div>
+              </div>
+              <div class="arzInfoRow">
+                <i data-lucide="mail"></i>
+                <div class="arzInfoText">
+                  <a href="mailto: vidyavihar.kmd@gmail.com"
+                    >vidyavihar.kmd@gmail.com</a
+                  >
+                </div>
+              </div>
+              <div class="arzInfoRow">
+                <i data-lucide="phone"></i>
+                <div class="arzInfoText">
+                  <a href="tel:+919686781100">+91 9686781100</a><br />
+                </div>
+              </div>
+            </div>
+
+            <!-- Column 2 -->
+            <div class="arzContactCol">
+              <div class="arzInfoRow">
+                <i data-lucide="map-pin"></i>
+                <div class="arzInfoText">
+                  <strong>Vidya Vihar Wonder Kidz</strong><br />
+                  Opposite to Government Hospital,<br />Maddur-Malavalli Road
+                  Bharathinagar, Maddur Taluk <br />
+                  Mandya District, Karnataka- 571422
+                  <br />
+                </div>
+              </div>
+              <div class="arzInfoRow">
+                <i data-lucide="mail"></i>
+                <div class="arzInfoText">
+                  <a href="mailto:vidyavihar.kmd@gmail.com"
+                    >vidyavihar.kmd@gmail.com</a
+                  >
+                </div>
+              </div>
+              <div class="arzInfoRow">
+                <i data-lucide="phone"></i>
+                <div class="arzInfoText">
+                  <a href="tel:+917349333810">+91 7349333810</a><br />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Copyright Bar -->
+      <div class="arzFooterBottom">
+        <div class="arzBottomContainer">
+          <div class="arzCopyright">
+            Copyright © 2026 Vidya Vihar International School. All rights
+            reserved. Designed by
+            <a
+              href="https://arouzatechlabs.in/"
+              style="text-decoration: none; color: #ffcc00"
+              >AROUZA TECHLABS</a
+            >
+          </div>
+          <div class="arzBottomLinks">
+            <a href="#">Term & Conditions</a>
+            <span>|</span>
+            <a href="#">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- END FOOTER SECTION -->
+
+    <!-- Scroll Top Button -->
+    <div
+      class="arzScrollTop"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    >
+      <i data-lucide="chevron-up"></i>
+    </div>
+
+    <script>
+      // Initialize Lucide Icons
+      lucide.createIcons();
+    </script>
+    <script src="./nav.js"></script>
+    <script>
+       lucide.createIcons();
+      const galleryContainer = document.getElementById("gallery");
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const closeBtn = document.querySelector(".close-btn");
+
+      // Logic to multiply the blocks until we hit 40 placeholders
+      const initialBlocks = galleryContainer.innerHTML;
+      // We need 40 placeholders. Each set of blocks provided in HTML has 13 placeholders.
+      // We'll append two more sets to reach 39, plus one custom block.
+      galleryContainer.innerHTML += initialBlocks;
+      galleryContainer.innerHTML += initialBlocks;
+
+      // Final specific block for the 40th
+      galleryContainer.innerHTML += `
+            <div class="collage-row row-type-a">
+                <div class="photo-frame main"><div class="photo-inner"><img src="" alt="Gallery Image"><div class="photo-overlay"><div class="view-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div></div></div></div>
+            </div>
+        `;
+
+      // Lightbox Logic
+      const frames = document.querySelectorAll(".photo-frame");
+      frames.forEach((frame) => {
+        frame.addEventListener("click", () => {
+          const img = frame.querySelector("img");
+          if (
+            img.src &&
+            !img.src.endsWith(".html") &&
+            img.src !== window.location.href
+          ) {
+            lightboxImg.src = img.src;
+            lightbox.classList.add("active");
+          }
+        });
+      });
+
+      closeBtn.onclick = () => lightbox.classList.remove("active");
+      lightbox.onclick = (e) => {
+        if (e.target !== lightboxImg) lightbox.classList.remove("active");
+      };
+
+      // Scroll Reveal
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      document.querySelectorAll(".collage-row").forEach((row) => {
+        observer.observe(row);
+      });
+    </script>
+  </body>
+</html>

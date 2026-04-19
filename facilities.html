@@ -1,0 +1,1901 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Facilities | Vidya Vihar International School</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+     <link rel="stylesheet" href="./navbar.css">
+    <link rel="stylesheet" href="./footer.css">
+     <script src="https://unpkg.com/lucide@latest"></script>
+     
+    <style>
+      :root {
+        --primary-bg: #a1105d;
+        --accent-gold: #ffcc00;
+        --text-white: #ffffff;
+        --text-dark: #333333;
+        --bg-light: #f9f9f9;
+        --font-heading: "Poppins", sans-serif;
+        --font-body: "Inter", sans-serif;
+        --transition: all 0.3s ease;
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        --border-radius: 12px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-body);
+        color: var(--text-dark);
+        line-height: 1.6;
+        background-color: var(--text-white);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Hero Section */
+      .hero {
+        position: relative;
+        height: 45vh;
+        min-height: 320px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--text-white);
+        overflow: hidden;
+      }
+
+      .hero-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -2;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--primary-bg);
+        opacity: 0.75;
+        z-index: -1;
+      }
+
+      .hero-content h1 {
+        font-family: var(--font-heading);
+        font-size: 2.8rem;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .hero-content p {
+        font-size: 1.1rem;
+        font-weight: 400;
+        max-width: 85%;
+        margin: 0 auto;
+        opacity: 0.9;
+      }
+
+      /* Navigation Chips */
+      .nav-sticky {
+        background: var(--text-white);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .chips-container {
+        display: flex;
+        overflow-x: auto;
+        gap: 10px;
+        padding: 15px;
+        scrollbar-width: none;
+      }
+
+      .chips-container::-webkit-scrollbar {
+        display: none;
+      }
+
+      .chip {
+        white-space: nowrap;
+        padding: 8px 18px;
+        border-radius: 50px;
+        background: var(--bg-light);
+        border: 1px solid #e0e0e0;
+        color: var(--text-dark);
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        transition: var(--transition);
+      }
+
+      .chip:hover,
+      .chip.active {
+        background: var(--accent-gold);
+        border-color: var(--accent-gold);
+      }
+
+      /* Facility Layout Pattern */
+      .facility-section {
+        padding: 3rem 1.2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .facility-card {
+        background: var(--text-white);
+        border-radius: var(--border-radius);
+        box-shadow: var(--card-shadow);
+        padding: 20px;
+        border: 1px solid #f0f0f0;
+      }
+
+      .facility-title {
+        font-family: var(--font-heading);
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+        color: var(--text-dark);
+      }
+
+      .gold-underline {
+        width: 50px;
+        height: 3px;
+        background: var(--accent-gold);
+        margin-bottom: 25px;
+      }
+
+      /* Mobile First Image Stack */
+      .image-block {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      .img-main {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      .img-sub {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      .content-text {
+        font-size: 0.95rem;
+        color: #444;
+        text-align: justify;
+      }
+
+      .content-text p {
+        margin-bottom: 1rem;
+      }
+
+      /* Tablet & Desktop - Two Column Layout Pattern */
+      @media (min-width: 768px) {
+        .facility-section {
+          padding: 5rem 2rem;
+        }
+
+        .facility-card {
+          display: flex;
+          gap: 25px;
+          padding: 30px;
+        }
+
+        .column-left {
+          flex: 0 0 65%;
+        }
+
+        .column-right {
+          flex: 0 0 32%;
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .image-block {
+          display: contents; /* Allows columns to manage children */
+        }
+
+        .img-main {
+          height: 380px;
+          margin-bottom: 25px;
+        }
+
+        .img-sub {
+          height: calc(50% - 7.5px); /* Half height minus gap */
+          width: 100%;
+        }
+
+        .facility-title {
+          font-size: 1.8rem;
+        }
+
+        .chips-container {
+          justify-content: center;
+          flex-wrap: wrap;
+          padding: 20px;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .img-main {
+          height: 450px;
+        }
+        .column-right {
+          gap: 20px;
+        }
+        .img-sub {
+          height: calc(50% - 10px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+     <!-- TOP BAR -->
+    <div class="top-bar">
+      <div class="top-bar-container">
+        <div class="top-bar-left">
+          <i class="fas fa-graduation-cap"></i>
+          <span>A FAMILY OF LEARNING</span>
+        </div>
+
+        <div class="marquee-wrapper">
+          <div class="marquee-content">
+            ADMISSION OPEN FOR ACADEMIC YEAR 2026-27 • APPLY NOW TO SECURE YOUR
+            CHILD'S FUTURE • WORLD-CLASS FACILITIES • LIMITED SEATS AVAILABLE •
+          </div>
+        </div>
+
+        <div class="top-bar-socials">
+          <a href="#" aria-label="Facebook"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="#" aria-label="Instagram"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN HEADER -->
+    <header class="main-header" id="header">
+      <div class="navbar-container">
+        <!-- Brand -->
+        <a href="./index.html" class="brand">
+          <img
+            src="./assets/logo.avif"
+            alt="Vidya Vihar Logo"
+            class="logo-img"
+          />
+          <div class="brand-text">
+            <span class="school-name">VIDYA VIHAR</span>
+            <span class="school-tagline">International School</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
+          <ul class="desk-nav-list">
+            <li class="desk-nav-item">
+              <a href="./index.html" class="desk-nav-link">HOME</a>
+            </li>
+            <li class="desk-nav-item">
+              <a href="./about.html" class="desk-nav-link"
+                >ABOUT
+                <i class="fas fa-chevron-down" style="font-size: 11px"></i
+              ></a>
+              <ul class="desk-dropdown">
+                <li class="desk-dropdown-item">
+                  <a href="./about.html">About Us</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="#">Mandatory Disclosure</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./faculty.html">Faculties</a>
+                </li>
+              </ul>
+            </li>
+            <li class="desk-nav-item">
+              <a href="#" class="desk-nav-link"
+                >ACADEMICS
+                <i class="fas fa-chevron-down" style="font-size: 11px"></i
+              ></a>
+              <ul class="desk-dropdown">
+                <li class="desk-dropdown-item">
+                  <a href="./foundational.html"
+                    >Foundational Stage(Pre KG-Grade 2)</a
+                  >
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./preparatory.html">Preparatory Stage(Grade 3-5)</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./middlestage.html">Middle Stage (Grade 6-8)</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./secondary.html">Secondary Stage (Grade 9-10)</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./parental.html">Parental Synergy</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="#">Event calender</a>
+                </li>
+                <!-- <li class="desk-dropdown-item">
+                  <a href="#">Innovative Student-Centric Pedagogy</a>
+                </li> -->
+                <!-- <li class="desk-dropdown-item">
+                  <a href="#">Outstanding Academic Results and Awards</a>
+                </li> -->
+                <!-- <li class="desk-dropdown-item">
+                  <a href="#">Annual School Activity Calendar</a>
+                </li> -->
+                <!-- <li class="desk-dropdown-item">
+                  <a href="#">Prescribed Textbooks and Resource List</a>
+                </li> -->
+              </ul>
+            </li>
+            <li class="desk-nav-item">
+              <a href="#" class="desk-nav-link"
+                >FACILITIES
+                <i class="fas fa-chevron-down" style="font-size: 11px"></i
+              ></a>
+              <ul class="desk-dropdown">
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Tech as an Enabler</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Innovation Center</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Information Center</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">ICT Labs</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Science & Maths Laboratories</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html"
+                    >VVIS Venues (The Happening Places)</a
+                  >
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Indoor & Outdoor</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Music & Dance Rooms</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Cafeteria</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Transport</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Infirmary</a>
+                </li>
+              </ul>
+            </li>
+            <li class="desk-nav-item">
+              <a href="./gallery.html" class="desk-nav-link"
+                >GALLERY
+                <!-- <i class="fas fa-chevron-down" style="font-size: 11px"></i
+              ></a> -->
+              <!-- <ul class="desk-dropdown">
+                <li class="desk-dropdown-item">
+                  <a href="./gallery.html">GALLERY(2025-26)</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="#">GALLERY(2025-26)</a>
+                </li>
+                
+              </ul> -->
+            </li>
+            <li class="desk-nav-item">
+              <a href="./contact.html" class="desk-nav-link">CONTACT</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Action Buttons -->
+        <div class="desktop-buttons">
+          <a href="./admission.html" class="btn btn-admission">Admission</a>
+          <!-- <a href="#" class="btn btn-admin">Admin Portal</a> -->
+        </div>
+
+        <!-- Mobile Toggle -->
+        <button class="hamburger-btn" id="menuToggle" aria-label="Toggle Menu">
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+        </button>
+      </div>
+    </header>
+
+    <!-- MOBILE OVERLAY -->
+    <div class="mobile-menu-overlay" id="mobileOverlay">
+      <div class="mobile-menu-content">
+        <ul class="mob-nav-list">
+          <li class="mob-nav-item">
+            <a href="./index.html" class="mob-nav-link">HOME</a>
+          </li>
+          <li class="mob-nav-item">
+            <div class="mob-nav-link mob-drop-trigger">
+              ABOUT <i class="fas fa-plus mob-dropdown-toggle"></i>
+            </div>
+            <ul class="mob-dropdown-list">
+              <li class="mob-dropdown-item">
+                <a href="./about.html">About Us</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./faculty.html">Faculties</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="#">Mandatory Disclosure</a>
+              </li>
+            </ul>
+          </li>
+          <li class="mob-nav-item">
+            <div class="mob-nav-link mob-drop-trigger">
+              ACADEMICS <i class="fas fa-plus mob-dropdown-toggle"></i>
+            </div>
+            <ul class="mob-dropdown-list">
+              <li class="mob-dropdown-item">
+                <a href="./foundational.html"
+                  >Foundational Stage(Pre KG-Grade 2)</a
+                >
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./preparatory.html">Preparatory Stage(Grade 3-5)</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./middlestage.html">Middle Stage (Grade 6-8)</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./secondary.html">Secondary Stage (Grade 9-10)</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./parental.html">Parental Synergy</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="#">Event Calender</a>
+              </li>
+            </ul>
+          </li>
+          <li class="mob-nav-item">
+            <div class="mob-nav-link mob-drop-trigger">
+              FACILITIES <i class="fas fa-plus mob-dropdown-toggle"></i>
+            </div>
+            <ul class="mob-dropdown-list">
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Tech as an Enabler</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Innovation Center</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Information Center</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">ICT Labs</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Science & Maths Laboratories</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html"
+                  >VVIS Venues (The Happening Places)</a
+                >
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Indoor & Outdoor</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Cafeteria</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Transport</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Infirmary</a>
+              </li>
+            </ul>
+          </li>
+          <li class="mob-nav-item">
+            <a href="./gallery.html" class="mob-nav-link">GALLERY</a>
+          </li>
+          <li class="mob-nav-item">
+            <a href="./contact.html" class="mob-nav-link">CONTACT</a>
+          </li>
+        </ul>
+        <div class="mob-buttons">
+          <a href="./admission.html" class="btn btn-admission"
+            >Admission Open</a
+          >
+          <!-- <a href="#" class="btn btn-admin">Admin Login</a> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN BODY CONTENT -->
+    <!-- <div style="height: 2000px; padding: 120px 5%; background: #fafafa">
+      <h1
+        style="
+          font-family: var(--font-poppins);
+          color: var(--text-dark);
+          line-height: 1.2;
+        "
+      >
+        Excellence in Global Education
+      </h1>
+      <p
+        style="
+          margin-top: 25px;
+          font-size: 1.2rem;
+          color: #555;
+          max-width: 800px;
+          line-height: 1.8;
+        "
+      >
+        Welcome to Vidya Vihar International School. The gap between the brand
+        logo and the navigation links has been increased for a cleaner, more
+        spacious layout.
+      </p>
+    </div> -->
+    <!-- Hero Section -->
+    <section class="hero">
+      <img
+        src="./assets/school-contact.jpg"
+        alt="School Campus"
+        class="hero-img"
+      />
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Facilities</h1>
+        <p>World-Class Infrastructure for Holistic Learning</p>
+      </div>
+    </section>
+
+    <!-- Navigation Chips -->
+    <nav class="nav-sticky">
+      <div class="chips-container" id="chips-list">
+        <a href="#tech" class="chip active">Tech as an Enabler</a>
+        <a href="#lms" class="chip">LMS</a>
+        <a href="#sims" class="chip">SIMS</a>
+        <a href="#app" class="chip">Mobile App</a>
+        <a href="#innovation" class="chip">Innovation Centre</a>
+        <a href="#coe" class="chip">CoE</a>
+        <a href="#library" class="chip">Library</a>
+        <a href="#resource" class="chip">Resource Room</a>
+        <a href="#language" class="chip">Language Lab</a>
+        <a href="#creative" class="chip">Creative Corner</a>
+        <a href="#ict" class="chip">ICT Labs</a>
+        <a href="#physics" class="chip">Physics Lab</a>
+        <a href="#chemistry" class="chip">Chemistry Lab</a>
+        <a href="#biology" class="chip">Biology Lab</a>
+        <a href="#math" class="chip">Math Lab</a>
+        <a href="#astronomy" class="chip">Astronomical Observatory</a>
+        <a href="#amphitheatre" class="chip">Amphitheatre</a>
+        <a href="#auditorium" class="chip">Auditorium</a>
+        <a href="#seminar" class="chip">Seminar Hall</a>
+        <a href="#indoor" class="chip">Indoor & Outdoor</a>
+        <a href="#dollhouse" class="chip">Doll House</a>
+        <a href="#pavilion" class="chip">Pavilion</a>
+        <a href="#music" class="chip">Music & Dance</a>
+        <a href="#cafeteria" class="chip">Cafeteria</a>
+        <a href="#transport" class="chip">Transport</a>
+        <a href="#infirmary" class="chip">Infirmary</a>
+      </div>
+    </nav>
+
+    <main>
+      <!-- Template for Facility Section -->
+
+      <!-- Technology-Enabled Classrooms and Labs -->
+      <section id="tech" class="facility-section">
+        <div class="facility-card">
+          <div class="column-left">
+            <h2 class="facility-title">
+              Technology-Enabled Classrooms and Labs
+            </h2>
+            <div class="gold-underline"></div>
+            <img
+              src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=2104&auto=format&fit=crop"
+              class="img-main"
+              alt="Classroom"
+            />
+            <div class="content-text">
+              Vidya Vihar International School (VVIS) ensures that every
+              classroom, from Preschool to Sr. Secondary, has interactive
+              digital display boards. These boards create a multi-sensory
+              learning environment that enhances the learning experience for
+              students and helps teachers maximize the benefits of technology.
+              High-speed Wi-Fi internet service is available across the campus,
+              which is advantageous for both educators and students as it allows
+              for easy access to online resources. Our students are encouraged
+              to use digital tools for research, presentations, and
+              collaborative projects, which enhance their digital literacy
+              skills. These efforts align with NEP 2020’s emphasis on
+              technological integration, ensuring our students are well-prepared
+              for the technological demands of the modern world. The
+              availability of in house Learning Management System (LMS) and a
+              rich repository of resources ensures optimal use of these
+              facilities.
+            </div>
+          </div>
+          <div class="column-right">
+            <img
+              src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=2070&auto=format&fit=crop"
+              class="img-sub"
+              alt="Lab 1"
+            />
+            <img
+              src="./assets/i13.webp"
+              class="img-sub"
+              alt="Lab 2"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- LMS -->
+      <section id="lms" class="facility-section">
+        <div class="facility-card">
+          <div class="column-left">
+            <h2 class="facility-title">Learning Management Systems (LMS)</h2>
+            <div class="gold-underline"></div>
+            <img
+              src="./assets/i15.webp"
+              class="img-main"
+              alt="LMS Main"
+            />
+            <div class="content-text">
+              VVIS employs a comprehensive Learning Management System that acts
+              as a central hub for all educational activities. Personalized
+              accounts for students, teachers, and parents provide access to
+              course materials, assignments, quizzes, and question banks. The
+              LMS supports collaborative learning through discussion forums,
+              learning polls, and online assessments. Additionally, the system
+              includes tools for lesson planning, evaluation systems, portfolio
+              and performance tracking, lab solutions, digital resources, and
+              interactive digital books, ensuring a holistic and integrated
+              educational experience.
+            </div>
+          </div>
+          <div class="column-right">
+            <img
+              src="./assets/i14.webp"
+              class="img-sub"
+              alt="LMS Sub 1"
+            />
+            <img
+              src="./assets/school2.webp"
+              class="img-sub"
+              alt="LMS Sub 2"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- SIMS -->
+      <section id="sims" class="facility-section">
+        <div class="facility-card">
+          <div class="column-left">
+            <h2 class="facility-title">
+              School Information Management System (SIMS)
+            </h2>
+            <div class="gold-underline"></div>
+            <img
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2026&auto=format&fit=crop"
+              class="img-main"
+              alt="SIMS"
+            />
+            <div class="content-text">
+              The school’s administrative and operational tasks are streamlined
+              through a unified system-integrated management platform. This
+              platform handles a range of tasks, including attendance tracking,
+              resource allocation, student and staff management, and financial
+              transactions. By integrating these functions into a single system,
+              the platform facilitates efficient school administration, reducing
+              the workload on staff and ensuring smooth operations.
+            </div>
+          </div>
+          <div class="column-right">
+            <img
+              src="./assets/school113.webp"
+              class="img-sub"
+              alt="SIMS Sub 1"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&w=2070&auto=format&fit=crop"
+              class="img-sub"
+              alt="SIMS Sub 2"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- School Mobile App -->
+      <section id="app" class="facility-section">
+        <div class="facility-card">
+          <div class="column-left">
+            <h2 class="facility-title">School Mobile App</h2>
+            <div class="gold-underline"></div>
+            <img
+              src="./assets/school112.webp"
+              class="img-main"
+              alt="App Main"
+            />
+            <div class="content-text">
+              To enhance communication and engagement, VVIS has developed a
+              dedicated mobile app. This app provides access to essential
+              information such as school announcements, notifications, event
+              calendars, academic resources, and details about extracurricular
+              activities. Parents can use the app to stay updated on their
+              child’s progress and upcoming events, ensuring they remain
+              informed and engaged with their child’s education.
+            </div>
+          </div>
+          <div class="column-right">
+            <img
+              src="https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=1974&auto=format&fit=crop"
+              class="img-sub"
+              alt="App Sub 1"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?q=80&w=2072&auto=format&fit=crop"
+              class="img-sub"
+              alt="App Sub 2"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Innovation Centre -->
+      <section id="innovation" class="facility-section">
+        <div class="facility-card">
+          <div class="column-left">
+            <h2 class="facility-title">Innovation Centre</h2>
+            <div class="gold-underline"></div>
+            <img
+              src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2070&auto=format&fit=crop"
+              class="img-main"
+              alt="Innovation"
+            />
+            <div class="content-text">
+              The heart of our STEAM initiative is the ‘INNOVATION CENTRE’, a
+              7,000 sq. ft. state-of-the-art facility designed to inspire
+              creativity, critical thinking, and problem-solving. This
+              well-equipped space provides students access to advanced tools and
+              technologies, enabling them to engage in hands-on learning
+              experiences.
+              <br /><br />
+              In the Innovation Lab, students work on multifaceted challenges
+              and projects that require them to think critically, research
+              solutions, and perform meaningful tasks. Mentors and teachers
+              design these projects to present students with authentic,
+              real-world issues. Through this process, students are encouraged
+              to inquire, take risks, share their ideas, and push the boundaries
+              of their performance. This experiential learning approach helps
+              them develop resilience and adaptability, preparing them for
+              future academic and professional endeavours. Students can create
+              tangible objects from digital designs using 3D Printers. This
+              hands-on approach helps reinforce complex concepts and enhances
+              their understanding of abstract topics across different subjects.
+              The Innovation Centre is equipped with Ender 3, Firepen, slicing
+              software, and drafting software like Tremble Sketchup and
+              Tinkercad, providing students with advanced tools to bring their
+              designs to life.
+            </div>
+          </div>
+          <div class="column-right">
+            <img
+              src="./assets/school13.webp"
+              class="img-sub"
+              alt="3D Printing"
+            />
+            <img
+              src="./assets/school1.webp"
+              class="img-sub"
+              alt="STEAM"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Centre of Excellence (CoE) -->
+      <section id="coe" class="facility-section">
+        <div class="facility-card">
+          <div class="column-left">
+            <h2 class="facility-title">Centre of Excellence (CoE)</h2>
+            <div class="gold-underline"></div>
+            <img
+              src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2070&auto=format&fit=crop"
+              class="img-main"
+              alt="AI Robotics"
+            />
+            <div class="content-text">
+              To establish a benchmark of best practices in the areas of
+              Artificial Intelligence (AI), Internet of Things (IoT), and
+              Robotics, VVIS has set up a Centre of Excellence, in partnership
+              with Factory Mind, a Norwegian company. The CoE is expected to
+              create a mature and collaborative IoT ecosystem with the help of
+              research scholars and professionals who would work with our
+              teachers and students to develop extensive knowledge of future
+              technologies.
+            </div>
+          </div>
+          <div class="column-right">
+            <img
+              src="./assets/scool114.webp"
+              class="img-sub"
+              alt="IoT Sub"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?q=80&w=2070&auto=format&fit=crop"
+              class="img-sub"
+              alt="Robotics Sub"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Library -->
+      <section id="library" class="facility-section">
+        <div class="facility-card">
+          <div class="column-left">
+            <h2 class="facility-title">Library</h2>
+            <div class="gold-underline"></div>
+            <img
+              src="./assets/school115.webp"
+              class="img-main"
+              alt="Library"
+            />
+            <div class="content-text">
+              Books have a profound and enduring impact on our lives, shaping
+              our minds and imaginations. Our carefully curated reading room
+              offers a treasure trove of engaging, age-appropriate literature
+              designed to captivate young learners. Through guided reading
+              sessions and other stimulating activities, we introduce our
+              children to the magical world of books, nurturing a lifelong love
+              of reading. This nurturing space provides a haven for exploration
+              and discovery, where children can embark on exciting adventures,
+              meet fascinating characters, and expand their understanding of the
+              world.
+              <br /><br />
+              The school has two Library-cum-Reading Rooms stocked with a wide
+              selection of reading materials, reference books, and manuals for
+              students and teachers. Additionally, there is a large collection
+              of videos, e-books, and other digital resources, classified and
+              catalogued by age group and subject area. This extensive
+              collection of digital and print resources enriches the knowledge
+              base available to the school community.
+            </div>
+          </div>
+          <div class="column-right">
+            <img
+              src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=2073&auto=format&fit=crop"
+              class="img-sub"
+              alt="Books 1"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=2070&auto=format&fit=crop"
+              class="img-sub"
+              alt="Books 2"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Resource Room -->
+      <section id="resource" class="facility-section">
+        <div class="facility-card">
+          <div class="column-left">
+            <h2 class="facility-title">Resource Room</h2>
+            <div class="gold-underline"></div>
+            <img
+              src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop"
+              class="img-main"
+              alt="Resources"
+            />
+            <div class="content-text">
+              Our resource room at Vidya Vihar International School is a
+              treasure trove of educational resources. The school supports
+              students, with diverse learning needs. This room provides
+              specialized, individualised instruction and assistance tailored to
+              each student’s strengths and challenges. The school provides
+              remedial teaching, and personalised support to build strong
+              foundational skills and academic and social-emotional development.
+              The room is staffed by trained educators who collaborate closely
+              with classroom teachers to adapt and modify curriculum content,
+              instructional methods, and assessments, ensuring a more inclusive
+              learning environment. Additionally, the Resource Room offers tools
+              and resources to enhance students’ engagement and independence,
+              helping them achieve their full potential within the mainstream
+              classroom setting. Filled with worksheets, textbooks,
+              developmental books, and more, the Resource Rooms provide students
+              with a wealth of materials to support their learning. Whether
+              you’re looking for extra practice, enrichment activities, or
+              research materials, our resource room has something to offer
+              everyone.
+            </div>
+          </div>
+          <div class="column-right">
+            <img
+              src="./assets/i7.webp"
+              class="img-sub"
+              alt="Resource 1"
+            />
+            <img
+              src="./assets/i2.webp"
+              class="img-sub"
+              alt="Resource 2"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Language Lab -->
+      <section id="language" class="facility-section">
+        <div class="facility-card">
+          <div class="column-left">
+            <h2 class="facility-title">Language Lab (Foundational Stage)</h2>
+            <div class="gold-underline"></div>
+            <img
+              src="./assets/i14.webp"
+              class="img-main"
+              alt="Language"
+            />
+            <div class="content-text">
+              Our language lab at Vidya Vihar International School is a modern
+              and well-equipped facility designed to foster language learning.
+              Students can practice Hindi, Kannada, and English through a
+              variety of interactive activities, including listening, speaking,
+              reading, and writing exercises. With state-of-the-art technology
+              and a focus on personalized learning, our lab provides a
+              stimulating environment for students to develop their language
+              skills and appreciate the rich linguistic heritage of India.
+            </div>
+          </div>
+          <div class="column-right">
+            <img
+              src="./assets/school14.webp"
+              class="img-sub"
+              alt="Lang 1"
+            />
+            <img
+              src="./assets/i22.webp"
+              class="img-sub"
+              alt="Lang 2"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Creative Corner -->
+      <section id="creative" class="facility-section">
+        <div class="facility-card">
+          <div class="column-left">
+            <h2 class="facility-title">Creative Corner (Foundational Stage)</h2>
+            <div class="gold-underline"></div>
+            <img
+              src="./assets/i3.webp"
+              class="img-main"
+              alt="Art Corner"
+            />
+            <div class="content-text">
+              Children’s creativity and imagination soar as they delve into the
+              world of art, exploring a diverse range of materials. From the
+              tactile experience of moulding clay to the vibrant hues of paints
+              and the expressive strokes of crayons, children are encouraged to
+              think outside the box and discover their unique artistic voices.
+              By incorporating natural elements into their creations, they
+              connect with the world around them and develop a deeper
+              appreciation for the beauty and diversity of nature. As they
+              experiment with different materials and techniques, they learn to
+              overcome challenges, embrace their individuality, and develop a
+              sense of confidence in their abilities.
+            </div>
+          </div>
+          <div class="column-right">
+            <img
+              src="./assets/i21.webp"
+              class="img-sub"
+              alt="Creative 1"
+            />
+            <img
+              src="./assets/i16.webp"
+              class="img-sub"
+              alt="Creative 2"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- ICT Labs -->
+      <section id="ict" class="facility-section">
+        <div class="facility-card">
+          <div class="column-left">
+            <h2 class="facility-title">ICT Labs</h2>
+            <div class="gold-underline"></div>
+            <img
+              src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop"
+              class="img-main"
+              alt="ICT"
+            />
+            <div class="content-text">
+              Our ICT (Information and Communication Technology) Labs at Vidya
+              Vihar International School is a state-of-the-art facility equipped
+              with the latest technology to provide students with a stimulating
+              and engaging learning environment. VVIS is equipped with three ICT
+              labs, housing 90 cutting-edge computer systems with the latest
+              versions of software. The labs also include a set of 30 laptops
+              with graphic cards, allowing students to work on various projects
+              and activities. These resources enable students to execute complex
+              programs, including animation, web design, programming languages,
+              3D design and printing, and more.
+            </div>
+          </div>
+          <div class="column-right">
+            <img
+              src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop"
+              class="img-sub"
+              alt="ICT Sub 1"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop"
+              class="img-sub"
+              alt="ICT Sub 2"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Physics Lab -->
+      <section id="physics" class="facility-section">
+        <div class="facility-card">
+          <div class="column-left">
+            <h2 class="facility-title">Physics Lab</h2>
+            <div class="gold-underline"></div>
+            <img
+              src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2070&auto=format&fit=crop"
+              class="img-main"
+              alt="Physics"
+            />
+            <div class="content-text">
+              Physics Lab provides an ideal environment for students to explore
+              the fundamental principles of physics through hands-on
+              experimentation. Equipped with modern apparatus, students conduct
+              experiments to delve into the intricacies of physics. From
+              studying the laws of motion to investigating the properties of
+              light and electricity, including mechanics, optics,
+              thermodynamics, and electromagnetism our lab provides a hands-on
+              approach to learning. The lab also features advanced experimental
+              setups for studying topics like electric circuits, magnetic
+              fields, and wave motion, allowing students to engage in real-world
+              problem-solving and deeper inquiry into the laws of physics.
+              <br /><br />
+              Additionally, data-logging tools, Vernier probes, and
+              computer-aided simulations help students visualize abstract
+              concepts and analyse experimental data with precision. Focusing on
+              exploratory and project-based learning, the lab encourages
+              students to conduct experiments, design projects, and apply
+              theoretical knowledge to practical situations. It provides a fun
+              and stimulating environment where students develop a solid
+              understanding of physics while honing critical thinking and
+              problem-solving skills.
+            </div>
+          </div>
+          <div class="column-right">
+            <img
+              src="https://images.unsplash.com/photo-1516339900609-ca17c067e1a8?q=80&w=2187&auto=format&fit=crop"
+              class="img-sub"
+              alt="Physics Sub 1"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=2070&auto=format&fit=crop"
+              class="img-sub"
+              alt="Physics Sub 2"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Chemistry Lab -->
+      <section id="chemistry" class="facility-section">
+        <div class="facility-card">
+          <div class="column-left">
+            <h2 class="facility-title">Chemistry Lab</h2>
+            <div class="gold-underline"></div>
+            <img
+              src="https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?q=80&w=2070&auto=format&fit=crop"
+              class="img-main"
+              alt="Chemistry"
+            />
+            <div class="content-text">
+              The Chemistry Lab is a dynamic space where students delve into the
+              fascinating world of chemicals and substances and transform their
+              curiosity into tangible experiments, exploring the properties of
+              matter and creating new things. Students engage in experiments
+              that investigate reaction rates, construct electrochemical cells,
+              and measure their potential. Equipped with state-of-the-art
+              instruments like pH meters, conductometers, potentiometers,
+              high-precision balances, magnetic stirrers, hot air ovens, and
+              centrifuges. Our lab provides a hands-on learning environment with
+              precision and safety. The lab offers a wide range of chemical
+              reagents, glassware, and modern equipment, enabling students to
+              conduct experiments in organic, inorganic, and physical chemistry.
+              <br /><br />
+              Additionally, the introduction of nanotechnology gives students
+              hands-on experience with the manipulation of matter at the
+              molecular and atomic scale, exposing them to the latest
+              developments in material science and cutting-edge research. With a
+              focus on inquiry-based learning, students are encouraged to
+              conduct experiments, explore chemical reactions, and understand
+              the real-world applications of chemistry.
+            </div>
+          </div>
+          <div class="column-right">
+            <img
+              src="https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=1925&auto=format&fit=crop"
+              class="img-sub"
+              alt="Chem Sub 1"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1532187863486-abf9d39d6627?q=80&w=2070&auto=format&fit=crop"
+              class="img-sub"
+              alt="Chem Sub 2"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Biology Lab -->
+      <section id="biology" class="facility-section">
+        <div class="facility-card">
+          <div class="column-left">
+            <h2 class="facility-title">Biology Lab</h2>
+            <div class="gold-underline"></div>
+            <img
+              src="https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=2080&auto=format&fit=crop"
+              class="img-main"
+              alt="Biology"
+            />
+            <div class="content-text">
+              The Biology Lab offers an immersive, hands-on learning experience
+              where students explore the wonders of life sciences. Equipped with
+              advanced digital microscopes, our biology lab is a vibrant space
+              where students explore the intricacies of life and engage in
+              hands-on experiments that bring theoretical concepts to life and
+              develop a deeper appreciation for the natural world. Students have
+              access to a wide range of biological models, specimens, and
+              dissection tools, allowing them to engage in practical experiments
+              and deepen their understanding of anatomy, physiology, and
+              ecology. The lab also features incubators, centrifuges, water
+              baths, UV transilluminators, and DNA analysis kits, allowing
+              students to conduct advanced biological experiments in genetics,
+              microbiology, and biotechnology.
+              <br /><br />
+              The digital microscope is a special feature of the Biology Lab.
+              This microscope can be connected to a computer system through a
+              cable interface. All-in-one, touch-enabled computers are connected
+              to these digital microscopes. Students can view the objects from
+              the viewfinder or watch them on the computer screen. As these are
+              touchscreen computers, students can directly zoom in to get the
+              desired information about the object on the screen.
+            </div>
+          </div>
+          <div class="column-right">
+            <img
+              src="https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=2070&auto=format&fit=crop"
+              class="img-sub"
+              alt="Bio Sub 1"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1530210124550-912dc1381cb8?q=80&w=2070&auto=format&fit=crop"
+              class="img-sub"
+              alt="Bio Sub 2"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Math Lab -->
+      <section id="math" class="facility-section">
+        <div class="facility-card">
+          <div class="column-left">
+            <h2 class="facility-title">Math Lab</h2>
+            <div class="gold-underline"></div>
+            <img
+              src="https://images.unsplash.com/photo-1509228468518-180dd4864904?q=80&w=2070&auto=format&fit=crop"
+              class="img-main"
+              alt="Math Lab"
+            />
+            <div class="content-text">
+              The Math Lab provides an engaging and hands-on learning
+              environment, designed to make math both fun and intuitive.
+              Students can explore concepts visually and interactively using
+              high-end infrastructure such as interactive smart boards and
+              advanced mathematical software. Math lab offers a variety of
+              manipulatives such as geometric models, algebra tiles, abacus, and
+              graphing kits that allow for practical exploration of mathematical
+              principles. Through activities like game-based learning, group
+              problem-solving, and inquiry-based tasks, students develop a
+              deeper understanding of topics like geometry, algebra, and
+              probability.
+              <br /><br />
+              The Math lab enhances student engagement by incorporating
+              classroom kits designed to make mathematical concepts tangible and
+              interactive. These kits include a wide range of tools and
+              manipulatives that cater to different learning styles, allowing
+              students to explore math concepts in a hands-on, practical manner.
+              Our lab fosters creativity and curiosity, helping students connect
+              math to real-world applications while promoting a love for
+              learning through fun and interactive experiences.
+            </div>
+          </div>
+          <div class="column-right">
+            <img
+              src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=2070&auto=format&fit=crop"
+              class="img-sub"
+              alt="Math Sub 1"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto=format&fit=crop"
+              class="img-sub"
+              alt="Math Sub 2"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Astronomical Observatory -->
+      <section id="astronomy" class="facility-section">
+        <div class="facility-card">
+          <div class="column-left">
+            <h2 class="facility-title">Astronomical Observatory</h2>
+            <div class="gold-underline"></div>
+            <img
+              src="https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?q=80&w=2070&auto=format&fit=crop"
+              class="img-main"
+              alt="Telescope"
+            />
+            <div class="content-text">
+              Vidya Vihar International School has acquired two telescopes: 14”
+              and 8’’ Computerized Observatory Class Telescopes— Celestron CGE
+              Pro 1400XLT—Schmidt Cassegrain German Equatorial Mount. These
+              powerful instruments offer students the opportunity to explore the
+              cosmos firsthand. To complement the hands-on learning experience,
+              our Astronomy Lab features interactive activities and immersive
+              software. Celestia allows students to virtually journey through
+              multiple universes, while Stellarium provides a realistic
+              simulation of the night sky. This comprehensive approach ensures
+              that students gain a deep understanding of astronomy and develop a
+              lifelong passion for space exploration. Students and the general
+              public can routinely attend skywatch activities, which offer a
+              special chance to learn about the universe. Being a recognised
+              Space Tutor institute, affiliated to ISRO, the Astronomical
+              Observatory at VVIS has unlimited access to resources in various
+              forms.
+            </div>
+          </div>
+          <div class="column-right">
+            <img
+              src="https://images.unsplash.com/photo-1454789548928-9efd52dc4031?q=80&w=2080&auto=format&fit=crop"
+              class="img-sub"
+              alt="Space 1"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1464802686167-b939a67e06a1?q=80&w=2070&auto=format&fit=crop"
+              class="img-sub"
+              alt="Space 2"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Amphitheatre -->
+      <section id="amphitheatre" class="facility-section">
+        <div class="facility-card">
+          <div class="column-left">
+            <h2 class="facility-title">Amphitheatre</h2>
+            <div class="gold-underline"></div>
+            <img
+              src="https://images.unsplash.com/photo-1543269664-76bc3997d9ea?q=80&w=2070&auto=format&fit=crop"
+              class="img-main"
+              alt="Outdoor Arena"
+            />
+            <div class="content-text">
+              Children’s creativity and imagination soar as they delve into the
+              world of art, exploring a diverse range of materials. From the
+              tactile experience of moulding clay to the vibrant hues of paints
+              and the expressive strokes of crayons, children are encouraged to
+              think outside the box and discover their unique artistic voices.
+              By incorporating natural elements into their creations, they
+              connect with the world around them and develop a deeper
+              appreciation for the beauty and diversity of nature. As they
+              experiment with different materials and techniques, they learn to
+              overcome challenges, embrace their individuality, and develop a
+              sense of confidence in their abilities.
+            </div>
+          </div>
+          <div class="column-right">
+            <img
+              src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069&auto=format&fit=crop"
+              class="img-sub"
+              alt="Amp 1"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2070&auto=format&fit=crop"
+              class="img-sub"
+              alt="Amp 2"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Auditorium -->
+      <section id="auditorium" class="facility-section">
+        <div class="facility-card">
+          <div class="column-left">
+            <h2 class="facility-title">Auditorium</h2>
+            <div class="gold-underline"></div>
+            <img
+              src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069&auto=format&fit=crop"
+              class="img-main"
+              alt="Hall"
+            />
+            <div class="content-text">
+              Multidisciplinary activities are brought to life in our
+              auditorium. With its cutting-edge technology and adaptable seating
+              configuration, it can host a variety of events, including
+              conferences, concerts, and lectures as well as workshops. This
+              warm environment encourages teamwork, creativity, and a lively
+              community of scholars and intellectuals.
+            </div>
+          </div>
+          <div class="column-right">
+            <img
+              src="https://images.unsplash.com/photo-1475721027185-39a12947c048?q=80&w=2070&auto=format&fit=crop"
+              class="img-sub"
+              alt="Stage"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2070&auto=format&fit=crop"
+              class="img-sub"
+              alt="Seating"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Seminar Hall -->
+      <section id="seminar" class="facility-section">
+        <div class="facility-card">
+          <div class="column-left">
+            <h2 class="facility-title">Seminar Hall</h2>
+            <div class="gold-underline"></div>
+            <img
+              src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop"
+              class="img-main"
+              alt="Conference Hall"
+            />
+            <div class="content-text">
+              Our seminar hall is a versatile space, ideal for a variety of
+              events. Equipped with modern technology and comfortable seating,
+              it offers a conducive environment for academic lectures, corporate
+              meetings, and social gatherings. Whether you’re hosting a small
+              workshop or a large conference, our seminar hall is the perfect
+              venue.
+            </div>
+          </div>
+          <div class="column-right">
+            <img
+              src="https://images.unsplash.com/photo-1431540015161-0bf868a2d407?q=80&w=2070&auto=format&fit=crop"
+              class="img-sub"
+              alt="Seminar 1"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1524178232363-1fb28f74b671?q=80&w=2070&auto=format&fit=crop"
+              class="img-sub"
+              alt="Seminar 2"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Indoor and Outdoor Activities -->
+      <section id="indoor" class="facility-section">
+        <div class="facility-card">
+          <div class="column-left">
+            <h2 class="facility-title">Indoor and Outdoor Activities</h2>
+            <div class="gold-underline"></div>
+            <img
+              src="https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=2090&auto=format&fit=crop"
+              class="img-main"
+              alt="Basketball"
+            />
+            <div class="content-text">
+              Embracing the ‘Healthy Mind, Healthy Body’ philosophy, we
+              prioritize physical activity for our students. To foster all-round
+              development, we encourage participation in a variety of sports,
+              including throw ball, basketball, volleyball, hockey, cricket,
+              badminton, table tennis, various board games and track & field.
+              Our students are enthusiastic and well prepared to compete in
+              inter-school athletic competitions at local, state and national
+              levels. Needless to add, the school has produced accomplished
+              sports and games achievers, at national and international levels,
+              in a short span of our existence.
+            </div>
+          </div>
+          <div class="column-right">
+            <img
+              src="https://images.unsplash.com/photo-1526676037777-05a232554f77?q=80&w=2070&auto=format&fit=crop"
+              class="img-sub"
+              alt="Sports 1"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1519766304817-4f37bda74a26?q=80&w=2070&auto=format&fit=crop"
+              class="img-sub"
+              alt="Sports 2"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Doll House -->
+      <section id="dollhouse" class="facility-section">
+        <div class="facility-card">
+          <div class="column-left">
+            <h2 class="facility-title">Doll House (Foundational Stage)</h2>
+            <div class="gold-underline"></div>
+            <img
+              src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=2070&auto=format&fit=crop"
+              class="img-main"
+              alt="Play Area"
+            />
+            <div class="content-text">
+              A dollhouse is more than just a toy; it’s a portal to a world of
+              imagination and creativity. Through imaginative play, children can
+              explore their own emotions, express their feelings, and develop a
+              deeper understanding of the world around them. As children engage
+              in imaginative play, they develop a sense of self, build
+              confidence, and learn to navigate social situations with greater
+              ease. The dollhouse becomes a safe space for exploration and
+              expression, providing a foundation for lifelong learning and
+              growth.
+            </div>
+          </div>
+          <div class="column-right">
+            <img
+              src="https://images.unsplash.com/photo-1537733214441-83196a85839d?q=80&w=1964&auto=format&fit=crop"
+              class="img-sub"
+              alt="Toy House 1"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?q=80&w=2075&auto=format&fit=crop"
+              class="img-sub"
+              alt="Toy House 2"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Pavilion -->
+      <section id="pavilion" class="facility-section">
+        <div class="facility-card">
+          <div class="column-left">
+            <h2 class="facility-title">Pavilion (Foundational Stage)</h2>
+            <div class="gold-underline"></div>
+            <img
+              src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=2073&auto=format&fit=crop"
+              class="img-main"
+              alt="Outdoor Hub"
+            />
+            <div class="content-text">
+              Our spacious and aesthetically designed pavilion serves as a
+              dynamic hub where we showcase our diverse learning experiences,
+              extracurricular activities, and sporting events. It’s a place
+              where students can engage in guided and free physical activities,
+              fostering a sense of community and belonging. The pavilion is more
+              than just a building; it’s a space where memories are made and
+              passions are ignited. Whether it’s a lively dance performance, a
+              thought-provoking presentation, or a thrilling sporting event, the
+              pavilion provides a platform for students to shine and showcase
+              their talents.
+            </div>
+          </div>
+          <div class="column-right">
+            <img
+              src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?q=80&w=2038&auto=format&fit=crop"
+              class="img-sub"
+              alt="Pav 1"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1472393365320-dc772421449a?q=80&w=2070&auto=format&fit=crop"
+              class="img-sub"
+              alt="Pav 2"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Music and Dance Rooms -->
+      <section id="music" class="facility-section">
+        <div class="facility-card">
+          <div class="column-left">
+            <h2 class="facility-title">Music and Dance Rooms</h2>
+            <div class="gold-underline"></div>
+            <img
+              src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=2070&auto=format&fit=crop"
+              class="img-main"
+              alt="Music Room"
+            />
+            <div class="content-text">
+              Music is more than just entertainment; it’s a powerful tool for
+              developing language skills and cognitive abilities. Beyond
+              language development, music can also foster emotional
+              intelligence, creativity, and a sense of self-expression.
+              <br /><br />
+              Dance is a dynamic form of exercise that promotes both physical
+              and emotional well-being. Students develop body control, spatial
+              awareness, and listening skills as they learn to interpret music
+              and translate it into expressive movements. Through dance,
+              individuals can enhance their coordination, flexibility, and
+              strength while also fostering a sense of rhythm and timing.
+              <br /><br />
+              Separate rooms for music and dance offer dedicated space designed
+              for students to engage in creative expression through music and
+              dance. These rooms have ample space for movement to facilitate
+              practice and rehearsals. Music and Dance rooms are often used for
+              individual practice, group lessons, rehearsals, and performances,
+              under the guidance and supervision of qualified and experienced
+              professionals.
+            </div>
+          </div>
+          <div class="column-right">
+            <img
+              src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=2069&auto=format&fit=crop"
+              class="img-sub"
+              alt="Dance Sub"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=2070&auto=format&fit=crop"
+              class="img-sub"
+              alt="Performance Sub"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Cafeteria -->
+      <section id="cafeteria" class="facility-section">
+        <div class="facility-card">
+          <div class="column-left">
+            <h2 class="facility-title">Cafeteria</h2>
+            <div class="gold-underline"></div>
+            <img
+              src="https://images.unsplash.com/photo-1567521464027-f127ff144326?q=80&w=1974&auto=format&fit=crop"
+              class="img-main"
+              alt="Canteen"
+            />
+            <div class="content-text">
+              We recognize the crucial role of nutrition in supporting
+              children’s growth and development. We provide wholesome and
+              hygienically prepared vegetarian meals to ensure our children get
+              the nutrition they need. These meals are designed to provide a
+              balanced diet that supports their physical and cognitive
+              development. Beyond the nutritional benefits, our dining program
+              fosters social skills and helps children develop positive habits.
+              However, this is an optional facility.
+            </div>
+          </div>
+          <div class="column-right">
+            <img
+              src="https://images.unsplash.com/photo-1547592166-23ac45744acd?q=80&w=2071&auto=format&fit=crop"
+              class="img-sub"
+              alt="Food 1"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?q=80&w=2064&auto=format&fit=crop"
+              class="img-sub"
+              alt="Food 2"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Transport -->
+      <section id="transport" class="facility-section">
+        <div class="facility-card">
+          <div class="column-left">
+            <h2 class="facility-title">Transport</h2>
+            <div class="gold-underline"></div>
+            <img
+              src="https://images.unsplash.com/photo-1556910602-3884ee026896?q=80&w=2070&auto=format&fit=crop"
+              class="img-main"
+              alt="Buses"
+            />
+            <div class="content-text">
+              Vidya Vihar International School offers reliable and safe
+              transportation services for our students, who wish to opt for the
+              same. Our well-maintained fleet of buses, experienced drivers, and
+              robust safety measures ensure a comfortable and secure journey to
+              and from school.
+              <br /><br />
+              Children are accompanied by an attendant during their trips to and
+              from the school.
+              <br /><br />
+              As per law, every bus has been fitted with speed governors, GPS
+              units and CCTV cameras.
+              <br /><br />
+              Parents receive an SMS alert every time the bus leaves the school
+              for pickup or drop of the children and the School Bus App.
+              provides access to the real time location of their ward’s bus, for
+              added safety.
+            </div>
+          </div>
+          <div class="column-right">
+            <img
+              src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2069&auto=format&fit=crop"
+              class="img-sub"
+              alt="Tracking"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1520038410233-7141f77e49aa?q=80&w=2070&auto=format&fit=crop"
+              class="img-sub"
+              alt="Safety Sub"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Infirmary -->
+      <section
+        id="infirmary"
+        class="facility-section"
+        style="margin-bottom: 50px"
+      >
+        <div class="facility-card">
+          <div class="column-left">
+            <h2 class="facility-title">Infirmary</h2>
+            <div class="gold-underline"></div>
+            <img
+              src="https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=2070&auto=format&fit=crop"
+              class="img-main"
+              alt="Medical"
+            />
+            <div class="content-text">
+              Our school infirmary is a dedicated space equipped with essential
+              medical facilities to provide timely care and support to our
+              students. Staffed by qualified para medical professionals, our
+              infirmary offers services, including first aid treatment,
+              medication management during emergencies, health education, and
+              emotional support. We are committed to ensuring the well-being of
+              our students and providing a safe and supportive learning
+              environment.
+            </div>
+          </div>
+          <div class="column-right">
+            <img
+              src="https://images.unsplash.com/photo-1583947215259-38e31be8751f?q=80&w=2070&auto=format&fit=crop"
+              class="img-sub"
+              alt="Infirmary 1"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=2070&auto=format&fit=crop"
+              class="img-sub"
+              alt="Infirmary 2"
+            />
+          </div>
+        </div>
+      </section>
+    </main>
+  <!-- START FOOTER SECTION -->
+    <footer class="arzSiteFooter">
+      <div class="arzFooterContainer">
+        <!-- School Branding -->
+        <div class="arzFooterBrand">
+          <img
+            src="./assets/vvislogo.jpeg"
+            alt="Vidya Vihar Logo"
+            class="arzSchoolLogo"
+          />
+          <div class="arzSchoolName">
+            <h2>VIDYA VIHAR</h2>
+            <p>INTERNATIONAL SCHOOL</p>
+          </div>
+          <div class="arzSocialLinks">
+            <a href="#" class="arzSocialIcon"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" class="arzSocialIcon"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" class="arzSocialIcon"><i class="fab fa-youtube"></i></a>
+            <a
+              href="https://wa.me/919538424583"
+              class="arzSocialIcon"
+              target="_blank"
+            >
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Campus Location -->
+        <div class="arzFooterLocations">
+          <h3 class="arzFooterHeading">Campus Location</h3>
+          <div class="arzCampusBlock">
+            <!-- Location 1 -->
+            <div class="arzLocationItem">
+              <div class="arzMapFrame">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3895.7301770453605!2d77.0263876741121!3d12.467681425727907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baf076500614e6f%3A0x65b53efa9332b4c2!2sVidya%20Vihar%20International%20School!5e0!3m2!1sen!2sin!4v1770357339459!5m2!1sen!2sin"
+                  width="600"
+                  height="450"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+              <img src="./assets/vvis.jpeg" alt="QR Code NY" class="arzQrImg" />
+            </div>
+            <!-- Location 2 -->
+            <div class="arzLocationItem">
+              <div class="arzMapFrame">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3895.4820376472485!2d77.03253737411231!3d12.48417642537924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baf079ab765efb9%3A0xc27d29ee81a8409e!2sVidya%20Vihar%20Wonder%20Kidz!5e0!3m2!1sen!2sin!4v1770357947662!5m2!1sen!2sin"
+                  width="600"
+                  height="450"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+              <img src="./assets/vvwk.jpeg" alt="QR Code CA" class="arzQrImg" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="arzFooterContact">
+          <h3 class="arzFooterHeading">Contact Information</h3>
+          <div class="arzContactGrid">
+            <!-- Column 1 -->
+            <div class="arzContactCol">
+              <div class="arzInfoRow">
+                <i data-lucide="map-pin"></i>
+                <div class="arzInfoText">
+                  <strong>Vidya Vihar International School</strong><br />
+                  Near APMC Market, Gudigere Road, <br />
+                  Manigere, Bharathinagar, Maddur Taluk <br />
+                  Mandya District, Karnataka- 571422
+                  <br />
+                </div>
+              </div>
+              <div class="arzInfoRow">
+                <i data-lucide="mail"></i>
+                <div class="arzInfoText">
+                  <a href="mailto: vidyavihar.kmd@gmail.com"
+                    >vidyavihar.kmd@gmail.com</a
+                  >
+                </div>
+              </div>
+              <div class="arzInfoRow">
+                <i data-lucide="phone"></i>
+                <div class="arzInfoText">
+                  <a href="tel:+919686781100">+91 9686781100</a><br />
+                </div>
+              </div>
+            </div>
+
+            <!-- Column 2 -->
+            <div class="arzContactCol">
+              <div class="arzInfoRow">
+                <i data-lucide="map-pin"></i>
+                <div class="arzInfoText">
+                  <strong>Vidya Vihar Wonder Kidz</strong><br />
+                  Opposite to Government Hospital,<br />Maddur-Malavalli Road
+                  Bharathinagar, Maddur Taluk <br />
+                  Mandya District, Karnataka- 571422
+                  <br />
+                </div>
+              </div>
+              <div class="arzInfoRow">
+                <i data-lucide="mail"></i>
+                <div class="arzInfoText">
+                  <a href="mailto:vidyavihar.kmd@gmail.com"
+                    >vidyavihar.kmd@gmail.com</a
+                  >
+                </div>
+              </div>
+              <div class="arzInfoRow">
+                <i data-lucide="phone"></i>
+                <div class="arzInfoText">
+                  <a href="tel:+917349333810">+91 7349333810</a><br />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Copyright Bar -->
+      <div class="arzFooterBottom">
+        <div class="arzBottomContainer">
+          <div class="arzCopyright">
+            Copyright © 2026 Vidya Vihar International School. All rights
+            reserved. Designed by
+            <a
+              href="https://arouzatechlabs.in/"
+              style="text-decoration: none; color: #ffcc00"
+              >AROUZA TECHLABS</a
+            >
+          </div>
+          <div class="arzBottomLinks">
+            <a href="#">Term & Conditions</a>
+            <span>|</span>
+            <a href="#">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- END FOOTER SECTION -->
+
+    <!-- Scroll Top Button -->
+    <div
+      class="arzScrollTop"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    >
+      <i data-lucide="chevron-up"></i>
+    </div>
+
+    <script>
+      // Initialize Lucide Icons
+      lucide.createIcons();
+    </script>
+    <script src="./nav.js"></script>
+    <script>// Add this to your <script> section
+     lucide.createIcons();
+</script>
+  </body>
+</html>

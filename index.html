@@ -1,0 +1,2797 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vidya Vihar International School</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="./footer.css" />
+    <style>
+      :root {
+        --primary-bg: #a1105d;
+        --accent-gold: #ffcc00;
+        --text-white: #ffffff;
+        --text-dark: #2d2d2d;
+        --text-muted: #555555;
+        --card-bg: #ffffff;
+        --section-bg-light: #fdfdfd;
+        --footer-bottom: rgba(0, 0, 0, 0.15);
+        --font-heading: "Poppins", sans-serif;
+        --font-body: "Inter", sans-serif;
+        --transition: all 0.3s ease;
+        --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        --radius: 12px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: var(--font-body);
+        color: var(--text-dark);
+        background-color: var(--text-white);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: var(--font-heading);
+        color: var(--text-dark);
+      }
+
+      ul {
+        list-style: none;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      /* --- Hero Section (Full Screen) --- */
+      #hero {
+        height: 100vh;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .slider {
+        height: 100%;
+        width: 100%;
+      }
+
+      .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .slide.active {
+        opacity: 1;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        color: var(--text-white);
+        z-index: 10;
+      }
+
+      .hero-overlay h1 {
+        color: var(--text-white);
+        font-size: 2.8rem;
+        margin-bottom: 1rem;
+        text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+      }
+
+      .hero-overlay p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      @media (min-width: 768px) {
+        .hero-overlay h1 {
+          font-size: 4.5rem;
+        }
+      }
+
+      /* --- Common Section Styles --- */
+      section {
+        padding: 100px 5%;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.2rem;
+        margin-bottom: 3.5rem;
+        color: var(--primary-bg);
+        position: relative;
+      }
+
+      .section-title::after {
+        content: "";
+        display: block;
+        width: 80px;
+        height: 4px;
+        background: var(--accent-gold);
+        margin: 15px auto;
+        border-radius: 2px;
+      }
+
+      /* --- Campus Tour --- */
+      .tour-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .video-container {
+        position: relative;
+        aspect-ratio: 16/9;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        background: #000;
+        transition: var(--transition);
+      }
+
+      .video-container:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .play-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 75px;
+        height: 75px;
+        background: var(--primary-bg);
+        border: 3px solid var(--accent-gold);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        z-index: 5;
+        transition: var(--transition);
+      }
+
+      .play-btn svg {
+        fill: var(--text-white);
+        width: 30px;
+        margin-left: 5px;
+      }
+
+      .play-btn:hover {
+        background: var(--accent-gold);
+        transform: translate(-50%, -50%) scale(1.1);
+      }
+
+      .play-btn:hover svg {
+        fill: var(--primary-bg);
+      }
+
+      @media (min-width: 1024px) {
+        .tour-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      /* --- Who We Are --- */
+      .about-flex {
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+        align-items: stretch;
+      }
+
+      .about-text {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .about-text p {
+        margin-bottom: 1.8rem;
+        font-size: 1.15rem;
+        color: var(--text-muted);
+      }
+
+      .image-grid {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 20px;
+        width: 100%;
+      }
+
+      .grid-item {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        min-height: 220px;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+
+      .grid-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+      }
+
+      .grid-item .overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(161, 16, 93, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: var(--transition);
+      }
+
+      .grid-item:hover .overlay {
+        opacity: 1;
+      }
+
+      .grid-item:hover img {
+        transform: scale(1.15);
+      }
+
+      .learn-more {
+        padding: 12px 25px;
+        background: var(--accent-gold);
+        color: var(--primary-bg);
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      @media (min-width: 1024px) {
+        .about-flex {
+          flex-direction: row;
+        }
+        .grid-item {
+          min-height: auto;
+        }
+      }
+
+      /* Sections General */
+      section {
+        padding: 5rem 10%;
+      }
+
+      .arzsection-title {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .arzsection-title h2 {
+        font-size: 2.5rem;
+        color: var(--primary-bg);
+        margin-bottom: 0.5rem;
+      }
+
+      /* Slider Section */
+      .arzslider-container {
+        position: relative;
+        overflow: hidden;
+        padding: 20px 0;
+      }
+
+      .arzslider-track {
+        display: flex;
+        gap: 2rem;
+        transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: 10px;
+      }
+
+      /* Soft Glass Card Effect */
+      .arzglass-card {
+        min-width: calc(33.333% - 1.35rem);
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 20px;
+        padding: 2.5rem 2rem;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        transition: all 0.4s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        position: relative;
+      }
+
+      .arzglass-card:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 15px 45px rgba(161, 16, 93, 0.15);
+        border-color: var(--primary-bg);
+      }
+
+      /* Profile Image Styles */
+      .arzprofile-img {
+        width: 85px;
+        height: 85px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 1.2rem;
+        border: 3px solid var(--primary-bg);
+        padding: 3px;
+        background: #fff;
+      }
+
+      /* Star Rating Styles */
+      .arzstars {
+        color: var(--accent-gold);
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+      }
+
+      .arzreview-text {
+        font-style: italic;
+        color: var(--text-muted);
+        margin-bottom: 1.5rem;
+        font-size: 0.95rem;
+        min-height: 80px;
+        display: flex;
+        align-items: center;
+      }
+
+      .arzauthor-name {
+        font-weight: 700;
+        color: var(--primary-bg);
+        margin-bottom: 0.2rem;
+      }
+
+      .arzauthor-role {
+        font-size: 0.8rem;
+        color: #888;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      /* Slider Controls */
+      .arzslider-controls {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 2.5rem;
+      }
+
+      .arzcontrol-btn {
+        background: var(--primary-bg);
+        color: white;
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(161, 16, 93, 0.2);
+      }
+
+      .arzcontrol-btn:hover {
+        background: var(--accent-gold);
+        color: var(--text-dark);
+        transform: scale(1.1);
+      }
+
+      .arzcontrol-btn:disabled {
+        background: #e0e0e0;
+        color: #999;
+        cursor: not-allowed;
+        box-shadow: none;
+      }
+
+      /* Tech Collaborators specific */
+      .arztech-section {
+        background: linear-gradient(135deg, #fdf2f8 0%, #f9fafb 100%);
+      }
+
+      .arzcollab-logo {
+        height: 55px;
+        max-width: 150px;
+        object-fit: contain;
+        margin-bottom: 1.5rem;
+        filter: grayscale(100%) opacity(0.7);
+        transition: all 0.4s;
+      }
+
+      .arzglass-card:hover .arzcollab-logo {
+        filter: grayscale(0%) opacity(1);
+        transform: scale(1.1);
+      }
+
+      /* Mobile adjustments */
+      @media (max-width: 1024px) {
+        .arzglass-card {
+          min-width: calc(50% - 1rem);
+        }
+      }
+
+      @media (max-width: 640px) {
+        .arzglass-card {
+          min-width: 100%;
+        }
+        section {
+          padding: 4rem 5%;
+        }
+        #arzhero h2 {
+          font-size: 2rem;
+        }
+      }
+
+      /* --- CTA Section --- */
+      .cta {
+        position: relative;
+        text-align: center;
+        padding: 100px 5%;
+        color: var(--text-white);
+        overflow: hidden;
+
+        background: url("https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1920&q=80")
+          center/cover no-repeat;
+      }
+      .cta::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55); /* darkness level */
+        z-index: 0;
+      }
+      .cta * {
+        position: relative;
+        z-index: 1;
+      }
+      .cta::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -10%;
+        width: 300px;
+        height: 300px;
+        background: rgba(255, 204, 0, 0.1);
+        border-radius: 50%;
+      }
+
+      .cta h2 {
+        color: var(--text-white);
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .cta p {
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 2.5rem;
+        font-size: 1.2rem;
+      }
+
+      .cta-btn {
+        display: inline-block;
+        background: var(--accent-gold);
+        color: var(--primary-bg);
+        padding: 18px 50px;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 1.15rem;
+        transition: var(--transition);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .cta-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        background: var(--text-white);
+      }
+
+      /* footer {
+        background: #1a1a1a;
+        color: rgba(255, 255, 255, 0.6);
+        text-align: center;
+        padding: 30px;
+        font-size: 0.95rem;
+        border-top: 5px solid var(--footer-bottom);
+      } */
+
+      :root {
+        --primary: #a1105d;
+        --primary-dark: #800d4a;
+        --accent: #ffcc00;
+        --text-dark: #1a1a1a;
+        --white: #ffffff;
+        --gray-light: #f4f4f4;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.1);
+        --font-poppins: "Poppins", sans-serif;
+        --font-inter: "Inter", sans-serif;
+        --header-height: 85px;
+        --topbar-height: 48px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      /* html,
+      body {
+        overflow-x: hidden;
+        width: 100%;
+        font-family: var(--font-inter);
+        color: var(--text-dark);
+        scroll-behavior: smooth;
+      } */
+
+      body.menu-open {
+        overflow: hidden;
+      }
+
+      /* --- TOP BAR --- */
+      .top-bar {
+        background-color: var(--primary);
+        color: var(--white);
+        height: var(--topbar-height);
+        display: flex;
+        align-items: center;
+        position: relative;
+        z-index: 2001;
+      }
+
+      .top-bar-container {
+        width: 100%;
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 0 5%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+      }
+
+      .top-bar-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+        font-family: var(--font-inter);
+        font-weight: 600;
+        font-size: 15px;
+        letter-spacing: 0.5px;
+        margin-right: 20px;
+      }
+
+      .top-bar-left i {
+        font-size: 18px;
+      }
+
+      .marquee-wrapper {
+        flex: 1;
+        overflow: hidden;
+        white-space: nowrap;
+        position: relative;
+        background: rgba(0, 0, 0, 0.15);
+        height: 32px;
+        display: flex;
+        align-items: center;
+        border-radius: 4px;
+      }
+
+      .marquee-content {
+        display: inline-block;
+        padding-left: 100%;
+        animation: marquee 25s linear infinite;
+        font-family: var(--font-inter);
+        font-weight: 500;
+        font-size: 14px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+
+      @keyframes marquee {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(-100%, 0);
+        }
+      }
+
+      .top-bar-socials {
+        display: none;
+        gap: 18px;
+        flex-shrink: 0;
+        margin-left: 20px;
+      }
+
+      .top-bar-socials a {
+        color: var(--white);
+        font-size: 16px;
+        transition: var(--transition);
+      }
+
+      .top-bar-socials a:hover {
+        opacity: 0.8;
+        transform: translateY(-1px);
+      }
+
+      /* --- MAIN HEADER --- */
+      .main-header {
+        background: var(--white);
+        height: var(--header-height);
+        position: sticky;
+        top: 0;
+        width: 100%;
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        transition: var(--transition);
+      }
+
+      .header-scrolled {
+        height: 75px;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .navbar-container {
+        width: 100%;
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 0 5%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        text-decoration: none;
+        z-index: 2100;
+        flex-shrink: 0;
+        margin-right: auto;
+      }
+
+      .logo-img {
+        height: 56px;
+        width: auto;
+        transition: var(--transition);
+      }
+
+      .header-scrolled .logo-img {
+        height: 48px;
+      }
+
+      .brand-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.1;
+      }
+
+      .school-name {
+        font-family: var(--font-poppins);
+        font-weight: 700;
+        font-size: 20px;
+        color: var(--text-dark);
+        letter-spacing: -0.5px;
+      }
+
+      .school-tagline {
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: var(--primary);
+        letter-spacing: 1.2px;
+        margin-top: 3px;
+      }
+
+      .hamburger-btn {
+        width: 44px;
+        height: 44px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        z-index: 2100;
+        background: var(--gray-light);
+        border-radius: 4px;
+        border: none;
+        margin-left: 20px;
+      }
+
+      .hamburger-line {
+        width: 24px;
+        height: 2px;
+        background: var(--text-dark);
+        margin: 2.5px 0;
+        transition: var(--transition);
+        border-radius: 2px;
+      }
+
+      .menu-open .hamburger-line:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .menu-open .hamburger-line:nth-child(2) {
+        opacity: 0;
+      }
+      .menu-open .hamburger-line:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      /* --- MOBILE MENU OVERLAY --- */
+      .mobile-menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: var(--primary);
+        z-index: 1500;
+        visibility: hidden;
+        opacity: 0;
+        transition: var(--transition);
+        padding-top: calc(var(--header-height) + 40px);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .mobile-menu-overlay.active {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .mobile-menu-content {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px 8% 40px;
+      }
+
+      .mob-nav-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .mob-nav-item {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .mob-nav-link {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 0;
+        color: var(--white);
+        font-family: var(--font-poppins);
+        font-weight: 600;
+        text-decoration: none;
+        font-size: 18px;
+      }
+
+      .mob-dropdown-toggle {
+        font-size: 14px;
+        transition: var(--transition);
+      }
+
+      .mob-dropdown-list {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+        list-style: none;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 6px;
+      }
+
+      .mob-dropdown-list.active {
+        max-height: 1000px;
+        transition: max-height 0.5s ease-in-out;
+        margin-bottom: 15px;
+      }
+
+      .mob-dropdown-item a {
+        display: block;
+        padding: 14px 22px;
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        font-size: 16px;
+      }
+
+      .mob-buttons {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      /* --- DESKTOP NAVIGATION --- */
+      .desktop-nav {
+        display: none;
+        height: 100%;
+        padding-left: 40px;
+      }
+
+      .desk-nav-list {
+        display: flex;
+        list-style: none;
+        height: 100%;
+        align-items: center;
+        gap: 22px;
+      }
+
+      .desk-nav-item {
+        position: relative;
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+
+      .desk-nav-link {
+        font-family: var(--font-poppins);
+        font-weight: 600;
+        font-size: 15.5px;
+        color: var(--text-dark);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 0;
+        transition: var(--transition);
+      }
+
+      .desk-nav-link:hover {
+        color: var(--primary);
+      }
+
+      .desk-dropdown {
+        position: absolute;
+        top: 100%;
+        left: -20px;
+        background: var(--white);
+        min-width: 240px;
+        width: max-content;
+        max-width: 450px;
+        box-shadow: var(--shadow-md);
+        border-radius: 0 0 8px 8px;
+        border-top: 3px solid var(--primary);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: var(--transition);
+        list-style: none;
+        padding: 12px 0;
+        z-index: 3000;
+      }
+
+      .desk-nav-item:hover .desk-dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .desk-dropdown-item a {
+        display: block;
+        padding: 12px 28px;
+        color: var(--text-dark);
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 500;
+        transition: var(--transition);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .desk-dropdown-item a:hover {
+        background: var(--gray-light);
+        color: var(--primary);
+        padding-left: 35px;
+      }
+
+      /* --- BUTTONS --- */
+      .btn {
+        font-family: var(--font-poppins);
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50px;
+        transition: var(--transition);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        border: none;
+      }
+
+      .btn-admission {
+        background-color: var(--primary);
+        color: var(--white);
+        border: 2px solid var(--primary);
+      }
+
+      .btn-admission:hover {
+        background-color: var(--primary-dark);
+        border-color: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(161, 16, 93, 0.3);
+      }
+
+      .btn-admin {
+        border: 2px solid #ddd;
+        color: var(--text-dark);
+        background: transparent;
+      }
+
+      .btn-admin:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+      }
+
+      .desktop-buttons {
+        display: none;
+        gap: 12px;
+        margin-left: 20px;
+        align-items: center;
+      }
+
+      .desktop-buttons .btn {
+        height: 44px;
+        padding: 0 22px;
+        font-size: 13px;
+      }
+
+      .mob-buttons .btn {
+        height: 55px;
+        font-size: 16px;
+      }
+
+      .mob-buttons .btn-admission {
+        background: var(--white);
+        color: var(--primary);
+      }
+
+      .mob-buttons .btn-admin {
+        border-color: rgba(255, 255, 255, 0.4);
+        color: var(--white);
+      }
+
+      /* --- CALENDAR SECTION STYLES (NEW) --- */
+      .calendar-section {
+        padding: 80px 5%;
+        background: var(--white);
+      }
+
+      .section-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .calendar-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .calendar-header h2 {
+        font-family: var(--font-poppins);
+        font-size: 32px;
+        color: var(--primary);
+        margin-bottom: 10px;
+      }
+
+      .calendar-grid-wrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      @media (min-width: 1024px) {
+        .calendar-grid-wrapper {
+          grid-template-columns: 400px 1fr;
+        }
+      }
+
+      /* Calendar UI */
+      .calendar-container {
+        background: var(--white);
+        border-radius: 15px;
+        box-shadow: var(--shadow-md);
+        padding: 20px;
+        height: fit-content;
+      }
+
+      .calendar-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .calendar-nav h3 {
+        font-family: var(--font-poppins);
+        font-size: 18px;
+        color: var(--primary);
+      }
+
+      .nav-btn {
+        background: var(--gray-light);
+        border: none;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .nav-btn:hover {
+        background: var(--primary);
+        color: var(--white);
+      }
+
+      .calendar-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .calendar-table th {
+        padding: 10px 0;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: #888;
+      }
+
+      .calendar-day {
+        height: 45px;
+        text-align: center;
+        cursor: pointer;
+        position: relative;
+        font-size: 14px;
+        border-radius: 8px;
+        transition: var(--transition);
+      }
+
+      .calendar-day:hover:not(.empty) {
+        background: #fdf0f6;
+        color: var(--primary);
+      }
+
+      .calendar-day.today {
+        background: var(--primary);
+        color: var(--white) !important;
+        font-weight: 700;
+      }
+
+      .calendar-day.selected {
+        outline: 2px solid var(--primary);
+      }
+
+      .event-dot {
+        width: 5px;
+        height: 5px;
+        background: var(--accent);
+        border-radius: 50%;
+        position: absolute;
+        bottom: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      /* Event List UI */
+      .event-list-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .event-list-header h3 {
+        font-family: var(--font-poppins);
+        font-size: 20px;
+      }
+
+      .event-cards-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .event-card {
+        background: var(--white);
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: var(--shadow-sm);
+        border-left: 5px solid var(--primary);
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .event-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, #fdf0f6 0%, transparent 100%);
+        opacity: 0;
+        transition: var(--transition);
+        z-index: 0;
+      }
+
+      .event-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-md);
+        border-left-width: 8px;
+        border-left-color: var(--accent);
+      }
+
+      .event-card:hover::before {
+        opacity: 1;
+      }
+
+      .event-card-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .event-card h4 {
+        font-family: var(--font-poppins);
+        font-size: 18px;
+        margin-bottom: 8px;
+        color: var(--primary);
+      }
+
+      .event-card p {
+        font-size: 14px;
+        color: #555;
+        line-height: 1.5;
+        margin-bottom: 12px;
+      }
+
+      .event-date-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        color: #777;
+      }
+
+      .admin-actions {
+        margin-top: 15px;
+        display: none;
+        gap: 10px;
+      }
+
+      .admin-mode .admin-actions {
+        display: flex;
+      }
+
+      .btn-sm {
+        padding: 6px 15px;
+        font-size: 11px;
+        border-radius: 4px;
+      }
+
+      /* --- MODAL STYLES --- */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(4px);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+
+      .modal-content {
+        background: var(--white);
+        width: 90%;
+        max-width: 450px;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: var(--shadow-md);
+      }
+
+      .modal-header {
+        margin-bottom: 25px;
+      }
+
+      .modal-header h3 {
+        font-family: var(--font-poppins);
+        color: var(--primary);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-family: inherit;
+      }
+
+      .modal-footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        margin-top: 30px;
+      }
+
+      /* MEDIA QUERIES (REPEATED FROM ORIGINAL FOR CONSISTENCY) */
+      @media (min-width: 768px) {
+        .school-name {
+          font-size: 26px;
+        }
+        .school-tagline {
+          font-size: 12px;
+        }
+        .top-bar-socials {
+          display: flex;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .hamburger-btn {
+          display: none;
+        }
+        .desktop-nav,
+        .desktop-buttons {
+          display: flex;
+        }
+        .school-name {
+          font-size: 30px;
+        }
+        .school-tagline {
+          font-size: 14px;
+        }
+        .navbar-container {
+          padding: 0 4%;
+        }
+      }
+
+      @media (min-width: 1280px) {
+        .desk-nav-list {
+          gap: 28px;
+        }
+        .desktop-buttons {
+          gap: 15px;
+          margin-left: 30px;
+        }
+        .desktop-buttons .btn {
+          padding: 0 28px;
+          font-size: 14px;
+          height: 48px;
+        }
+      }
+    </style>
+  </head>
+  <body class="visitor-mode">
+    <!-- TOP BAR -->
+    <div class="top-bar">
+      <div class="top-bar-container">
+        <div class="top-bar-left">
+          <i class="fas fa-graduation-cap"></i>
+          <span>A FAMILY OF LEARNING</span>
+        </div>
+
+        <div class="marquee-wrapper">
+          <div class="marquee-content">
+            ADMISSION OPEN FOR ACADEMIC YEAR 2026-27 • APPLY NOW TO SECURE YOUR
+            CHILD'S FUTURE • WORLD-CLASS FACILITIES • LIMITED SEATS AVAILABLE •
+          </div>
+        </div>
+
+        <div class="top-bar-socials">
+          <a href="#" aria-label="Facebook"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="#" aria-label="Instagram"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN HEADER -->
+    <header class="main-header" id="header">
+      <div class="navbar-container">
+        <!-- Brand -->
+        <a href="./index.html" class="brand">
+          <img
+            src="./assets/logo.avif"
+            alt="Vidya Vihar Logo"
+            class="logo-img"
+          />
+          <div class="brand-text">
+            <span class="school-name">VIDYA VIHAR</span>
+            <span class="school-tagline">International School</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
+          <ul class="desk-nav-list">
+            <li class="desk-nav-item">
+              <a href="./index.html" class="desk-nav-link">HOME</a>
+            </li>
+            <li class="desk-nav-item">
+              <a href="./about.html" class="desk-nav-link"
+                >ABOUT
+                <i class="fas fa-chevron-down" style="font-size: 11px"></i
+              ></a>
+              <ul class="desk-dropdown">
+                <li class="desk-dropdown-item">
+                  <a href="./about.html">About Us</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="#">Mandatory Disclosure</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./faculty.html">Faculties</a>
+                </li>
+              </ul>
+            </li>
+            <li class="desk-nav-item">
+              <a href="#" class="desk-nav-link"
+                >ACADEMICS
+                <i class="fas fa-chevron-down" style="font-size: 11px"></i
+              ></a>
+              <ul class="desk-dropdown">
+                <li class="desk-dropdown-item">
+                  <a href="./foundational.html"
+                    >Foundational Stage(Pre KG-Grade 2)</a
+                  >
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./preparatory.html">Preparatory Stage(Grade 3-5)</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./middlestage.html">Middle Stage (Grade 6-8)</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./secondary.html">Secondary Stage (Grade 9-10)</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./parental.html">Parental Synergy</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="#calendar">Event calendar</a>
+                </li>
+              </ul>
+            </li>
+            <li class="desk-nav-item">
+              <a href="#" class="desk-nav-link"
+                >FACILITIES
+                <i class="fas fa-chevron-down" style="font-size: 11px"></i
+              ></a>
+              <ul class="desk-dropdown">
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Tech as an Enabler</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Innovation Center</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Information Center</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">ICT Labs</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Science & Maths Laboratories</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html"
+                    >VVIS Venues (The Happening Places)</a
+                  >
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Indoor & Outdoor</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Music & Dance Rooms</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Cafeteria</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Transport</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Infirmary</a>
+                </li>
+              </ul>
+            </li>
+            <li class="desk-nav-item">
+              <a href="./gallery.html" class="desk-nav-link">GALLERY</a>
+            </li>
+            <li class="desk-nav-item">
+              <a href="./contact.html" class="desk-nav-link">CONTACT</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Action Buttons -->
+        <div class="desktop-buttons">
+          <a href="./admission.html" class="btn btn-admission">Admission</a>
+          <a href="#" class="btn btn-admin admin-btn-text">Admin Portal</a>
+        </div>
+
+        <!-- Mobile Toggle -->
+        <button class="hamburger-btn" id="menuToggle" aria-label="Toggle Menu">
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+        </button>
+      </div>
+    </header>
+
+    <!-- MOBILE OVERLAY -->
+    <div class="mobile-menu-overlay" id="mobileOverlay">
+      <div class="mobile-menu-content">
+        <ul class="mob-nav-list">
+          <li class="mob-nav-item">
+            <a href="./index.html" class="mob-nav-link">HOME</a>
+          </li>
+          <li class="mob-nav-item">
+            <div class="mob-nav-link mob-drop-trigger">
+              ABOUT <i class="fas fa-plus mob-dropdown-toggle"></i>
+            </div>
+            <ul class="mob-dropdown-list">
+              <li class="mob-dropdown-item">
+                <a href="./about.html">About Us</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./faculty.html">Faculties</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="#">Mandatory Disclosure</a>
+              </li>
+            </ul>
+          </li>
+          <li class="mob-nav-item">
+            <div class="mob-nav-link mob-drop-trigger">
+              ACADEMICS <i class="fas fa-plus mob-dropdown-toggle"></i>
+            </div>
+            <ul class="mob-dropdown-list">
+              <li class="mob-dropdown-item">
+                <a href="./foundational.html"
+                  >Foundational Stage(Pre KG-Grade 2)</a
+                >
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./preparatory.html">Preparatory Stage(Grade 3-5)</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./middlestage.html">Middle Stage (Grade 6-8)</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./secondary.html">Secondary Stage (Grade 9-10)</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./parental.html">Parental Synergy</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="#calender">Event Calender</a>
+              </li>
+            </ul>
+          </li>
+          <li class="mob-nav-item">
+            <div class="mob-nav-link mob-drop-trigger">
+              FACILITIES <i class="fas fa-plus mob-dropdown-toggle"></i>
+            </div>
+            <ul class="mob-dropdown-list">
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Tech as an Enabler</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Innovation Center</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Information Center</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">ICT Labs</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Science & Maths Laboratories</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html"
+                  >VVIS Venues (The Happening Places)</a
+                >
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Indoor & Outdoor</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Cafeteria</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Transport</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Infirmary</a>
+              </li>
+            </ul>
+          </li>
+          <li class="mob-nav-item">
+            <a href="./gallery.html" class="mob-nav-link">GALLERY</a>
+          </li>
+          <li class="mob-nav-item">
+            <a href="./contact.html" class="mob-nav-link">CONTACT</a>
+          </li>
+        </ul>
+        <div class="mob-buttons">
+          <a href="./admission.html" class="btn btn-admission"
+            >Admission Open</a
+          >
+          <a href="#" class="btn btn-admin admin-btn-text">Admin Login</a>
+        </div>
+      </div>
+    </div>
+    <section id="hero">
+      <div class="slider" id="mainSlider">
+        <div
+          class="slide active"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&w=1920&q=80&quot;);
+          "
+        ></div>
+        <div
+          class="slide"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1920&q=80&quot;);
+          "
+        ></div>
+        <div
+          class="slide"
+          style="background-image: url(&quot;./assets/i1.webp&quot;)"
+        ></div>
+        <div
+          class="slide"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1920&q=80&quot;);
+          "
+        ></div>
+      </div>
+      <div class="hero-overlay">
+        <h1>Vidya Vihar International</h1>
+        <p>
+          Empowering the next generation of global leaders with excellence,
+          values, and cutting-edge innovation.
+        </p>
+      </div>
+    </section>
+
+    <section id="tour">
+      <h2 class="section-title">Campus Tour</h2>
+      <div class="tour-grid">
+        <div class="video-container">
+          <video
+            poster="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800&q=80"
+          ></video>
+          <button class="play-btn">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+          </button>
+        </div>
+        <div class="video-container">
+          <video
+            poster="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80"
+          ></video>
+          <button class="play-btn">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- SCHOOL EVENT CALENDAR SECTION (NEW) -->
+    <section class="calendar-section" id="calendar">
+      <div class="section-container">
+        <div class="calendar-header">
+          <h2>School Event Calendar</h2>
+          <p>Stay updated with our upcoming activities and celebrations.</p>
+        </div>
+
+        <div class="calendar-grid-wrapper">
+          <!-- Calendar Side -->
+          <div class="calendar-container">
+            <div class="calendar-nav">
+              <button class="nav-btn" id="prevMonth">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <h3 id="currentMonthYear">January 2026</h3>
+              <button class="nav-btn" id="nextMonth">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+            <table class="calendar-table">
+              <thead>
+                <tr>
+                  <th>Sun</th>
+                  <th>Mon</th>
+                  <th>Tue</th>
+                  <th>Wed</th>
+                  <th>Thu</th>
+                  <th>Fri</th>
+                  <th>Sat</th>
+                </tr>
+              </thead>
+              <tbody id="calendarBody">
+                <!-- Days injected by JS -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Event List Side -->
+          <div class="event-list-container">
+            <div class="event-list-header">
+              <h3 id="selectedDateTitle">Upcoming Events</h3>
+              <button
+                class="btn btn-admission btn-sm admin-only"
+                id="addEventBtn"
+                style="display: none"
+              >
+                <i class="fas fa-plus"></i> Add Event
+              </button>
+            </div>
+            <div class="event-cards-container" id="eventList">
+              <!-- Event cards injected by JS -->
+              <p style="color: #999; text-align: center; padding: 40px">
+                No events scheduled for this date.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADMIN LOGIN MODAL -->
+    <div class="modal-overlay" id="loginModal">
+      <div class="modal-content">
+        <div class="modal-header"><h3>Admin Login</h3></div>
+        <div class="form-group">
+          <label>Password</label>
+          <input
+            type="password"
+            id="adminPassword"
+            placeholder="Enter password"
+          />
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-admin btn-sm" id="closeLogin">Cancel</button>
+          <button class="btn btn-admission btn-sm" id="submitLogin">
+            Login
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADD/EDIT EVENT MODAL -->
+    <div class="modal-overlay" id="eventModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="eventModalTitle">Add New Event</h3>
+        </div>
+        <div class="form-group">
+          <label>Event Title</label>
+          <input type="text" id="eventTitle" placeholder="e.g. Science Fair" />
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea
+            id="eventDesc"
+            rows="3"
+            placeholder="Brief description..."
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label>Date (DD/MM/YYYY)</label>
+          <input type="text" id="eventDate" placeholder="e.g. 15/08/2026" />
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-admin btn-sm" id="closeEventModal">
+            Cancel
+          </button>
+          <button class="btn btn-admission btn-sm" id="saveEvent">
+            Save Event
+          </button>
+        </div>
+      </div>
+    </div>
+    <section id="who-we-are">
+      <h2 class="section-title">Who We Are</h2>
+      <div class="about-flex">
+        <div class="about-text">
+          <p>
+            At Vidya Vihar International School, our vision is to nurture
+            students into globally responsible citizens. We believe in providing
+            a learning environment that encourages curiosity, creativity, and
+            critical thinking.
+          </p>
+          <p>
+            Aligned with the National Education Policy (NEP), our curriculum is
+            designed for holistic development, ensuring that academic excellence
+            is balanced with physical, emotional, and social growth.
+          </p>
+          <p>
+            We leverage cutting-edge innovation and a character-building
+            framework to prepare our students for the challenges of tomorrow,
+            fostering a culture of continuous learning and leadership.
+          </p>
+        </div>
+        <div class="image-grid">
+          <div class="grid-item">
+            <img
+              src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80"
+              alt="Student 1"
+              loading="lazy"
+            />
+            <div class="overlay">
+              <a href="#" class="learn-more">Learn More</a>
+            </div>
+          </div>
+          <div class="grid-item">
+            <img
+              src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=600&q=80"
+              alt="Student 2"
+              loading="lazy"
+            />
+            <div class="overlay">
+              <a href="#" class="learn-more">Learn More</a>
+            </div>
+          </div>
+          <div class="grid-item">
+            <img
+              src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600&q=80"
+              alt="Student 3"
+              loading="lazy"
+            />
+            <div class="overlay">
+              <a href="#" class="learn-more">Learn More</a>
+            </div>
+          </div>
+          <div class="grid-item">
+            <img src="./assets/i3.webp" alt="Student 4" loading="lazy" />
+            <div class="overlay">
+              <a href="#" class="learn-more">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Parents Review Section -->
+    <section id="arzreviews">
+      <div class="arzsection-title">
+        <h2>Parents Speak</h2>
+        <p>What our community thinks about us</p>
+      </div>
+
+      <div
+        class="arzslider-container"
+        onmouseenter="arzpauseSlide('arzreviewtrack')"
+        onmouseleave="arzresumeSlide('arzreviewtrack')"
+      >
+        <div class="arzslider-track" id="arzreviewtrack">
+          <!-- Card 1 -->
+          <div class="arzglass-card">
+            <img
+              src="https://i.pravatar.cc/150?u=1"
+              alt="Parent"
+              class="arzprofile-img"
+            />
+            <div class="arzstars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i
+              ><i class="fas fa-star"></i><i class="fas fa-star"></i
+              ><i class="fas fa-star"></i>
+            </div>
+            <p class="arzreview-text">
+              "The holistic approach to education at Vidya Vihar is truly
+              remarkable. My daughter has grown so much in her confidence."
+            </p>
+            <p class="arzauthor-name">Anjali Sharma</p>
+            <p class="arzauthor-role">Parent of Grade 5 Student</p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="arzglass-card">
+            <img
+              src="https://i.pravatar.cc/150?u=2"
+              alt="Parent"
+              class="arzprofile-img"
+            />
+            <div class="arzstars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i
+              ><i class="fas fa-star"></i><i class="fas fa-star"></i
+              ><i class="fas fa-star-half-alt"></i>
+            </div>
+            <p class="arzreview-text">
+              "Technology integration in classrooms is top-notch. The teachers
+              are very supportive and always accessible."
+            </p>
+            <p class="arzauthor-name">Rajesh Kumar</p>
+            <p class="arzauthor-role">Parent of Grade 8 Student</p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="arzglass-card">
+            <img
+              src="https://i.pravatar.cc/150?u=3"
+              alt="Parent"
+              class="arzprofile-img"
+            />
+            <div class="arzstars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i
+              ><i class="fas fa-star"></i><i class="fas fa-star"></i
+              ><i class="fas fa-star"></i>
+            </div>
+            <p class="arzreview-text">
+              "Wonderful environment for kids. The focus on sports and
+              co-curricular activities balance the academics perfectly."
+            </p>
+            <p class="arzauthor-name">Sneha Patil</p>
+            <p class="arzauthor-role">Parent of Grade 2 Student</p>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="arzglass-card">
+            <img
+              src="https://i.pravatar.cc/150?u=11"
+              alt="Parent"
+              class="arzprofile-img"
+            />
+            <div class="arzstars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i
+              ><i class="fas fa-star"></i><i class="fas fa-star"></i
+              ><i class="fas fa-star"></i>
+            </div>
+            <p class="arzreview-text">
+              "The emphasis on value-based education is what sets this school
+              apart. My son has learned so much about social responsibility."
+            </p>
+            <p class="arzauthor-name">Amit Verma</p>
+            <p class="arzauthor-role">Parent of Grade 4 Student</p>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="arzglass-card">
+            <img
+              src="https://i.pravatar.cc/150?u=12"
+              alt="Parent"
+              class="arzprofile-img"
+            />
+            <div class="arzstars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i
+              ><i class="fas fa-star"></i><i class="fas fa-star"></i
+              ><i class="far fa-star"></i>
+            </div>
+            <p class="arzreview-text">
+              "The school infrastructure is impressive, but it's the dedicated
+              faculty that makes the real difference in learning."
+            </p>
+            <p class="arzauthor-name">Priya Deshmukh</p>
+            <p class="arzauthor-role">Parent of Grade 7 Student</p>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="arzglass-card">
+            <img
+              src="https://i.pravatar.cc/150?u=13"
+              alt="Parent"
+              class="arzprofile-img"
+            />
+            <div class="arzstars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i
+              ><i class="fas fa-star"></i><i class="fas fa-star"></i
+              ><i class="fas fa-star"></i>
+            </div>
+            <p class="arzreview-text">
+              "As an expat parent, I appreciate the global standards and the
+              inclusive atmosphere of Vidya Vihar."
+            </p>
+            <p class="arzauthor-name">David Wilson</p>
+            <p class="arzauthor-role">Parent of Grade 9 Student</p>
+          </div>
+
+          <!-- Card 7 -->
+          <div class="arzglass-card">
+            <img
+              src="https://i.pravatar.cc/150?u=4"
+              alt="Parent"
+              class="arzprofile-img"
+            />
+            <div class="arzstars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i
+              ><i class="fas fa-star"></i><i class="fas fa-star"></i
+              ><i class="far fa-star"></i>
+            </div>
+            <p class="arzreview-text">
+              "Choosing this school was the best decision for my son's future.
+              The cultural values taught here are exceptional."
+            </p>
+            <p class="arzauthor-name">Vikram Singh</p>
+            <p class="arzauthor-role">Parent of Grade 10 Student</p>
+          </div>
+        </div>
+
+        <div class="arzslider-controls">
+          <button
+            class="arzcontrol-btn"
+            id="arzreviewprev"
+            onclick="arzmanualSlide('arzreviewtrack', -1)"
+          >
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button
+            class="arzcontrol-btn"
+            id="arzreviewnext"
+            onclick="arzmanualSlide('arzreviewtrack', 1)"
+          >
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech Collaborators Section -->
+    <section id="arzcollabs" class="arztech-section">
+      <div class="arzsection-title">
+        <h2>Tech Partners</h2>
+        <p>Providing the best digital edge to our students</p>
+      </div>
+
+      <div
+        class="arzslider-container"
+        onmouseenter="arzpauseSlide('arztechtrack')"
+        onmouseleave="arzresumeSlide('arztechtrack')"
+      >
+        <div class="arzslider-track" id="arztechtrack">
+          <!-- Tech 1 -->
+          <div class="arzglass-card">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
+              alt="Google"
+              class="arzcollab-logo"
+            />
+            <p class="arzreview-text">
+              Certified Google Reference School utilizing Workspace for
+              Education for seamless hybrid learning.
+            </p>
+            <p class="arzauthor-name">Google Education</p>
+            <p class="arzauthor-role">Platinum Partner</p>
+          </div>
+
+          <!-- Tech 2 -->
+          <div class="arzglass-card">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"
+              alt="Microsoft"
+              class="arzcollab-logo"
+            />
+            <p class="arzreview-text">
+              Partnered for Microsoft Showcase School program, empowering
+              students with STEM tools.
+            </p>
+            <p class="arzauthor-name">Microsoft</p>
+            <p class="arzauthor-role">Learning Partner</p>
+          </div>
+
+          <!-- Tech 3 -->
+          <div class="arzglass-card">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
+              alt="Apple"
+              class="arzcollab-logo"
+            />
+            <p class="arzreview-text">
+              iPad-integrated classrooms fostering creativity and coding skills
+              through Swift Playgrounds.
+            </p>
+            <p class="arzauthor-name">Apple</p>
+            <p class="arzauthor-role">Device Partner</p>
+          </div>
+
+          <!-- Tech 4 -->
+          <div class="arzglass-card">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Adobe_Inc._logo.svg"
+              alt="Adobe"
+              class="arzcollab-logo"
+            />
+            <p class="arzreview-text">
+              Providing Creative Cloud access for students to master digital
+              arts, design, and video editing.
+            </p>
+            <p class="arzauthor-name">Adobe Creative</p>
+            <p class="arzauthor-role">Design Partner</p>
+          </div>
+
+          <!-- Tech 5 -->
+          <div class="arzglass-card">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Intel_logo_%282020%2C_blue%29.svg"
+              alt="Intel"
+              class="arzcollab-logo"
+            />
+            <p class="arzreview-text">
+              Collaboration for AI-readiness programs and advanced computing
+              labs for our senior students.
+            </p>
+            <p class="arzauthor-name">Intel AI</p>
+            <p class="arzauthor-role">Infrastructure Partner</p>
+          </div>
+
+          <!-- Tech 6 -->
+          <div class="arzglass-card">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
+              alt="Amazon"
+              class="arzcollab-logo"
+            />
+            <p class="arzreview-text">
+              AWS Academy partner offering cloud computing certifications to our
+              secondary curriculum.
+            </p>
+            <p class="arzauthor-name">AWS Academy</p>
+            <p class="arzauthor-role">Cloud Partner</p>
+          </div>
+
+          <!-- Tech 7 -->
+          <div class="arzglass-card">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg"
+              alt="NASA"
+              class="arzcollab-logo"
+            />
+            <p class="arzreview-text">
+              Annual participation in Space Camp and NASA's educational outreach
+              programs.
+            </p>
+            <p class="arzauthor-name">NASA Education</p>
+            <p class="arzauthor-role">Research Partner</p>
+          </div>
+        </div>
+
+        <div class="arzslider-controls">
+          <button
+            class="arzcontrol-btn"
+            id="arztechprev"
+            onclick="arzmanualSlide('arztechtrack', -1)"
+          >
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button
+            class="arzcontrol-btn"
+            id="arztechnext"
+            onclick="arzmanualSlide('arztechtrack', 1)"
+          >
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <h2>Join Our Global Community</h2>
+      <p>
+        Admissions for the 2025-26 academic year are now open. Secure your
+        child's seat today.
+      </p>
+      <a href="#" class="cta-btn">Admission Enquiry</a>
+    </section>
+    <!-- START FOOTER SECTION -->
+    <footer class="arzSiteFooter">
+      <div class="arzFooterContainer">
+        <!-- School Branding -->
+        <div class="arzFooterBrand">
+          <img
+            src="./assets/vvislogo.jpeg"
+            alt="Vidya Vihar Logo"
+            class="arzSchoolLogo"
+          />
+          <div class="arzSchoolName">
+            <h2>VIDYA VIHAR</h2>
+            <p>INTERNATIONAL SCHOOL</p>
+          </div>
+          <div class="arzSocialLinks">
+            <a href="#" class="arzSocialIcon"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" class="arzSocialIcon"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" class="arzSocialIcon"><i class="fab fa-youtube"></i></a>
+            <a
+              href="https://wa.me/919538424583"
+              class="arzSocialIcon"
+              target="_blank"
+            >
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Campus Location -->
+        <div class="arzFooterLocations">
+          <h3 class="arzFooterHeading">Campus Location</h3>
+          <div class="arzCampusBlock">
+            <!-- Location 1 -->
+            <div class="arzLocationItem">
+              <div class="arzMapFrame">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3895.7301770453605!2d77.0263876741121!3d12.467681425727907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baf076500614e6f%3A0x65b53efa9332b4c2!2sVidya%20Vihar%20International%20School!5e0!3m2!1sen!2sin!4v1770357339459!5m2!1sen!2sin"
+                  width="600"
+                  height="450"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+              <img src="./assets/vvis.jpeg" alt="QR Code NY" class="arzQrImg" />
+            </div>
+            <!-- Location 2 -->
+            <div class="arzLocationItem">
+              <div class="arzMapFrame">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3895.4820376472485!2d77.03253737411231!3d12.48417642537924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baf079ab765efb9%3A0xc27d29ee81a8409e!2sVidya%20Vihar%20Wonder%20Kidz!5e0!3m2!1sen!2sin!4v1770357947662!5m2!1sen!2sin"
+                  width="600"
+                  height="450"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+              <img src="./assets/vvwk.jpeg" alt="QR Code CA" class="arzQrImg" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="arzFooterContact">
+          <h3 class="arzFooterHeading">Contact Information</h3>
+          <div class="arzContactGrid">
+            <!-- Column 1 -->
+            <div class="arzContactCol">
+              <div class="arzInfoRow">
+                <i data-lucide="map-pin"></i>
+                <div class="arzInfoText">
+                  <strong>Vidya Vihar International School</strong><br />
+                  Near APMC Market, Gudigere Road, <br />
+                  Manigere, Bharathinagar, Maddur Taluk <br />
+                  Mandya District, Karnataka- 571422
+                  <br />
+                </div>
+              </div>
+              <div class="arzInfoRow">
+                <i data-lucide="mail"></i>
+                <div class="arzInfoText">
+                  <a href="mailto: vidyavihar.kmd@gmail.com"
+                    >vidyavihar.kmd@gmail.com</a
+                  >
+                </div>
+              </div>
+              <div class="arzInfoRow">
+                <i data-lucide="phone"></i>
+                <div class="arzInfoText">
+                  <a href="tel:+919686781100">+91 9686781100</a><br />
+                </div>
+              </div>
+            </div>
+
+            <!-- Column 2 -->
+            <div class="arzContactCol">
+              <div class="arzInfoRow">
+                <i data-lucide="map-pin"></i>
+                <div class="arzInfoText">
+                  <strong>Vidya Vihar Wonder Kidz</strong><br />
+                  Opposite to Government Hospital,<br />Maddur-Malavalli Road
+                  Bharathinagar, Maddur Taluk <br />
+                  Mandya District, Karnataka- 571422
+                  <br />
+                </div>
+              </div>
+              <div class="arzInfoRow">
+                <i data-lucide="mail"></i>
+                <div class="arzInfoText">
+                  <a href="mailto:vidyavihar.kmd@gmail.com"
+                    >vidyavihar.kmd@gmail.com</a
+                  >
+                </div>
+              </div>
+              <div class="arzInfoRow">
+                <i data-lucide="phone"></i>
+                <div class="arzInfoText">
+                  <a href="tel:+917349333810">+91 7349333810</a><br />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Copyright Bar -->
+      <div class="arzFooterBottom">
+        <div class="arzBottomContainer">
+          <div class="arzCopyright">
+            Copyright © 2026 Vidya Vihar International School. All rights
+            reserved. Designed by
+            <a
+              href="https://arouzatechlabs.in/"
+              style="text-decoration: none; color: #ffcc00"
+              >AROUZA TECHLABS</a
+            >
+          </div>
+          <div class="arzBottomLinks">
+            <a href="#">Term & Conditions</a>
+            <span>|</span>
+            <a href="#">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- END FOOTER SECTION -->
+
+    <!-- Scroll Top Button -->
+    <div
+      class="arzScrollTop"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    >
+      <i data-lucide="chevron-up"></i>
+    </div>
+    <script>
+      // Slider State Management
+      const arzsliderStates = {
+        arzreviewtrack: { index: 0, timer: null },
+        arztechtrack: { index: 0, timer: null },
+      };
+
+      const ARZAUTO_SLIDE_INTERVAL = 1500; // 1.5 seconds
+
+      function arzslide(trackId, direction) {
+        const track = document.getElementById(trackId);
+        if (!track) return;
+
+        const cards = track.querySelectorAll(".arzglass-card");
+        const cardWidth = cards[0].offsetWidth;
+        const gap = parseInt(window.getComputedStyle(track).gap) || 32;
+
+        const containerWidth = track.parentElement.offsetWidth;
+        const visibleCards =
+          Math.round(containerWidth / (cardWidth + gap)) || 1;
+        const maxIndex = cards.length - visibleCards;
+
+        // Update state index
+        let newIndex = arzsliderStates[trackId].index + direction;
+
+        // Loop logic
+        if (newIndex > maxIndex) {
+          newIndex = 0;
+        } else if (newIndex < 0) {
+          newIndex = maxIndex;
+        }
+
+        arzsliderStates[trackId].index = newIndex;
+
+        // Apply visual transform
+        const moveX = (cardWidth + gap) * arzsliderStates[trackId].index;
+        track.style.transform = `translateX(-${moveX}px)`;
+
+        arzupdateButtons(trackId, maxIndex);
+      }
+
+      function arzmanualSlide(trackId, direction) {
+        arzpauseSlide(trackId);
+        arzslide(trackId, direction);
+        arzresumeSlide(trackId);
+      }
+
+      function arzupdateButtons(trackId, maxIndex) {
+        // Map track ID back to the control prefix manually or by string manipulation
+        const prefix = trackId === "arzreviewtrack" ? "arzreview" : "arztech";
+        const prevBtn = document.getElementById(`${prefix}prev`);
+        const nextBtn = document.getElementById(`${prefix}next`);
+
+        if (prevBtn) prevBtn.disabled = arzsliderStates[trackId].index <= 0;
+        if (nextBtn)
+          nextBtn.disabled = arzsliderStates[trackId].index >= maxIndex;
+      }
+
+      function arzstartAutoSlide(trackId) {
+        if (arzsliderStates[trackId].timer)
+          clearInterval(arzsliderStates[trackId].timer);
+        arzsliderStates[trackId].timer = setInterval(() => {
+          arzslide(trackId, 1);
+        }, ARZAUTO_SLIDE_INTERVAL);
+      }
+
+      function arzpauseSlide(trackId) {
+        if (arzsliderStates[trackId].timer) {
+          clearInterval(arzsliderStates[trackId].timer);
+          arzsliderStates[trackId].timer = null;
+        }
+      }
+
+      function arzresumeSlide(trackId) {
+        arzstartAutoSlide(trackId);
+      }
+
+      function arzinitSliders() {
+        ["arzreviewtrack", "arztechtrack"].forEach((id) => {
+          const track = document.getElementById(id);
+          if (!track) return;
+          const cards = track.querySelectorAll(".arzglass-card");
+          const containerWidth = track.parentElement.offsetWidth;
+          const cardWidth = cards[0].offsetWidth;
+          const gap = parseInt(window.getComputedStyle(track).gap) || 32;
+          const visibleCards =
+            Math.round(containerWidth / (cardWidth + gap)) || 1;
+          const maxIndex = cards.length - visibleCards;
+
+          arzupdateButtons(id, maxIndex);
+          arzstartAutoSlide(id);
+        });
+      }
+
+      window.onload = arzinitSliders;
+
+      window.addEventListener("resize", () => {
+        ["arzreviewtrack", "arztechtrack"].forEach((id) => {
+          arzsliderStates[id].index = 0;
+          const track = document.getElementById(id);
+          if (track) track.style.transform = "translateX(0)";
+          arzpauseSlide(id);
+        });
+        arzinitSliders();
+      });
+    </script>
+    <script>
+      // Initialize Lucide Icons
+      lucide.createIcons();
+    </script>
+    <script>
+      lucide.createIcons();
+      /* --- PRE-EXISTING NAVBAR LOGIC (UNTOUCHED) --- */
+      const header = document.getElementById("header");
+      const menuToggle = document.getElementById("menuToggle");
+      const mobileOverlay = document.getElementById("mobileOverlay");
+      const body = document.body;
+      const dropTriggers = document.querySelectorAll(".mob-drop-trigger");
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 40) header.classList.add("header-scrolled");
+        else header.classList.remove("header-scrolled");
+      });
+
+      function openMenu() {
+        body.classList.add("menu-open");
+        mobileOverlay.classList.add("active");
+      }
+
+      function closeMenu() {
+        body.classList.remove("menu-open");
+        mobileOverlay.classList.remove("active");
+        resetDropdowns();
+      }
+
+      menuToggle.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (body.classList.contains("menu-open")) closeMenu();
+        else openMenu();
+      });
+
+      dropTriggers.forEach((trigger) => {
+        trigger.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const list = trigger.nextElementSibling;
+          const icon = trigger.querySelector(".mob-dropdown-toggle");
+          const wasActive = list.classList.contains("active");
+          resetDropdowns();
+          if (!wasActive) {
+            list.classList.add("active");
+            icon.classList.replace("fa-plus", "fa-minus");
+          }
+        });
+      });
+
+      function resetDropdowns() {
+        document
+          .querySelectorAll(".mob-dropdown-list")
+          .forEach((l) => l.classList.remove("active"));
+        document
+          .querySelectorAll(".mob-dropdown-toggle")
+          .forEach((i) => i.classList.replace("fa-minus", "fa-plus"));
+      }
+
+      mobileOverlay.addEventListener("click", (e) => {
+        if (e.target === mobileOverlay) closeMenu();
+      });
+      window.addEventListener("resize", () => {
+        if (window.innerWidth >= 1024) closeMenu();
+      });
+
+      /* --- CALENDAR & ADMIN LOGIC (NEW) --- */
+
+      // State Management
+      let isAdmin = localStorage.getItem("vvis_admin") === "true";
+      let events = JSON.parse(localStorage.getItem("vvis_events")) || [
+        {
+          id: 1,
+          title: "Science Fair",
+          description:
+            "Students present innovative science projects in the main hall.",
+          date: "12/08/2026",
+        },
+        {
+          id: 2,
+          title: "Independence Day",
+          description: "Flag hoisting ceremony followed by cultural programs.",
+          date: "15/08/2026",
+        },
+        {
+          id: 3,
+          title: "Annual Sports Meet",
+          description: "Various track and field events for all grades.",
+          date: "20/09/2026",
+        },
+      ];
+      let currentViewDate = new Date();
+      let selectedDateStr = null;
+      let editingEventId = null;
+
+      // DOM Elements
+      const calendarBody = document.getElementById("calendarBody");
+      const monthYearTitle = document.getElementById("currentMonthYear");
+      const eventList = document.getElementById("eventList");
+      const selectedDateTitle = document.getElementById("selectedDateTitle");
+      const adminBtns = document.querySelectorAll(".admin-btn-text");
+      const addEventBtn = document.getElementById("addEventBtn");
+
+      // Initialize UI
+      updateAdminUI();
+      renderCalendar();
+      renderEvents();
+
+      // Admin Login Logic
+      function updateAdminUI() {
+        adminBtns.forEach((btn) => {
+          btn.textContent = isAdmin ? "Logout" : "Admin Portal";
+        });
+        document.querySelectorAll(".admin-only").forEach((el) => {
+          el.style.display = isAdmin ? "inline-flex" : "none";
+        });
+        document.body.classList.toggle("admin-mode", isAdmin);
+      }
+
+      adminBtns.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          if (isAdmin) {
+            isAdmin = false;
+            localStorage.setItem("vvis_admin", "false");
+            updateAdminUI();
+            renderEvents();
+          } else {
+            document.getElementById("loginModal").style.display = "flex";
+          }
+        });
+      });
+
+      document.getElementById("closeLogin").onclick = () =>
+        (document.getElementById("loginModal").style.display = "none");
+      document.getElementById("submitLogin").onclick = () => {
+        const pass = document.getElementById("adminPassword").value;
+        if (pass === "admin@vvis") {
+          isAdmin = true;
+          localStorage.setItem("vvis_admin", "true");
+          updateAdminUI();
+          renderEvents();
+          document.getElementById("loginModal").style.display = "none";
+          document.getElementById("adminPassword").value = "";
+        } else {
+          alert("Incorrect password");
+        }
+      };
+
+      // Calendar Logic
+      function renderCalendar() {
+        const year = currentViewDate.getFullYear();
+        const month = currentViewDate.getMonth();
+        const months = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+
+        monthYearTitle.textContent = `${months[month]} ${year}`;
+        calendarBody.innerHTML = "";
+
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+        let date = 1;
+        for (let i = 0; i < 6; i++) {
+          let row = document.createElement("tr");
+          for (let j = 0; j < 7; j++) {
+            let cell = document.createElement("td");
+            cell.className = "calendar-day";
+
+            if (i === 0 && j < firstDay) {
+              cell.classList.add("empty");
+            } else if (date > daysInMonth) {
+              break;
+            } else {
+              const dStr = `${String(date).padStart(2, "0")}/${String(month + 1).padStart(2, "0")}/${year}`;
+              cell.textContent = date;
+
+              // Today Highlight
+              const today = new Date();
+              if (
+                date === today.getDate() &&
+                month === today.getMonth() &&
+                year === today.getFullYear()
+              ) {
+                cell.classList.add("today");
+              }
+
+              // Event indicator
+              if (events.some((e) => e.date === dStr)) {
+                const dot = document.createElement("div");
+                dot.className = "event-dot";
+                cell.appendChild(dot);
+              }
+
+              if (selectedDateStr === dStr) cell.classList.add("selected");
+
+              cell.onclick = () => {
+                selectedDateStr = selectedDateStr === dStr ? null : dStr;
+                renderCalendar();
+                renderEvents();
+              };
+              date++;
+            }
+            row.appendChild(cell);
+          }
+          calendarBody.appendChild(row);
+        }
+      }
+
+      document.getElementById("prevMonth").onclick = () => {
+        currentViewDate.setMonth(currentViewDate.getMonth() - 1);
+        renderCalendar();
+      };
+      document.getElementById("nextMonth").onclick = () => {
+        currentViewDate.setMonth(currentViewDate.getMonth() + 1);
+        renderCalendar();
+      };
+
+      // Events Logic
+      function renderEvents() {
+        eventList.innerHTML = "";
+        selectedDateTitle.textContent = selectedDateStr
+          ? `Events on ${selectedDateStr}`
+          : "Upcoming Events";
+
+        const filtered = selectedDateStr
+          ? events.filter((e) => e.date === selectedDateStr)
+          : events
+              .sort((a, b) => parseDate(a.date) - parseDate(b.date))
+              .slice(0, 5);
+
+        if (filtered.length === 0) {
+          eventList.innerHTML = `<p style="color: #999; text-align: center; padding: 40px;">No events scheduled for this ${selectedDateStr ? "date" : "period"}.</p>`;
+          return;
+        }
+
+        filtered.forEach((ev) => {
+          const card = document.createElement("div");
+          card.className = "event-card";
+          card.innerHTML = `
+            <div class="event-card-content">
+              <h4>${ev.title}</h4>
+              <p>${ev.description}</p>
+              <div class="event-date-tag">
+                <i class="far fa-calendar-alt"></i> ${ev.date}
+              </div>
+              <div class="admin-actions" style="display: ${isAdmin ? "flex" : "none"}">
+                <button class="btn btn-admin btn-sm" onclick="editEvent(${ev.id})">Edit</button>
+                <button class="btn btn-admission btn-sm" onclick="deleteEvent(${ev.id})">Delete</button>
+              </div>
+            </div>
+          `;
+          eventList.appendChild(card);
+        });
+      }
+
+      function parseDate(str) {
+        const [d, m, y] = str.split("/").map(Number);
+        return new Date(y, m - 1, d);
+      }
+
+      // Event CRUD
+      addEventBtn.onclick = () => {
+        editingEventId = null;
+        document.getElementById("eventModalTitle").textContent =
+          "Add New Event";
+        document.getElementById("eventTitle").value = "";
+        document.getElementById("eventDesc").value = "";
+        document.getElementById("eventDate").value = selectedDateStr || "";
+        document.getElementById("eventModal").style.display = "flex";
+      };
+
+      document.getElementById("closeEventModal").onclick = () =>
+        (document.getElementById("eventModal").style.display = "none");
+
+      document.getElementById("saveEvent").onclick = () => {
+        const title = document.getElementById("eventTitle").value;
+        const desc = document.getElementById("eventDesc").value;
+        const date = document.getElementById("eventDate").value;
+
+        if (!title || !date) return alert("Title and Date are required");
+
+        // Simple regex for DD/MM/YYYY
+        if (!/^\d{2}\/\d{2}\/\d{4}$/.test(date))
+          return alert("Format must be DD/MM/YYYY");
+
+        if (editingEventId) {
+          const idx = events.findIndex((e) => e.id === editingEventId);
+          events[idx] = { ...events[idx], title, description: desc, date };
+        } else {
+          events.push({ id: Date.now(), title, description: desc, date });
+        }
+
+        localStorage.setItem("vvis_events", JSON.stringify(events));
+        document.getElementById("eventModal").style.display = "none";
+        renderCalendar();
+        renderEvents();
+      };
+
+      window.deleteEvent = (id) => {
+        if (!confirm("Delete this event?")) return;
+        events = events.filter((e) => e.id !== id);
+        localStorage.setItem("vvis_events", JSON.stringify(events));
+        renderCalendar();
+        renderEvents();
+      };
+
+      window.editEvent = (id) => {
+        const ev = events.find((e) => e.id === id);
+        editingEventId = id;
+        document.getElementById("eventModalTitle").textContent = "Edit Event";
+        document.getElementById("eventTitle").value = ev.title;
+        document.getElementById("eventDesc").value = ev.description;
+        document.getElementById("eventDate").value = ev.date;
+        document.getElementById("eventModal").style.display = "flex";
+      };
+
+      // Slider logic
+      const slides = document.querySelectorAll(".slide");
+      let currentSlide = 0;
+      setInterval(() => {
+        slides[currentSlide].classList.remove("active");
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add("active");
+      }, 3000);
+
+      // Scroll animations
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = "1";
+              entry.target.style.transform = "translateY(0)";
+            }
+          });
+        },
+        { threshold: 0.15 },
+      );
+
+      document.querySelectorAll("section").forEach((section) => {
+        if (section.id !== "hero") {
+          section.style.opacity = "0";
+          section.style.transform = "translateY(40px)";
+          section.style.transition = "all 0.9s ease-out";
+          observer.observe(section);
+        }
+      });
+
+      // Video interaction feedback
+      document.querySelectorAll(".play-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const video = btn.parentElement.querySelector("video");
+          if (video.paused) {
+            btn.style.opacity = "0.3";
+          } else {
+            video.pause();
+            btn.style.opacity = "1";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

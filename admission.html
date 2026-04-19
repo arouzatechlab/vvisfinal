@@ -1,0 +1,1191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admission | Vidya Vihar International School</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+     <link rel="stylesheet" href="./navbar.css">
+    <link rel="stylesheet" href="./footer.css">
+     <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      :root {
+        --primary-bg: #a1105d;
+        --accent-gold: #ffcc00;
+        --text-white: #ffffff;
+        --text-dark: #333333;
+        --bg-light: #f9f9f9;
+        --font-heading: "Poppins", sans-serif;
+        --font-body: "Inter", sans-serif;
+        --transition: all 0.3s ease;
+        --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        --radius: 12px;
+      }
+
+      /* Base Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: var(--font-body);
+        color: var(--text-dark);
+        line-height: 1.6;
+        background-color: var(--text-white);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: var(--font-heading);
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      /* Container */
+      .container {
+        width: 100%;
+        padding: 0 20px;
+        margin: 0 auto;
+      }
+
+      @media (min-width: 768px) {
+        .container {
+          max-width: 720px;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .container {
+          max-width: 1000px;
+        }
+      }
+
+      /* Hero Section */
+      .hero {
+        position: relative;
+        height: 40vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+        color: var(--text-white);
+      }
+
+      @media (min-width: 768px) {
+        .hero {
+          height: 50vh;
+        }
+      }
+
+      .hero-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -2;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--primary-bg);
+        opacity: 0.75;
+        z-index: -1;
+      }
+
+      .hero-content h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .hero-content p {
+        font-size: 1.1rem;
+        font-weight: 500;
+        opacity: 0.95;
+      }
+
+      /* Section Styling */
+      .section {
+        padding: 60px 0;
+      }
+
+      @media (min-width: 1024px) {
+        .section {
+          padding: 80px 0;
+        }
+      }
+
+      .section-title {
+        color: var(--primary-bg);
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+        position: relative;
+        display: inline-block;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        width: 60px;
+        height: 4px;
+        background: var(--accent-gold);
+        border-radius: 2px;
+      }
+
+      /* Guidelines Card */
+      .card-container {
+        background: var(--text-white);
+        padding: 30px 20px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .guidelines-list {
+        list-style: none;
+      }
+
+      .guidelines-list li {
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 1.5rem;
+      }
+
+      .guidelines-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 8px;
+        width: 10px;
+        height: 10px;
+        background: var(--accent-gold);
+        transform: rotate(45deg);
+        border: 2px solid var(--primary-bg);
+      }
+
+      /* Documents Section */
+      .bg-alt {
+        background-color: var(--bg-light);
+      }
+
+      .docs-list {
+        display: grid;
+        gap: 15px;
+      }
+
+      .doc-item {
+        display: flex;
+        align-items: center;
+        background: var(--text-white);
+        padding: 20px;
+        border-radius: 8px;
+        border-bottom: 3px solid transparent;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        transition: var(--transition);
+      }
+
+      .doc-item:hover {
+        border-bottom-color: var(--accent-gold);
+        transform: translateY(-3px);
+      }
+
+      .doc-icon-box {
+        flex-shrink: 0;
+        margin-right: 18px;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(161, 16, 93, 0.08);
+        border-radius: 50%;
+        color: var(--primary-bg);
+      }
+
+      .doc-icon-box svg {
+        width: 22px;
+        height: 22px;
+        fill: currentColor;
+      }
+
+      .doc-item p {
+        font-weight: 500;
+        font-size: 0.95rem;
+      }
+
+      /* Form Section */
+      .form-card {
+        background: var(--text-white);
+        padding: 30px 20px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      @media (min-width: 768px) {
+        .form-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .span-full {
+          grid-column: span 2;
+        }
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .form-group label {
+        font-weight: 600;
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+      }
+
+      .required {
+        color: var(--primary-bg);
+      }
+
+      input,
+      select,
+      textarea {
+        padding: 12px 15px;
+        border: 1.5px solid #e0e0e0;
+        border-radius: 6px;
+        font-family: var(--font-body);
+        font-size: 1rem;
+        transition: var(--transition);
+        width: 100%;
+      }
+
+      input::placeholder,
+      textarea::placeholder {
+        color: #999;
+        font-size: 0.9rem;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        outline: none;
+        border-color: var(--primary-bg);
+        box-shadow: 0 0 0 3px rgba(161, 16, 93, 0.1);
+      }
+
+      .radio-group {
+        display: flex;
+        gap: 20px;
+        padding: 10px 0;
+      }
+
+      .radio-option {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+      }
+
+      .radio-option input {
+        width: auto;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+      .btn-submit {
+        background: var(--primary-bg);
+        color: var(--text-white);
+        border: none;
+        padding: 16px 32px;
+        font-family: var(--font-heading);
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: var(--transition);
+        margin-top: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .btn-submit:hover {
+        background: var(--accent-gold);
+        color: var(--text-dark);
+        transform: translateY(-2px);
+      }
+
+      #success-message {
+        display: none;
+        background: #e8f5e9;
+        color: #2e7d32;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        margin-top: 20px;
+        font-weight: 600;
+        border: 1px solid #c8e6c9;
+      }
+    </style>
+  </head>
+  <body>
+     <!-- TOP BAR -->
+    <div class="top-bar">
+      <div class="top-bar-container">
+        <div class="top-bar-left">
+          <i class="fas fa-graduation-cap"></i>
+          <span>A FAMILY OF LEARNING</span>
+        </div>
+
+        <div class="marquee-wrapper">
+          <div class="marquee-content">
+            ADMISSION OPEN FOR ACADEMIC YEAR 2026-27 • APPLY NOW TO SECURE YOUR
+            CHILD'S FUTURE • WORLD-CLASS FACILITIES • LIMITED SEATS AVAILABLE •
+          </div>
+        </div>
+
+        <div class="top-bar-socials">
+          <a href="#" aria-label="Facebook"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="#" aria-label="Instagram"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN HEADER -->
+    <header class="main-header" id="header">
+      <div class="navbar-container">
+        <!-- Brand -->
+        <a href="./index.html" class="brand">
+          <img
+            src="./assets/logo.avif"
+            alt="Vidya Vihar Logo"
+            class="logo-img"
+          />
+          <div class="brand-text">
+            <span class="school-name">VIDYA VIHAR</span>
+            <span class="school-tagline">International School</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
+          <ul class="desk-nav-list">
+            <li class="desk-nav-item">
+              <a href="./index.html" class="desk-nav-link">HOME</a>
+            </li>
+            <li class="desk-nav-item">
+              <a href="./about.html" class="desk-nav-link"
+                >ABOUT
+                <i class="fas fa-chevron-down" style="font-size: 11px"></i
+              ></a>
+              <ul class="desk-dropdown">
+                <li class="desk-dropdown-item">
+                  <a href="./about.html">About Us</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="#">Mandatory Disclosure</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./faculty.html">Faculties</a>
+                </li>
+              </ul>
+            </li>
+            <li class="desk-nav-item">
+              <a href="#" class="desk-nav-link"
+                >ACADEMICS
+                <i class="fas fa-chevron-down" style="font-size: 11px"></i
+              ></a>
+              <ul class="desk-dropdown">
+                <li class="desk-dropdown-item">
+                  <a href="./foundational.html"
+                    >Foundational Stage(Pre KG-Grade 2)</a
+                  >
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./preparatory.html">Preparatory Stage(Grade 3-5)</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./middlestage.html">Middle Stage (Grade 6-8)</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./secondary.html">Secondary Stage (Grade 9-10)</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./parental.html">Parental Synergy</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="#">Event calender</a>
+                </li>
+                <!-- <li class="desk-dropdown-item">
+                  <a href="#">Innovative Student-Centric Pedagogy</a>
+                </li> -->
+                <!-- <li class="desk-dropdown-item">
+                  <a href="#">Outstanding Academic Results and Awards</a>
+                </li> -->
+                <!-- <li class="desk-dropdown-item">
+                  <a href="#">Annual School Activity Calendar</a>
+                </li> -->
+                <!-- <li class="desk-dropdown-item">
+                  <a href="#">Prescribed Textbooks and Resource List</a>
+                </li> -->
+              </ul>
+            </li>
+            <li class="desk-nav-item">
+              <a href="#" class="desk-nav-link"
+                >FACILITIES
+                <i class="fas fa-chevron-down" style="font-size: 11px"></i
+              ></a>
+              <ul class="desk-dropdown">
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Tech as an Enabler</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Innovation Center</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Information Center</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">ICT Labs</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Science & Maths Laboratories</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html"
+                    >VVIS Venues (The Happening Places)</a
+                  >
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Indoor & Outdoor</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Music & Dance Rooms</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Cafeteria</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Transport</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Infirmary</a>
+                </li>
+              </ul>
+            </li>
+            <li class="desk-nav-item">
+              <a href="./gallery.html" class="desk-nav-link"
+                >GALLERY
+                <!-- <i class="fas fa-chevron-down" style="font-size: 11px"></i
+              ></a> -->
+              <!-- <ul class="desk-dropdown">
+                <li class="desk-dropdown-item">
+                  <a href="./gallery.html">GALLERY(2025-26)</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="#">GALLERY(2025-26)</a>
+                </li>
+                
+              </ul> -->
+            </li>
+            <li class="desk-nav-item">
+              <a href="./contact.html" class="desk-nav-link">CONTACT</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Action Buttons -->
+        <div class="desktop-buttons">
+          <a href="./admission.html" class="btn btn-admission">Admission</a>
+          <!-- <a href="#" class="btn btn-admin">Admin Portal</a> -->
+        </div>
+
+        <!-- Mobile Toggle -->
+        <button class="hamburger-btn" id="menuToggle" aria-label="Toggle Menu">
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+        </button>
+      </div>
+    </header>
+
+    <!-- MOBILE OVERLAY -->
+    <div class="mobile-menu-overlay" id="mobileOverlay">
+      <div class="mobile-menu-content">
+        <ul class="mob-nav-list">
+          <li class="mob-nav-item">
+            <a href="./index.html" class="mob-nav-link">HOME</a>
+          </li>
+          <li class="mob-nav-item">
+            <div class="mob-nav-link mob-drop-trigger">
+              ABOUT <i class="fas fa-plus mob-dropdown-toggle"></i>
+            </div>
+            <ul class="mob-dropdown-list">
+              <li class="mob-dropdown-item">
+                <a href="./about.html">About Us</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./faculty.html">Faculties</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="#">Mandatory Disclosure</a>
+              </li>
+            </ul>
+          </li>
+          <li class="mob-nav-item">
+            <div class="mob-nav-link mob-drop-trigger">
+              ACADEMICS <i class="fas fa-plus mob-dropdown-toggle"></i>
+            </div>
+            <ul class="mob-dropdown-list">
+              <li class="mob-dropdown-item">
+                <a href="./foundational.html"
+                  >Foundational Stage(Pre KG-Grade 2)</a
+                >
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./preparatory.html">Preparatory Stage(Grade 3-5)</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./middlestage.html">Middle Stage (Grade 6-8)</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./secondary.html">Secondary Stage (Grade 9-10)</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./parental.html">Parental Synergy</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="#">Event Calender</a>
+              </li>
+            </ul>
+          </li>
+          <li class="mob-nav-item">
+            <div class="mob-nav-link mob-drop-trigger">
+              FACILITIES <i class="fas fa-plus mob-dropdown-toggle"></i>
+            </div>
+            <ul class="mob-dropdown-list">
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Tech as an Enabler</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Innovation Center</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Information Center</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">ICT Labs</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Science & Maths Laboratories</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html"
+                  >VVIS Venues (The Happening Places)</a
+                >
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Indoor & Outdoor</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Cafeteria</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Transport</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Infirmary</a>
+              </li>
+            </ul>
+          </li>
+          <li class="mob-nav-item">
+            <a href="./gallery.html" class="mob-nav-link">GALLERY</a>
+          </li>
+          <li class="mob-nav-item">
+            <a href="./contact.html" class="mob-nav-link">CONTACT</a>
+          </li>
+        </ul>
+        <div class="mob-buttons">
+          <a href="./admission.html" class="btn btn-admission"
+            >Admission Open</a
+          >
+          <!-- <a href="#" class="btn btn-admin">Admin Login</a> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN BODY CONTENT -->
+    <!-- <div style="height: 2000px; padding: 120px 5%; background: #fafafa">
+      <h1
+        style="
+          font-family: var(--font-poppins);
+          color: var(--text-dark);
+          line-height: 1.2;
+        "
+      >
+        Excellence in Global Education
+      </h1>
+      <p
+        style="
+          margin-top: 25px;
+          font-size: 1.2rem;
+          color: #555;
+          max-width: 800px;
+          line-height: 1.8;
+        "
+      >
+        Welcome to Vidya Vihar International School. The gap between the brand
+        logo and the navigation links has been increased for a cleaner, more
+        spacious layout.
+      </p>
+    </div> -->
+    <!-- Hero Section -->
+    <header class="hero">
+      <img
+        src="./assets/school-contact.jpg"
+        alt="School Campus"
+        class="hero-img"
+        onerror="
+          this.src =
+            'https://placehold.co/1200x600/a1105d/ffffff?text=Vidya+Vihar+International+School'
+        "
+      />
+      <div class="hero-overlay"></div>
+      <div class="hero-content container">
+        <h1>Admissions</h1>
+        <p>Join Vidya Vihar International School</p>
+      </div>
+    </header>
+
+    <!-- Section 1: Admission Guidelines -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Admissions Guidelines</h2>
+        <div class="card-container">
+          <ul class="guidelines-list">
+            <li>
+              Every parent shall visit and fill the enquiry form first. It
+              includes details of the child and the parents. Parents are advised
+              not to fill more than one enquiry form for one applicant.
+            </li>
+            <li>Admission is on First Come First Serve Basis.</li>
+            <li>
+              Admission to Grades Pre KG and KG will be through a formal
+              interaction of the parents and child with the teacher.
+            </li>
+            <li>
+              Admission to Grades I and above will be based on the written
+              entrance test.
+            </li>
+            <li>
+              Date and time for the interaction/entrance test will be intimated
+              to the parents.
+            </li>
+            <li>
+              Final decision of giving admission will be of the School based on
+              the Test/ Interaction.
+            </li>
+            <li>
+              The Registration fee can be submitted by the parents before
+              interaction/entrance test. Kindly note that registration charge is
+              non refundable & needs to be paid ONE time only.
+            </li>
+            <li>Incomplete registration form will not be accepted.</li>
+            <li>
+              Kindly submit below mentioned documents along with remaining
+              amount within 15 days of submitting registration charges, failing
+              which the offer of admission stand cancelled & the seat will be
+              offered to another applicant.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Documents Required -->
+    <section class="section bg-alt">
+      <div class="container">
+        <h2 class="section-title">
+          DOCUMENTS REQUIRED AT THE TIME OF ADMISSION
+        </h2>
+        <div class="docs-list">
+          <div class="doc-item">
+            <div class="doc-icon-box">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,19H5V5H19V19M17,17H7V15H17V17M17,13H7V11H17V13M13,9H7V7H13V9Z"
+                />
+              </svg>
+            </div>
+            <p>Birth Certificate of the child, attested by parents.</p>
+          </div>
+          <div class="doc-item">
+            <div class="doc-icon-box">
+              <svg viewBox="0 0 24 24">
+                <path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z" />
+              </svg>
+            </div>
+            <p>
+              Residence Address Proof-Aadhar Card /Passport/Electricity
+              Bill/Ration Card /Voter ID
+            </p>
+          </div>
+          <div class="doc-item">
+            <div class="doc-icon-box">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M21,11.5V15C21,17.96 18.66,20.57 15.68,20.91C15.23,20.97 14.77,21 14.31,21C13.56,21 12.8,20.92 12.06,20.76C9.17,20.14 7,17.61 7,14.65V11.5C7,11.5 7,11.5 7.03,11.5C7,10.12 8.12,9 9.5,9H18.5C19.88,9 21,10.12 21,11.5M14,13A1.5,1.5 0 0,0 12.5,14.5A1.5,1.5 0 0,0 14,16A1.5,1.5 0 0,0 15.5,14.5A1.5,1.5 0 0,0 14,13M3,18V6A2,2 0 0,1 5,4H19A2,2 0 0,1 21,6V8H19V6H5V18H7V20H5A2,2 0 0,1 3,18Z"
+                />
+              </svg>
+            </div>
+            <p>Aadhar Card of the child and both the parents</p>
+          </div>
+          <div class="doc-item">
+            <div class="doc-icon-box">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"
+                />
+              </svg>
+            </div>
+            <p>School Leaving Certificate (Class II onwards)</p>
+          </div>
+          <div class="doc-item">
+            <div class="doc-icon-box">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M4,4H7L9,2H15L17,2H20A2,2 0 0,1 22,4V18A2,2 0 0,1 20,20H4A2,2 0 0,1 2,18V4A2,2 0 0,1 4,4M12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z"
+                />
+              </svg>
+            </div>
+            <p>
+              6 passport size photographs of child & 2 passport size photographs
+              of both parents.
+            </p>
+          </div>
+          <div class="doc-item">
+            <div class="doc-icon-box">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M18,15A6,6 0 0,1 12,21A6,6 0 0,1 6,15C6,11.64 12,4 12,4C12,4 18,11.64 18,15M14,14H13V13A1,1 0 0,0 12,12A1,1 0 0,0 11,13V14H10A1,1 0 0,0 9,15A1,1 0 0,0 10,16H11V17A1,1 0 0,0 12,18A1,1 0 0,0 13,17V16H14A1,1 0 0,0 15,15A1,1 0 0,0 14,14Z"
+                />
+              </svg>
+            </div>
+            <p>Blood group report of the child.</p>
+          </div>
+          <div class="doc-item">
+            <div class="doc-icon-box">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M11.5,1L2,6V8H21V6M16,10V17H19V10M2,22H21V19H2M10,10V17H13V10M4,10V17H7V10"
+                />
+              </svg>
+            </div>
+            <p>Bank passbook of the child.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Enquiry Form -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Admission Enquiry Form</h2>
+        <div class="form-card">
+          <form id="admissionForm">
+            <div class="form-grid">
+              <!-- Student Name -->
+              <div class="form-group">
+                <label for="studentName"
+                  >Name of the student: <span class="required">*</span></label
+                >
+                <input
+                  type="text"
+                  id="studentName"
+                  name="studentName"
+                  placeholder="Enter student's full name"
+                  required
+                />
+              </div>
+
+              <!-- Class Seeking -->
+              <div class="form-group">
+                <label for="admissionClass"
+                  >Admission sought for the class:
+                  <span class="required">*</span></label
+                >
+                <select id="admissionClass" name="admissionClass" required>
+                  <option value="" disabled selected>
+                    Select the target class
+                  </option>
+                  <option value="Pre-KG">Pre-KG</option>
+                  <option value="KG">KG</option>
+                  <option value="Grade 1">Grade I</option>
+                  <option value="Grade 2">Grade II</option>
+                  <option value="Grade 3">Grade III</option>
+                  <option value="Grade 4">Grade IV</option>
+                  <option value="Grade 5">Grade V</option>
+                  <option value="Grade 6">Grade VI</option>
+                  <option value="Grade 7">Grade VII</option>
+                  <option value="Grade 8">Grade VIII</option>
+                  <option value="Grade 9">Grade IX</option>
+                  <option value="Grade 10">Grade X</option>
+                </select>
+              </div>
+
+              <!-- DOB -->
+              <div class="form-group">
+                <label for="dob"
+                  >Date of Birth: <span class="required">*</span></label
+                >
+                <input type="date" id="dob" name="dob" required />
+              </div>
+
+              <!-- Gender -->
+              <div class="form-group">
+                <label>Gender: <span class="required">*</span></label>
+                <div class="radio-group">
+                  <label class="radio-option">
+                    <input type="radio" name="gender" value="Male" required />
+                    Male
+                  </label>
+                  <label class="radio-option">
+                    <input type="radio" name="gender" value="Female" /> Female
+                  </label>
+                  <label class="radio-option">
+                    <input type="radio" name="gender" value="Other" /> Other
+                  </label>
+                </div>
+              </div>
+
+              <!-- Father's Name -->
+              <div class="form-group">
+                <label for="fatherName"
+                  >Father's Name: <span class="required">*</span></label
+                >
+                <input
+                  type="text"
+                  id="fatherName"
+                  name="fatherName"
+                  placeholder="Enter father's name"
+                  required
+                />
+              </div>
+
+              <!-- Mother's Name -->
+              <div class="form-group">
+                <label for="motherName"
+                  >Mother's Name: <span class="required">*</span></label
+                >
+                <input
+                  type="text"
+                  id="motherName"
+                  name="motherName"
+                  placeholder="Enter mother's name"
+                  required
+                />
+              </div>
+
+              <!-- Contact -->
+              <div class="form-group">
+                <label for="contact"
+                  >Contact Number: <span class="required">*</span></label
+                >
+                <input
+                  type="tel"
+                  id="contact"
+                  name="contact"
+                  placeholder="e.g., 9876543210"
+                  required
+                  pattern="[0-9]{10,12}"
+                  title="Please enter 10 to 12 digits"
+                />
+              </div>
+
+              <!-- Email -->
+              <div class="form-group">
+                <label for="email"
+                  >Email id:<span class="required">*</span></label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="e.g., parent@example.com"
+                  required
+                />
+              </div>
+
+              <!-- Address -->
+              <div class="form-group span-full">
+                <label for="address"
+                  >Address: <span class="required">*</span></label
+                >
+                <textarea
+                  id="address"
+                  name="address"
+                  placeholder="Enter your current residential address"
+                  required
+                ></textarea>
+              </div>
+
+              <!-- Enquiry Type -->
+              <div class="form-group">
+                <label for="enquiryType">Enquiry:</label>
+                <select id="enquiryType" name="enquiryType">
+                  <option value="Admission">Admission Enquiry</option>
+                  <option value="Other">Other Enquiry</option>
+                </select>
+              </div>
+
+              <!-- Message -->
+              <div class="form-group span-full">
+                <label for="message">Message:</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Any specific questions or additional information..."
+                ></textarea>
+              </div>
+
+              <div class="span-full">
+                <button type="submit" class="btn-submit" id="submitBtn">
+                  Submit Enquiry
+                </button>
+              </div>
+            </div>
+          </form>
+          <div id="success-message">
+            Thank you! Your enquiry has been submitted successfully. We will
+            contact you soon.
+          </div>
+        </div>
+      </div>
+    </section>
+  <!-- START FOOTER SECTION -->
+    <footer class="arzSiteFooter">
+      <div class="arzFooterContainer">
+        <!-- School Branding -->
+        <div class="arzFooterBrand">
+          <img
+            src="./assets/vvislogo.jpeg"
+            alt="Vidya Vihar Logo"
+            class="arzSchoolLogo"
+          />
+          <div class="arzSchoolName">
+            <h2>VIDYA VIHAR</h2>
+            <p>INTERNATIONAL SCHOOL</p>
+          </div>
+          <div class="arzSocialLinks">
+            <a href="#" class="arzSocialIcon"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" class="arzSocialIcon"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" class="arzSocialIcon"><i class="fab fa-youtube"></i></a>
+            <a
+              href="https://wa.me/919538424583"
+              class="arzSocialIcon"
+              target="_blank"
+            >
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Campus Location -->
+        <div class="arzFooterLocations">
+          <h3 class="arzFooterHeading">Campus Location</h3>
+          <div class="arzCampusBlock">
+            <!-- Location 1 -->
+            <div class="arzLocationItem">
+              <div class="arzMapFrame">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3895.7301770453605!2d77.0263876741121!3d12.467681425727907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baf076500614e6f%3A0x65b53efa9332b4c2!2sVidya%20Vihar%20International%20School!5e0!3m2!1sen!2sin!4v1770357339459!5m2!1sen!2sin"
+                  width="600"
+                  height="450"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+              <img src="./assets/vvis.jpeg" alt="QR Code NY" class="arzQrImg" />
+            </div>
+            <!-- Location 2 -->
+            <div class="arzLocationItem">
+              <div class="arzMapFrame">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3895.4820376472485!2d77.03253737411231!3d12.48417642537924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baf079ab765efb9%3A0xc27d29ee81a8409e!2sVidya%20Vihar%20Wonder%20Kidz!5e0!3m2!1sen!2sin!4v1770357947662!5m2!1sen!2sin"
+                  width="600"
+                  height="450"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+              <img src="./assets/vvwk.jpeg" alt="QR Code CA" class="arzQrImg" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="arzFooterContact">
+          <h3 class="arzFooterHeading">Contact Information</h3>
+          <div class="arzContactGrid">
+            <!-- Column 1 -->
+            <div class="arzContactCol">
+              <div class="arzInfoRow">
+                <i data-lucide="map-pin"></i>
+                <div class="arzInfoText">
+                  <strong>Vidya Vihar International School</strong><br />
+                  Near APMC Market, Gudigere Road, <br />
+                  Manigere, Bharathinagar, Maddur Taluk <br />
+                  Mandya District, Karnataka- 571422
+                  <br />
+                </div>
+              </div>
+              <div class="arzInfoRow">
+                <i data-lucide="mail"></i>
+                <div class="arzInfoText">
+                  <a href="mailto: vidyavihar.kmd@gmail.com"
+                    >vidyavihar.kmd@gmail.com</a
+                  >
+                </div>
+              </div>
+              <div class="arzInfoRow">
+                <i data-lucide="phone"></i>
+                <div class="arzInfoText">
+                  <a href="tel:+919686781100">+91 9686781100</a><br />
+                </div>
+              </div>
+            </div>
+
+            <!-- Column 2 -->
+            <div class="arzContactCol">
+              <div class="arzInfoRow">
+                <i data-lucide="map-pin"></i>
+                <div class="arzInfoText">
+                  <strong>Vidya Vihar Wonder Kidz</strong><br />
+                  Opposite to Government Hospital,<br />Maddur-Malavalli Road
+                  Bharathinagar, Maddur Taluk <br />
+                  Mandya District, Karnataka- 571422
+                  <br />
+                </div>
+              </div>
+              <div class="arzInfoRow">
+                <i data-lucide="mail"></i>
+                <div class="arzInfoText">
+                  <a href="mailto:vidyavihar.kmd@gmail.com"
+                    >vidyavihar.kmd@gmail.com</a
+                  >
+                </div>
+              </div>
+              <div class="arzInfoRow">
+                <i data-lucide="phone"></i>
+                <div class="arzInfoText">
+                  <a href="tel:+917349333810">+91 7349333810</a><br />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Copyright Bar -->
+      <div class="arzFooterBottom">
+        <div class="arzBottomContainer">
+          <div class="arzCopyright">
+            Copyright © 2026 Vidya Vihar International School. All rights
+            reserved. Designed by
+            <a
+              href="https://arouzatechlabs.in/"
+              style="text-decoration: none; color: #ffcc00"
+              >AROUZA TECHLABS</a
+            >
+          </div>
+          <div class="arzBottomLinks">
+            <a href="#">Term & Conditions</a>
+            <span>|</span>
+            <a href="#">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- END FOOTER SECTION -->
+
+    <!-- Scroll Top Button -->
+    <div
+      class="arzScrollTop"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    >
+      <i data-lucide="chevron-up"></i>
+    </div>
+
+    <script>
+      // Initialize Lucide Icons
+      lucide.createIcons();
+    </script>
+    <script src="./nav.js"></script>
+    <script>
+       lucide.createIcons();
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("admissionForm");
+        const successMsg = document.getElementById("success-message");
+        const submitBtn = document.getElementById("submitBtn");
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Processing...";
+
+          setTimeout(() => {
+            form.style.display = "none";
+            successMsg.style.display = "block";
+            successMsg.scrollIntoView({ behavior: "smooth", block: "center" });
+          }, 800);
+        });
+      });
+    </script>
+  </body>
+</html>

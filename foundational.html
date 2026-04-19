@@ -1,0 +1,1182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foundational Stage | Vidya Vihar International School</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+     <link rel="stylesheet" href="./navbar.css">
+    <link rel="stylesheet" href="./footer.css">
+     <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      :root {
+        --primary-bg: #a1105d;
+        --accent-gold: #ffcc00;
+        --text-white: #ffffff;
+        --text-dark: #333333;
+        --bg-light: #f9f9f9;
+        --nav-navy: #003366;
+        --nav-navy-hover: #004488;
+        --font-heading: "Poppins", sans-serif;
+        --font-body: "Inter", sans-serif;
+        --transition: all 0.3s ease;
+        --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-body);
+        color: var(--text-dark);
+        line-height: 1.6;
+        overflow-x: hidden;
+        background-color: var(--text-white);
+      }
+
+      /* Hero Section - Reduced Height */
+      .hero {
+        position: relative;
+        height: 40vh; /* Reduced from 60vh */
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--text-white);
+        overflow: hidden;
+      }
+
+      .hero img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 1;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(161, 16, 93, 0.4), rgba(0, 0, 0, 0.6));
+        z-index: 2;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 3;
+        padding: 0 20px;
+      }
+
+      .hero-content h1 {
+        font-family: var(--font-heading);
+        font-size: 2.2rem;
+        margin-bottom: 5px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .hero-content p {
+        font-size: 1rem;
+        font-weight: 500;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+      }
+
+      /* Navigation Grid Section - Matching Heights */
+      .nav-grid-section {
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .slider-container {
+        width: 100%;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        position: relative;
+        height: 300px; /* Default mobile height */
+      }
+
+      .slider-wrapper {
+        display: flex;
+        width: 400%; /* 4 images */
+        height: 100%;
+        transition: transform 0.8s ease-in-out;
+      }
+
+      .slider-wrapper img {
+        width: 25%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .nav-panel {
+        background: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .nav-panel-header {
+        background-color: var(--accent-gold);
+        color: var(--text-white);
+        padding: 15px 20px;
+        font-family: var(--font-heading);
+        font-size: 1.25rem;
+        text-align: center;
+      }
+
+      .nav-list {
+        list-style: none;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .nav-item {
+        flex-grow: 1;
+        display: flex;
+      }
+
+      .nav-item a {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 12px 20px;
+        text-decoration: none;
+        color: var(--text-white);
+        background-color: var(--nav-navy);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        font-weight: 500;
+        transition: var(--transition);
+      }
+
+      .nav-item a:hover {
+        background-color: var(--nav-navy-hover);
+        padding-left: 28px;
+      }
+
+      .nav-item a::before {
+        content: "<";
+        margin-right: 12px;
+        font-weight: bold;
+      }
+
+      /* Content Sections */
+      .content-section {
+        padding: 50px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-header {
+        margin-bottom: 30px;
+      }
+
+      .section-header h2 {
+        font-family: var(--font-heading);
+        font-size: 1.8rem;
+        color: var(--primary-bg);
+        margin-bottom: 8px;
+      }
+
+      .gold-underline {
+        width: 60px;
+        height: 4px;
+        background-color: var(--accent-gold);
+        border-radius: 2px;
+      }
+
+      .section-flex {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+      }
+
+      .section-image {
+        width: 100%;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+
+      .section-image img {
+        width: 100%;
+        height: 300px; /* Fixed height for consistency */
+        object-fit: cover;
+        display: block;
+      }
+
+      .section-text p {
+        margin-bottom: 15px;
+        text-align: justify;
+        font-size: 0.95rem;
+      }
+
+      /* Grid Cards */
+      .cards-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-top: 25px;
+      }
+
+      .card {
+        background-color: var(--bg-light);
+        padding: 18px;
+        border-radius: 8px;
+        border-left: 4px solid var(--accent-gold);
+        display: flex;
+        align-items: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        font-size: 0.9rem;
+      }
+
+      /* Two Column List */
+      .bullet-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-top: 20px;
+      }
+
+      .bullet-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 0;
+        border-bottom: 1px solid #eee;
+        font-size: 0.95rem;
+      }
+
+      .bullet-item::before {
+        content: "•";
+        color: var(--accent-gold);
+        font-weight: bold;
+        font-size: 1.4rem;
+      }
+
+      /* Tablet & Desktop Adjustments */
+      @media (min-width: 768px) {
+        .hero {
+          height: 50vh;
+        }
+        .hero-content h1 {
+          font-size: 3rem;
+        }
+
+        .nav-grid-section {
+          flex-direction: row;
+          height: 450px; /* Fixed height for side-by-side alignment */
+        }
+
+        .slider-container,
+        .nav-panel {
+          flex: 1;
+          height: 100%; /* Forces same height */
+        }
+
+        .cards-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .bullet-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .section-flex {
+          flex-direction: row;
+          align-items: stretch;
+        }
+
+        .section-flex.reverse {
+          flex-direction: row-reverse;
+        }
+
+        .section-image,
+        .section-text {
+          flex: 1;
+        }
+
+        .section-image img {
+          height: 100%; /* Image fills the height of the text container */
+          min-height: 400px;
+        }
+
+        .cards-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .section-header h2 {
+          font-size: 2.2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+     <!-- TOP BAR -->
+    <div class="top-bar">
+      <div class="top-bar-container">
+        <div class="top-bar-left">
+          <i class="fas fa-graduation-cap"></i>
+          <span>A FAMILY OF LEARNING</span>
+        </div>
+
+        <div class="marquee-wrapper">
+          <div class="marquee-content">
+            ADMISSION OPEN FOR ACADEMIC YEAR 2026-27 • APPLY NOW TO SECURE YOUR
+            CHILD'S FUTURE • WORLD-CLASS FACILITIES • LIMITED SEATS AVAILABLE •
+          </div>
+        </div>
+
+        <div class="top-bar-socials">
+          <a href="#" aria-label="Facebook"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="#" aria-label="Instagram"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN HEADER -->
+    <header class="main-header" id="header">
+      <div class="navbar-container">
+        <!-- Brand -->
+        <a href="./index.html" class="brand">
+          <img
+            src="./assets/logo.avif"
+            alt="Vidya Vihar Logo"
+            class="logo-img"
+          />
+          <div class="brand-text">
+            <span class="school-name">VIDYA VIHAR</span>
+            <span class="school-tagline">International School</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
+          <ul class="desk-nav-list">
+            <li class="desk-nav-item">
+              <a href="./index.html" class="desk-nav-link">HOME</a>
+            </li>
+            <li class="desk-nav-item">
+              <a href="./about.html" class="desk-nav-link"
+                >ABOUT
+                <i class="fas fa-chevron-down" style="font-size: 11px"></i
+              ></a>
+              <ul class="desk-dropdown">
+                <li class="desk-dropdown-item">
+                  <a href="./about.html">About Us</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="#">Mandatory Disclosure</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./faculty.html">Faculties</a>
+                </li>
+              </ul>
+            </li>
+            <li class="desk-nav-item">
+              <a href="#" class="desk-nav-link"
+                >ACADEMICS
+                <i class="fas fa-chevron-down" style="font-size: 11px"></i
+              ></a>
+              <ul class="desk-dropdown">
+                <li class="desk-dropdown-item">
+                  <a href="./foundational.html"
+                    >Foundational Stage(Pre KG-Grade 2)</a
+                  >
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./preparatory.html">Preparatory Stage(Grade 3-5)</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./middlestage.html">Middle Stage (Grade 6-8)</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./secondary.html">Secondary Stage (Grade 9-10)</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./parental.html">Parental Synergy</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="#">Event calender</a>
+                </li>
+                <!-- <li class="desk-dropdown-item">
+                  <a href="#">Innovative Student-Centric Pedagogy</a>
+                </li> -->
+                <!-- <li class="desk-dropdown-item">
+                  <a href="#">Outstanding Academic Results and Awards</a>
+                </li> -->
+                <!-- <li class="desk-dropdown-item">
+                  <a href="#">Annual School Activity Calendar</a>
+                </li> -->
+                <!-- <li class="desk-dropdown-item">
+                  <a href="#">Prescribed Textbooks and Resource List</a>
+                </li> -->
+              </ul>
+            </li>
+            <li class="desk-nav-item">
+              <a href="#" class="desk-nav-link"
+                >FACILITIES
+                <i class="fas fa-chevron-down" style="font-size: 11px"></i
+              ></a>
+              <ul class="desk-dropdown">
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Tech as an Enabler</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Innovation Center</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Information Center</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">ICT Labs</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Science & Maths Laboratories</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html"
+                    >VVIS Venues (The Happening Places)</a
+                  >
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Indoor & Outdoor</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Music & Dance Rooms</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Cafeteria</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Transport</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="./facilities.html">Infirmary</a>
+                </li>
+              </ul>
+            </li>
+            <li class="desk-nav-item">
+              <a href="./gallery.html" class="desk-nav-link"
+                >GALLERY
+                <!-- <i class="fas fa-chevron-down" style="font-size: 11px"></i
+              ></a> -->
+              <!-- <ul class="desk-dropdown">
+                <li class="desk-dropdown-item">
+                  <a href="./gallery.html">GALLERY(2025-26)</a>
+                </li>
+                <li class="desk-dropdown-item">
+                  <a href="#">GALLERY(2025-26)</a>
+                </li>
+                
+              </ul> -->
+            </li>
+            <li class="desk-nav-item">
+              <a href="./contact.html" class="desk-nav-link">CONTACT</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Action Buttons -->
+        <div class="desktop-buttons">
+          <a href="./admission.html" class="btn btn-admission">Admission</a>
+          <!-- <a href="#" class="btn btn-admin">Admin Portal</a> -->
+        </div>
+
+        <!-- Mobile Toggle -->
+        <button class="hamburger-btn" id="menuToggle" aria-label="Toggle Menu">
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+        </button>
+      </div>
+    </header>
+
+    <!-- MOBILE OVERLAY -->
+    <div class="mobile-menu-overlay" id="mobileOverlay">
+      <div class="mobile-menu-content">
+        <ul class="mob-nav-list">
+          <li class="mob-nav-item">
+            <a href="./index.html" class="mob-nav-link">HOME</a>
+          </li>
+          <li class="mob-nav-item">
+            <div class="mob-nav-link mob-drop-trigger">
+              ABOUT <i class="fas fa-plus mob-dropdown-toggle"></i>
+            </div>
+            <ul class="mob-dropdown-list">
+              <li class="mob-dropdown-item">
+                <a href="./about.html">About Us</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./faculty.html">Faculties</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="#">Mandatory Disclosure</a>
+              </li>
+            </ul>
+          </li>
+          <li class="mob-nav-item">
+            <div class="mob-nav-link mob-drop-trigger">
+              ACADEMICS <i class="fas fa-plus mob-dropdown-toggle"></i>
+            </div>
+            <ul class="mob-dropdown-list">
+              <li class="mob-dropdown-item">
+                <a href="./foundational.html"
+                  >Foundational Stage(Pre KG-Grade 2)</a
+                >
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./preparatory.html">Preparatory Stage(Grade 3-5)</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./middlestage.html">Middle Stage (Grade 6-8)</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./secondary.html">Secondary Stage (Grade 9-10)</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./parental.html">Parental Synergy</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="#">Event Calender</a>
+              </li>
+            </ul>
+          </li>
+          <li class="mob-nav-item">
+            <div class="mob-nav-link mob-drop-trigger">
+              FACILITIES <i class="fas fa-plus mob-dropdown-toggle"></i>
+            </div>
+            <ul class="mob-dropdown-list">
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Tech as an Enabler</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Innovation Center</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Information Center</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">ICT Labs</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Science & Maths Laboratories</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html"
+                  >VVIS Venues (The Happening Places)</a
+                >
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Indoor & Outdoor</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Cafeteria</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Transport</a>
+              </li>
+              <li class="mob-dropdown-item">
+                <a href="./facilities.html">Infirmary</a>
+              </li>
+            </ul>
+          </li>
+          <li class="mob-nav-item">
+            <a href="./gallery.html" class="mob-nav-link">GALLERY</a>
+          </li>
+          <li class="mob-nav-item">
+            <a href="./contact.html" class="mob-nav-link">CONTACT</a>
+          </li>
+        </ul>
+        <div class="mob-buttons">
+          <a href="./admission.html" class="btn btn-admission"
+            >Admission Open</a
+          >
+          <!-- <a href="#" class="btn btn-admin">Admin Login</a> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN BODY CONTENT -->
+    <!-- <div style="height: 2000px; padding: 120px 5%; background: #fafafa">
+      <h1
+        style="
+          font-family: var(--font-poppins);
+          color: var(--text-dark);
+          line-height: 1.2;
+        "
+      >
+        Excellence in Global Education
+      </h1>
+      <p
+        style="
+          margin-top: 25px;
+          font-size: 1.2rem;
+          color: #555;
+          max-width: 800px;
+          line-height: 1.8;
+        "
+      >
+        Welcome to Vidya Vihar International School. The gap between the brand
+        logo and the navigation links has been increased for a cleaner, more
+        spacious layout.
+      </p>
+    </div> -->
+    <!-- Hero Section -->
+    <section class="hero">
+      <img
+        src="./assets/school-contact.jpg"
+        alt="Foundational Stage Students"
+      />
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Foundational Stage</h1>
+        <p>Nurturing Young Minds</p>
+      </div>
+    </section>
+
+    <!-- Navigation Grid Section - Matching Heights -->
+    <section class="nav-grid-section">
+      <div class="slider-container">
+        <div class="slider-wrapper" id="sliderWrapper">
+          <img
+            src="./assets/i1.webp"
+            alt="Slide 1"
+             loading="lazy"
+          />
+          <img
+            src="./assets/i2.webp"
+            alt="Slide 2"
+             loading="lazy"
+          />
+          <img
+            src="./assets/i3.webp"
+            alt="Slide 3"
+             loading="lazy"
+          />
+          <img
+            src="./assets/i4.webp"
+            alt="Slide 4"
+             loading="lazy"
+          />
+        </div>
+      </div>
+      <aside class="nav-panel">
+        <div class="nav-panel-header">Foundational Stage</div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="#introduction">Introduction</a></li>
+          <li class="nav-item"><a href="#academics">Academics</a></li>
+          <li class="nav-item"><a href="#curriculum">Curriculum</a></li>
+          <li class="nav-item">
+            <a href="#assessment">Assessment and Evaluation</a>
+          </li>
+          <li class="nav-item"><a href="#activities">Activities</a></li>
+          <li class="nav-item"><a href="#learn-zone">Learn Zone</a></li>
+        </ul>
+      </aside>
+    </section>
+
+    <!-- Section 1: Introduction -->
+    <section id="introduction" class="content-section">
+      <div class="section-header">
+        <h2>Introduction</h2>
+        <div class="gold-underline"></div>
+      </div>
+      <div class="section-flex">
+        <div class="section-image">
+          <img
+            src="./assets/school116.webp"
+            alt="Early Childhood Education"
+             loading="lazy"
+          />
+        </div>
+        <div class="section-text">
+          <p>
+            Early childhood education forms the cornerstone of a child’s
+            lifelong learning journey, and Vidya Vihar International School
+            places immense importance on this foundational stage to nurture
+            holistic cognitive, emotional, and social development. Guided by the
+            National Curriculum Framework (NCF), the school focuses on fostering
+            essential skills such as early literacy, numeracy, critical
+            thinking, problem-solving, communication, and social-emotional
+            competencies. These foundational skills not only promote academic
+            success but also inspire creativity, adaptability, and resilience,
+            equipping children to navigate a rapidly evolving world.
+          </p>
+          <p>
+            Our Foundational School offers a holistic, fun-filled, stress-free,
+            and child-centered learning experience for our early learners
+            (Pre-KG, Kindergarten, Grades 1 and 2). The significance of early
+            childhood education cannot be overstated, as these years profoundly
+            impact a child’s lifelong growth, development, and overall
+            well-being. Therefore, Excel Foundational School strives to provide
+            a balanced and comprehensive foundational curriculum that lays the
+            groundwork for student’s academic success in higher grades, as well
+            as their emotional well-being in all relationships.
+          </p>
+          <p>
+            Excel Foundational School’s early education programmes align with
+            both the NCF and the National Education Policy (NEP), which
+            recognize Early Childhood Care and Education (ECCE) as critical for
+            building a solid foundation. The school embraces the NCF’s
+            play-based, experiential learning approach, ensuring children
+            develop not only intellectually but also through active engagement
+            and exploration. By adhering to the NCF and NEP’s principles, Vidya
+            Vihar International School is dedicated to providing equitable
+            access to high-quality education, promoting inclusivity, and
+            supporting the holistic growth of every child.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Academics -->
+    <section
+      id="academics"
+      class="content-section"
+      style="background-color: #fcfcfc"
+    >
+      <div class="section-header">
+        <h2>Academics</h2>
+        <div class="gold-underline"></div>
+      </div>
+      <div class="section-flex reverse">
+        <div class="section-image">
+          <img
+            src="./assets/i5.webp"
+            alt="Academic Learning"
+             loading="lazy"
+          />
+        </div>
+        <div class="section-text">
+          <p>
+            Critical brain development occurs during a child’s formative years,
+            which typically lasts from birth to age eight. Vidya Vihar
+            International School provides an early childhood education
+            curriculum that provides educational stimuli that children need more
+            than just a strong foundation in the core curriculum; children need
+            to develop a compassionate understanding of the world around them to
+            bring about holistic growth. Aligning ourselves to the guidelines of
+            NEP 2020, a skill-based approach is followed to prepare children for
+            the future.
+          </p>
+          <p>
+            We adopt a multi-sensory, activity-based approach where subjects are
+            seamlessly integrated emphasizing real-life application, a child is
+            the centre of our learning process. The lessons and activities are
+            designed to help children exercise their multiple intelligences.
+            Each child is provided with ample opportunities to participate in
+            these activities to develop these intelligences.
+          </p>
+          <p>
+            Experiential learning is practised in its true sense where children
+            ‘learn by doing’ and reflect on the experience which enriches their
+            learning. Well-planned experiential learning programmes stimulate
+            academic inquiry by promoting interdisciplinary learning. Oral
+            language development and pre-writing skills are reinforced to lay a
+            strong foundation for language and writing skills. Circle time is a
+            happy time when children are free to interact and share their
+            experiences.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Curriculum -->
+    <section id="curriculum" class="content-section">
+      <div class="section-header">
+        <h2>Curriculum</h2>
+        <div class="gold-underline"></div>
+      </div>
+      <div class="section-flex">
+        <div class="section-image">
+          <img
+            src="./assets/school1117.webp"
+            alt="Discovery Learning"
+             loading="lazy"
+          />
+        </div>
+        <div class="section-text">
+          <p>
+            The Foundational Stage encompasses a crucial phase in a child’s
+            learning journey. Special attention is paid to making sure that
+            children enjoy every aspect of schooling in their formative years.
+            This stage prioritizes flexible, multi-level, play-based,
+            activity-based, and discovery-based learning, integrating the latest
+            research in early childhood care and education.
+          </p>
+          <p>
+            Children typically build upon their existing learning experiences
+            from home and/or previous schooling. At Excel Foundational School,
+            we facilitate their learning through well-planned and stimulating
+            play-based approaches that develop their interests, curiosity, and
+            creativity.
+          </p>
+
+          <h3
+            style="
+              font-family: var(--font-heading);
+              color: var(--primary-bg);
+              margin-top: 25px;
+            "
+          >
+            Curricular Goals
+          </h3>
+          <div class="cards-grid">
+            <div class="card">Physical Development</div>
+            <div class="card">Gross and Fine Motor Skills</div>
+            <div class="card">Sharpness in sensorial perceptions</div>
+            <div class="card">Fit and flexible body</div>
+            <div class="card">Sensory and Motor Development</div>
+            <div class="card">Socio-Emotional and Ethical Development</div>
+            <div class="card">Cognitive Development</div>
+            <div class="card">Curiosity and Exploration</div>
+            <div class="card">Language Development</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 40px">
+        <h3 style="font-family: var(--font-heading); color: var(--primary-bg)">
+          Learning and Life Skills
+        </h3>
+        <div class="cards-grid">
+          <div class="card">Fine and Gross Motor Skills</div>
+          <div class="card">Reasoning and Problem-Solving Skills</div>
+          <div class="card">Language and Communication Skills</div>
+          <div class="card">Critical and Creative Thinking Skills</div>
+          <div class="card">Socio-Emotional Skills</div>
+          <div class="card">Interpersonal Skills</div>
+          <div class="card">Imagination Skills</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Assessment and Evaluation -->
+    <section
+      id="assessment"
+      class="content-section"
+      style="background-color: #fcfcfc"
+    >
+      <div class="section-header">
+        <h2>Assessment and Evaluation</h2>
+        <div class="gold-underline"></div>
+      </div>
+      <div class="section-flex reverse">
+        <div class="section-image">
+          <img
+            src="./assets/school118.webp"
+            alt="Observation Assessment"
+             loading="lazy"
+          />
+        </div>
+        <div class="section-text">
+          <p>
+            In a competency-based curriculum, as envisioned by the National
+            Curriculum Framework, assessment serves as a comprehensive mechanism
+            for gathering evidence of students’ learning achievements. There is
+            NO formal assessment during the Foundational Stage. The assessment
+            process involves consolidating their learning and applying newly
+            acquired skills through a variety of meaningful activities and
+            exercises, on an ongoing basis.
+          </p>
+          <p>
+            Assessment processes are meticulously designed to seamlessly
+            integrate with the child’s learning experience. Recognizing the
+            individuality of each child’s learning style and expression,
+            assessment of Learning Outcomes or Competencies are achieved through
+            implementing a diverse range of assessment modalities for the same
+            Learning Outcome.
+          </p>
+          <p>
+            Each assessment is systematically documented to monitor individual
+            growth over time, with regular feedback provided to support
+            continuous improvement. As this process is continuous and embedded
+            in everyday learning, there will be no pre-announced dates regarding
+            the assessments. This process culminates in a detailed Holistic
+            Progress Report.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Activities -->
+    <section id="activities" class="content-section">
+      <div class="section-header">
+        <h2>Activities</h2>
+        <div class="gold-underline"></div>
+      </div>
+      <div class="section-flex">
+        <div class="section-image">
+          <img
+            src="./assets/school117.webp"
+            alt="Children Activities"
+            loading="lazy"
+          />
+        </div>
+        <div class="bullet-grid">
+          <div class="bullet-item">Oral Language Development</div>
+          <div class="bullet-item">Songs and Rhymes</div>
+          <div class="bullet-item">Phonological Awareness</div>
+          <div class="bullet-item">Story Telling</div>
+          <div class="bullet-item">Sensorial Learning</div>
+          <div class="bullet-item">Positive and Healthy Habits</div>
+          <div class="bullet-item">Indoor and Outdoor Games</div>
+          <div class="bullet-item">Nature Play</div>
+          <div class="bullet-item">Hygiene Practices</div>
+          <div class="bullet-item">Music and Dance</div>
+          <div class="bullet-item">Art and Craft</div>
+          <div class="bullet-item">Outdoor Learning</div>
+          <div class="bullet-item">Handwriting Training</div>
+          <div class="bullet-item">Field Trips</div>
+          <div class="bullet-item">Doll House Play etc</div>
+        </div>
+      </div>
+    </section>
+
+    <div id="learn-zone" style="height: 50px"></div>
+ <!-- START FOOTER SECTION -->
+    <footer class="arzSiteFooter">
+      <div class="arzFooterContainer">
+        <!-- School Branding -->
+        <div class="arzFooterBrand">
+          <img
+            src="./assets/vvislogo.jpeg"
+            alt="Vidya Vihar Logo"
+            class="arzSchoolLogo"
+          />
+          <div class="arzSchoolName">
+            <h2>VIDYA VIHAR</h2>
+            <p>INTERNATIONAL SCHOOL</p>
+          </div>
+          <div class="arzSocialLinks">
+            <a href="#" class="arzSocialIcon"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" class="arzSocialIcon"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" class="arzSocialIcon"><i class="fab fa-youtube"></i></a>
+            <a
+              href="https://wa.me/919538424583"
+              class="arzSocialIcon"
+              target="_blank"
+            >
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Campus Location -->
+        <div class="arzFooterLocations">
+          <h3 class="arzFooterHeading">Campus Location</h3>
+          <div class="arzCampusBlock">
+            <!-- Location 1 -->
+            <div class="arzLocationItem">
+              <div class="arzMapFrame">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3895.7301770453605!2d77.0263876741121!3d12.467681425727907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baf076500614e6f%3A0x65b53efa9332b4c2!2sVidya%20Vihar%20International%20School!5e0!3m2!1sen!2sin!4v1770357339459!5m2!1sen!2sin"
+                  width="600"
+                  height="450"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+              <img src="./assets/vvis.jpeg" alt="QR Code NY" class="arzQrImg" />
+            </div>
+            <!-- Location 2 -->
+            <div class="arzLocationItem">
+              <div class="arzMapFrame">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3895.4820376472485!2d77.03253737411231!3d12.48417642537924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baf079ab765efb9%3A0xc27d29ee81a8409e!2sVidya%20Vihar%20Wonder%20Kidz!5e0!3m2!1sen!2sin!4v1770357947662!5m2!1sen!2sin"
+                  width="600"
+                  height="450"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+              <img src="./assets/vvwk.jpeg" alt="QR Code CA" class="arzQrImg" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="arzFooterContact">
+          <h3 class="arzFooterHeading">Contact Information</h3>
+          <div class="arzContactGrid">
+            <!-- Column 1 -->
+            <div class="arzContactCol">
+              <div class="arzInfoRow">
+                <i data-lucide="map-pin"></i>
+                <div class="arzInfoText">
+                  <strong>Vidya Vihar International School</strong><br />
+                  Near APMC Market, Gudigere Road, <br />
+                  Manigere, Bharathinagar, Maddur Taluk <br />
+                  Mandya District, Karnataka- 571422
+                  <br />
+                </div>
+              </div>
+              <div class="arzInfoRow">
+                <i data-lucide="mail"></i>
+                <div class="arzInfoText">
+                  <a href="mailto: vidyavihar.kmd@gmail.com"
+                    >vidyavihar.kmd@gmail.com</a
+                  >
+                </div>
+              </div>
+              <div class="arzInfoRow">
+                <i data-lucide="phone"></i>
+                <div class="arzInfoText">
+                  <a href="tel:+919686781100">+91 9686781100</a><br />
+                </div>
+              </div>
+            </div>
+
+            <!-- Column 2 -->
+            <div class="arzContactCol">
+              <div class="arzInfoRow">
+                <i data-lucide="map-pin"></i>
+                <div class="arzInfoText">
+                  <strong>Vidya Vihar Wonder Kidz</strong><br />
+                  Opposite to Government Hospital,<br />Maddur-Malavalli Road
+                  Bharathinagar, Maddur Taluk <br />
+                  Mandya District, Karnataka- 571422
+                  <br />
+                </div>
+              </div>
+              <div class="arzInfoRow">
+                <i data-lucide="mail"></i>
+                <div class="arzInfoText">
+                  <a href="mailto:vidyavihar.kmd@gmail.com"
+                    >vidyavihar.kmd@gmail.com</a
+                  >
+                </div>
+              </div>
+              <div class="arzInfoRow">
+                <i data-lucide="phone"></i>
+                <div class="arzInfoText">
+                  <a href="tel:+917349333810">+91 7349333810</a><br />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Copyright Bar -->
+      <div class="arzFooterBottom">
+        <div class="arzBottomContainer">
+          <div class="arzCopyright">
+            Copyright © 2026 Vidya Vihar International School. All rights
+            reserved. Designed by
+            <a
+              href="https://arouzatechlabs.in/"
+              style="text-decoration: none; color: #ffcc00"
+              >AROUZA TECHLABS</a
+            >
+          </div>
+          <div class="arzBottomLinks">
+            <a href="#">Term & Conditions</a>
+            <span>|</span>
+            <a href="#">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- END FOOTER SECTION -->
+
+    <!-- Scroll Top Button -->
+    <div
+      class="arzScrollTop"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    >
+      <i data-lucide="chevron-up"></i>
+    </div>
+
+    <script>
+      // Initialize Lucide Icons
+      lucide.createIcons();
+    </script>
+    <script src="./nav.js"></script>
+    <script>
+       lucide.createIcons();
+      // Automatic Slider Logic
+      const sliderWrapper = document.getElementById("sliderWrapper");
+      let currentSlide = 0;
+      const totalSlides = 4;
+
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        sliderWrapper.style.transform = `translateX(-${currentSlide * 25}%)`;
+      }
+
+      setInterval(nextSlide, 3000);
+
+      // Active Navigation Logic
+      const sections = document.querySelectorAll(".content-section");
+      const navLinks = document.querySelectorAll(".nav-item a");
+
+      window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          if (pageYOffset >= sectionTop - 250) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.style.backgroundColor = "var(--nav-navy)";
+          if (link.getAttribute("href") === `#${current}`) {
+            link.style.backgroundColor = "var(--nav-navy-hover)";
+            link.style.paddingLeft = "28px";
+            link.style.borderLeft = "5px solid var(--accent-gold)";
+          } else {
+            link.style.borderLeft = "none";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
