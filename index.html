@@ -471,7 +471,77 @@
           font-size: 2rem;
         }
       }
+      .timetable-section {
+        padding: 80px 5%;
+        background: #f9f9f9;
+      }
 
+      .grade-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        margin-bottom: 30px;
+      }
+
+      .tab {
+        padding: 10px 18px;
+        border: 2px solid #ccc;
+        background: white;
+        cursor: pointer;
+        border-radius: 6px;
+        font-weight: 600;
+      }
+
+      .tab.active {
+        border-color: #2e7d32;
+        color: #2e7d32;
+      }
+
+      .timetable-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 15px;
+      }
+
+      .day-column {
+        background: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .day-header {
+        background: #eee;
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
+      }
+
+      .slot {
+        padding: 15px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .slot.green {
+        background: #2e7d32;
+        color: white;
+      }
+
+      .slot h4 {
+        margin-bottom: 5px;
+        font-size: 14px;
+      }
+
+      .slot p {
+        font-size: 12px;
+        margin: 2px 0;
+      }
+
+      @media (max-width: 900px) {
+        .timetable-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
       /* --- CTA Section --- */
       .cta {
         position: relative;
@@ -1846,7 +1916,26 @@
         </div>
       </div>
     </section>
+    <section class="timetable-section">
+      <h2 class="section-title">Timetable</h2>
 
+      <!-- Grade Tabs -->
+      <div class="grade-tabs" id="gradeTabs">
+        <button class="tab active" data-grade="1">1st Grade</button>
+        <button class="tab" data-grade="2">2nd Grade</button>
+        <button class="tab" data-grade="3">3rd Grade</button>
+        <button class="tab" data-grade="4">4th Grade</button>
+        <button class="tab" data-grade="5">5th Grade</button>
+        <button class="tab" data-grade="6">6th Grade</button>
+        <button class="tab" data-grade="7">7th Grade</button>
+        <button class="tab" data-grade="8">8th Grade</button>
+        <button class="tab" data-grade="9">9th Grade</button>
+        <button class="tab" data-grade="10">10th Grade</button>
+      </div>
+
+      <!-- Timetable Grid -->
+      <div class="timetable-grid" id="timetableGrid"></div>
+    </section>
     <!-- Parents Review Section -->
     <section id="arzreviews">
       <div class="arzsection-title">
@@ -2461,6 +2550,7 @@
         getDocs,
         deleteDoc,
         doc,
+        getDoc, // ✅ THIS WAS MISSING
         query,
         orderBy,
       } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -2791,6 +2881,120 @@
 
       // Auto change every 4 seconds
       setInterval(nextSlide, 4000);
+
+      //   const timetableData = {
+      //     1: generateData("Basic"),
+      //     2: generateData("Intermediate"),
+      //     3: generateData("Advanced"),
+      //     4: generateData("Advanced"),
+      //     5: generateData("Advanced"),
+      //     6: generateData("Senior"),
+      //     7: generateData("Senior"),
+      //     8: generateData("Senior"),
+      //     9: generateData("Expert"),
+      //     10: generateData("Expert"),
+      //   };
+
+      function generateData(level) {
+        return {
+          Monday: [
+            { subject: "Math", time: "08-09", teacher: "A", level },
+            { subject: "English", time: "09-10", teacher: "B", level },
+            { subject: "Science", time: "10-11", teacher: "C", level },
+          ],
+          Tuesday: [
+            { subject: "Biology", time: "08-09", teacher: "D", level },
+            { subject: "Sport", time: "09-10", teacher: "E", level },
+            { subject: "Chemistry", time: "10-11", teacher: "F", level },
+          ],
+          Wednesday: [
+            { subject: "Physics", time: "08-09", teacher: "G", level },
+            { subject: "Math", time: "09-10", teacher: "H", level },
+            { subject: "English", time: "10-11", teacher: "I", level },
+          ],
+          Thursday: [
+            { subject: "Biology", time: "08-09", teacher: "J", level },
+            { subject: "Music", time: "09-10", teacher: "K", level },
+            { subject: "Art", time: "10-11", teacher: "L", level },
+          ],
+          Friday: [
+            { subject: "Chemistry", time: "08-09", teacher: "M", level },
+            { subject: "English", time: "09-10", teacher: "N", level },
+            { subject: "Sport", time: "10-11", teacher: "O", level },
+          ],
+          Saturday: [
+            { subject: "Programming", time: "08-09", teacher: "P", level },
+            { subject: "Sport", time: "09-10", teacher: "Q", level },
+            { subject: "Programming", time: "10-11", teacher: "R", level },
+          ],
+        };
+      }
+
+      const timetableGrid = document.getElementById("timetableGrid");
+
+      function renderTimetable(data) {
+        timetableGrid.innerHTML = "";
+
+        Object.keys(data).forEach((day) => {
+          const column = document.createElement("div");
+          column.className = "day-column";
+
+          column.innerHTML = `<div class="day-header">${day}</div>`;
+
+          data[day].forEach((slot, i) => {
+            const div = document.createElement("div");
+            div.className = "slot " + (i % 2 === 0 ? "green" : "");
+
+            div.innerHTML = `
+        <h4>${slot.subject}</h4>
+        <p>${slot.time}</p>
+        <p>Instructor: ${slot.teacher}</p>
+       
+      `;
+
+            column.appendChild(div);
+          });
+
+          timetableGrid.appendChild(column);
+        });
+      }
+
+      // Tabs
+      document.querySelectorAll(".tab").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".tab")
+            .forEach((b) => b.classList.remove("active"));
+
+          btn.classList.add("active");
+
+          const grade = btn.dataset.grade;
+          loadTimetable(grade);
+        });
+      });
+
+      // Default load
+      loadTimetable(1);
+
+      async function loadTimetable(grade) {
+        timetableGrid.innerHTML = "Loading...";
+
+        try {
+          const docRef = doc(db, "timetables", `grade_${grade}`);
+          const docSnap = await getDoc(docRef);
+
+          if (!docSnap.exists()) {
+            timetableGrid.innerHTML = "No timetable found";
+            return;
+          }
+
+          const data = docSnap.data();
+          renderTimetable(data);
+        } catch (err) {
+          console.error(err);
+          timetableGrid.innerHTML = "Error loading timetable";
+        }
+      }
     </script>
   </body>
 </html>
