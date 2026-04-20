@@ -1488,7 +1488,13 @@
         <!-- Action Buttons -->
         <div class="desktop-buttons">
           <a href="./admission.html" class="btn btn-admission">Admission</a>
-          <a href="#" class="btn btn-admin admin-btn-text">Admin Portal</a>
+          <a
+            href="javascript:void(0)"
+            class="btn btn-admin admin-btn-text"
+            id="adminBtn"
+          >
+            Admin Portal
+          </a>
         </div>
 
         <!-- Mobile Toggle -->
@@ -1546,7 +1552,7 @@
                 <a href="./parental.html">Parental Synergy</a>
               </li>
               <li class="mob-dropdown-item">
-                <a href="#calender">Event Calender</a>
+                <a href="#calendar">Event Calendar</a>
               </li>
             </ul>
           </li>
@@ -1600,7 +1606,13 @@
           <a href="./admission.html" class="btn btn-admission"
             >Admission Open</a
           >
-          <a href="#" class="btn btn-admin admin-btn-text">Admin Login</a>
+          <a
+            href="javascript:void(0)"
+            class="btn btn-admin admin-btn-text"
+            id="adminBtn"
+          >
+            Admin Portal
+          </a>
         </div>
       </div>
     </div>
@@ -1725,11 +1737,11 @@
       <div class="modal-content">
         <div class="modal-header"><h3>Admin Login</h3></div>
         <div class="form-group">
-          <label>Password</label>
+          <input type="email" id="adminEmail" placeholder="Enter Email" />
           <input
             type="password"
             id="adminPassword"
-            placeholder="Enter password"
+            placeholder="Enter Password"
           />
         </div>
         <div class="modal-footer">
@@ -1761,7 +1773,7 @@
         </div>
         <div class="form-group">
           <label>Date (DD/MM/YYYY)</label>
-          <input type="text" id="eventDate" placeholder="e.g. 15/08/2026" />
+          <input type="date" id="eventDate" />
         </div>
         <div class="modal-footer">
           <button class="btn btn-admin btn-sm" id="closeEventModal">
@@ -2421,435 +2433,346 @@
         arzinitSliders();
       });
     </script>
+    <script src="./nav.js"></script>
     <script>
       // Initialize Lucide Icons
       lucide.createIcons();
     </script>
-    <script>
-      lucide.createIcons();
-      /* --- PRE-EXISTING NAVBAR LOGIC (UNTOUCHED) --- */
-      const header = document.getElementById("header");
-      const menuToggle = document.getElementById("menuToggle");
-      const mobileOverlay = document.getElementById("mobileOverlay");
-      const body = document.body;
-      const dropTriggers = document.querySelectorAll(".mob-drop-trigger");
-
-      window.addEventListener("scroll", () => {
-        if (window.scrollY > 40) header.classList.add("header-scrolled");
-        else header.classList.remove("header-scrolled");
-      });
-
-      function openMenu() {
-        body.classList.add("menu-open");
-        mobileOverlay.classList.add("active");
-      }
-
-      function closeMenu() {
-        body.classList.remove("menu-open");
-        mobileOverlay.classList.remove("active");
-        resetDropdowns();
-      }
-
-      menuToggle.addEventListener("click", (e) => {
-        e.stopPropagation();
-        if (body.classList.contains("menu-open")) closeMenu();
-        else openMenu();
-      });
-
-      dropTriggers.forEach((trigger) => {
-        trigger.addEventListener("click", (e) => {
-          e.stopPropagation();
-          const list = trigger.nextElementSibling;
-          const icon = trigger.querySelector(".mob-dropdown-toggle");
-          const wasActive = list.classList.contains("active");
-          resetDropdowns();
-          if (!wasActive) {
-            list.classList.add("active");
-            icon.classList.replace("fa-plus", "fa-minus");
-          }
-        });
-      });
-
-      function resetDropdowns() {
-        document
-          .querySelectorAll(".mob-dropdown-list")
-          .forEach((l) => l.classList.remove("active"));
-        document
-          .querySelectorAll(".mob-dropdown-toggle")
-          .forEach((i) => i.classList.replace("fa-minus", "fa-plus"));
-      }
-
-      mobileOverlay.addEventListener("click", (e) => {
-        if (e.target === mobileOverlay) closeMenu();
-      });
-      window.addEventListener("resize", () => {
-        if (window.innerWidth >= 1024) closeMenu();
-      });
-
-      /* --- CALENDAR & ADMIN LOGIC (NEW) --- */
-
-      // State Management
-      let isAdmin = localStorage.getItem("vvis_admin") === "true";
-      let events = JSON.parse(localStorage.getItem("vvis_events")) || [
-        {
-          id: 1,
-          title: "Science Fair",
-          description:
-            "Students present innovative science projects in the main hall.",
-          date: "12/08/2026",
-        },
-        {
-          id: 2,
-          title: "Independence Day",
-          description: "Flag hoisting ceremony followed by cultural programs.",
-          date: "15/08/2026",
-        },
-        {
-          id: 3,
-          title: "Annual Sports Meet",
-          description: "Various track and field events for all grades.",
-          date: "20/09/2026",
-        },
-      ];
-      let currentViewDate = new Date();
-      let selectedDateStr = null;
-      let editingEventId = null;
-
-      // DOM Elements
-      const calendarBody = document.getElementById("calendarBody");
-      const monthYearTitle = document.getElementById("currentMonthYear");
-      const eventList = document.getElementById("eventList");
-      const selectedDateTitle = document.getElementById("selectedDateTitle");
-      const adminBtns = document.querySelectorAll(".admin-btn-text");
-      const addEventBtn = document.getElementById("addEventBtn");
-
-      // Initialize UI
-      updateAdminUI();
-      renderCalendar();
-      renderEvents();
-
-      // Admin Login Logic
-      function updateAdminUI() {
-        adminBtns.forEach((btn) => {
-          btn.textContent = isAdmin ? "Logout" : "Admin Portal";
-        });
-        document.querySelectorAll(".admin-only").forEach((el) => {
-          el.style.display = isAdmin ? "inline-flex" : "none";
-        });
-        document.body.classList.toggle("admin-mode", isAdmin);
-      }
-
-      adminBtns.forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-          e.preventDefault();
-          if (isAdmin) {
-            isAdmin = false;
-            localStorage.setItem("vvis_admin", "false");
-            updateAdminUI();
-            renderEvents();
-          } else {
-            document.getElementById("loginModal").style.display = "flex";
-          }
-        });
-      });
-
-      document.getElementById("closeLogin").onclick = () =>
-        (document.getElementById("loginModal").style.display = "none");
-      document.getElementById("submitLogin").onclick = () => {
-        const pass = document.getElementById("adminPassword").value;
-        if (pass === "admin@vvis") {
-          isAdmin = true;
-          localStorage.setItem("vvis_admin", "true");
-          updateAdminUI();
-          renderEvents();
-          document.getElementById("loginModal").style.display = "none";
-          document.getElementById("adminPassword").value = "";
-        } else {
-          alert("Incorrect password");
-        }
-      };
-
-      // Calendar Logic
-      function renderCalendar() {
-        const year = currentViewDate.getFullYear();
-        const month = currentViewDate.getMonth();
-        const months = [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-          "August",
-          "September",
-          "October",
-          "November",
-          "December",
-        ];
-
-        monthYearTitle.textContent = `${months[month]} ${year}`;
-        calendarBody.innerHTML = "";
-
-        const firstDay = new Date(year, month, 1).getDay();
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-        let date = 1;
-        for (let i = 0; i < 6; i++) {
-          let row = document.createElement("tr");
-          for (let j = 0; j < 7; j++) {
-            let cell = document.createElement("td");
-            cell.className = "calendar-day";
-
-            if (i === 0 && j < firstDay) {
-              cell.classList.add("empty");
-            } else if (date > daysInMonth) {
-              break;
-            } else {
-              const dStr = `${String(date).padStart(2, "0")}/${String(month + 1).padStart(2, "0")}/${year}`;
-              cell.textContent = date;
-
-              // Today Highlight
-              const today = new Date();
-              if (
-                date === today.getDate() &&
-                month === today.getMonth() &&
-                year === today.getFullYear()
-              ) {
-                cell.classList.add("today");
-              }
-
-              // Event indicator
-              if (events.some((e) => e.date === dStr)) {
-                const dot = document.createElement("div");
-                dot.className = "event-dot";
-                cell.appendChild(dot);
-              }
-
-              if (selectedDateStr === dStr) cell.classList.add("selected");
-
-              cell.onclick = () => {
-                selectedDateStr = selectedDateStr === dStr ? null : dStr;
-                renderCalendar();
-                renderEvents();
-              };
-              date++;
-            }
-            row.appendChild(cell);
-          }
-          calendarBody.appendChild(row);
-        }
-      }
-
-      document.getElementById("prevMonth").onclick = () => {
-        currentViewDate.setMonth(currentViewDate.getMonth() - 1);
-        renderCalendar();
-      };
-      document.getElementById("nextMonth").onclick = () => {
-        currentViewDate.setMonth(currentViewDate.getMonth() + 1);
-        renderCalendar();
-      };
-
-      // Events Logic
-      function renderEvents() {
-        eventList.innerHTML = "";
-        selectedDateTitle.textContent = selectedDateStr
-          ? `Events on ${selectedDateStr}`
-          : "Upcoming Events";
-
-        const filtered = selectedDateStr
-          ? events.filter((e) => e.date === selectedDateStr)
-          : events
-              .sort((a, b) => parseDate(a.date) - parseDate(b.date))
-              .slice(0, 5);
-
-        if (filtered.length === 0) {
-          eventList.innerHTML = `<p style="color: #999; text-align: center; padding: 40px;">No events scheduled for this ${selectedDateStr ? "date" : "period"}.</p>`;
-          return;
-        }
-
-        filtered.forEach((ev) => {
-          const card = document.createElement("div");
-          card.className = "event-card";
-          card.innerHTML = `
-            <div class="event-card-content">
-              <h4>${ev.title}</h4>
-              <p>${ev.description}</p>
-              <div class="event-date-tag">
-                <i class="far fa-calendar-alt"></i> ${ev.date}
-              </div>
-              <div class="admin-actions" style="display: ${isAdmin ? "flex" : "none"}">
-                <button class="btn btn-admin btn-sm" onclick="editEvent(${ev.id})">Edit</button>
-                <button class="btn btn-admission btn-sm" onclick="deleteEvent(${ev.id})">Delete</button>
-              </div>
-            </div>
-          `;
-          eventList.appendChild(card);
-        });
-      }
-
-      function parseDate(str) {
-        const [d, m, y] = str.split("/").map(Number);
-        return new Date(y, m - 1, d);
-      }
-
-      // Event CRUD
-      addEventBtn.onclick = () => {
-        editingEventId = null;
-        document.getElementById("eventModalTitle").textContent =
-          "Add New Event";
-        document.getElementById("eventTitle").value = "";
-        document.getElementById("eventDesc").value = "";
-        document.getElementById("eventDate").value = selectedDateStr || "";
-        document.getElementById("eventModal").style.display = "flex";
-      };
-
-      document.getElementById("closeEventModal").onclick = () =>
-        (document.getElementById("eventModal").style.display = "none");
-
-      document.getElementById("saveEvent").onclick = () => {
-        const title = document.getElementById("eventTitle").value;
-        const desc = document.getElementById("eventDesc").value;
-        const date = document.getElementById("eventDate").value;
-
-        if (!title || !date) return alert("Title and Date are required");
-
-        // Simple regex for DD/MM/YYYY
-        if (!/^\d{2}\/\d{2}\/\d{4}$/.test(date))
-          return alert("Format must be DD/MM/YYYY");
-
-        if (editingEventId) {
-          const idx = events.findIndex((e) => e.id === editingEventId);
-          events[idx] = { ...events[idx], title, description: desc, date };
-        } else {
-          events.push({ id: Date.now(), title, description: desc, date });
-        }
-
-        localStorage.setItem("vvis_events", JSON.stringify(events));
-        document.getElementById("eventModal").style.display = "none";
-        renderCalendar();
-        renderEvents();
-      };
-
-      window.deleteEvent = (id) => {
-        if (!confirm("Delete this event?")) return;
-        events = events.filter((e) => e.id !== id);
-        localStorage.setItem("vvis_events", JSON.stringify(events));
-        renderCalendar();
-        renderEvents();
-      };
-
-      window.editEvent = (id) => {
-        const ev = events.find((e) => e.id === id);
-        editingEventId = id;
-        document.getElementById("eventModalTitle").textContent = "Edit Event";
-        document.getElementById("eventTitle").value = ev.title;
-        document.getElementById("eventDesc").value = ev.description;
-        document.getElementById("eventDate").value = ev.date;
-        document.getElementById("eventModal").style.display = "flex";
-      };
-
-      // Slider logic
-      const slides = document.querySelectorAll(".slide");
-      let currentSlide = 0;
-      setInterval(() => {
-        slides[currentSlide].classList.remove("active");
-        currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].classList.add("active");
-      }, 3000);
-
-      // Scroll animations
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.style.opacity = "1";
-              entry.target.style.transform = "translateY(0)";
-            }
-          });
-        },
-        { threshold: 0.15 },
-      );
-
-      document.querySelectorAll("section").forEach((section) => {
-        if (section.id !== "hero") {
-          section.style.opacity = "0";
-          section.style.transform = "translateY(40px)";
-          section.style.transition = "all 0.9s ease-out";
-          observer.observe(section);
-        }
-      });
-
-      // Video interaction feedback
-      document.querySelectorAll(".play-btn").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const video = btn.parentElement.querySelector("video");
-          if (video.paused) {
-            btn.style.opacity = "0.3";
-          } else {
-            video.pause();
-            btn.style.opacity = "1";
-          }
-        });
-      });
-    </script>
-    <!-- FIREBASE (SAFE VERSION) -->
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script type="module">
+      let allEvents = [];
+      let selectedDate = null;
+      // ==========================
+      // 🔥 FIREBASE CONFIG
+      // ==========================
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+      import {
+        getAuth,
+        signInWithEmailAndPassword,
+        onAuthStateChanged,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+        getDocs,
+        deleteDoc,
+        doc,
+        query,
+        orderBy,
+      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-    <script>
+      // 👉 Replace with your Firebase config
       const firebaseConfig = {
-        apiKey: "AIzaSyBX5BZGRvpdFE9QbtjSGXGWw0359M2JA",
+        apiKey: "AIzaSyBYX5BZGRvpdFE9OpbtjSGXGWw0359M2JA",
         authDomain: "vvis-bd919.firebaseapp.com",
         projectId: "vvis-bd919",
-        storageBucket: "vvis-bd919.firebasestorage.app",
+        storageBucket: "vvis-bd919.appspot.com",
         messagingSenderId: "367433126112",
         appId: "1:367433126112:web:17413f9a43349a189cc085",
       };
 
-      // INIT
-      firebase.initializeApp(firebaseConfig);
-      const db = firebase.firestore();
+      // ==========================
+      // 🔥 INIT
+      // ==========================
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
 
-      // LOAD EVENTS
-      db.collection("events").onSnapshot((snapshot) => {
-        const eventList = document.getElementById("eventList");
-        eventList.innerHTML = "";
+      // ==========================
+      // 🔐 ADMIN LOGIN
+      // ==========================
+      const loginModal = document.getElementById("loginModal");
+      const submitLogin = document.getElementById("submitLogin");
+      const closeLogin = document.getElementById("closeLogin");
 
-        snapshot.forEach((doc) => {
-          const data = doc.data();
+      submitLogin.addEventListener("click", async () => {
+        const email = document.getElementById("adminEmail").value;
+        const password = document.getElementById("adminPassword").value;
 
-          eventList.innerHTML += `
-      <div class="event-card">
-        <div class="event-card-content">
-          <h4>${data.title}</h4>
-          <p>${data.description}</p>
-          <div class="event-date-tag">📅 ${data.date}</div>
-        </div>
-      </div>
-    `;
-        });
+        try {
+          await signInWithEmailAndPassword(auth, email, password);
+          alert("Login Successful");
+          loginModal.style.display = "none";
+        } catch (err) {
+          alert("Login Failed: " + err.message);
+        }
       });
 
-      // SAVE EVENT
-      document.getElementById("saveEvent").onclick = async () => {
+      closeLogin.addEventListener("click", () => {
+        loginModal.style.display = "none";
+      });
+      const adminBtn = document.getElementById("adminBtn");
+
+      // Handle button click
+      adminBtn.addEventListener("click", () => {
+        const user = auth.currentUser;
+
+        if (user) {
+          // 👉 LOGOUT
+          signOut(auth)
+            .then(() => {
+              alert("Logged out successfully");
+            })
+            .catch((err) => {
+              alert("Logout Error: " + err.message);
+            });
+        } else {
+          // 👉 OPEN LOGIN MODAL
+          loginModal.style.display = "flex";
+        }
+      });
+      // ==========================
+      // 🔐 AUTH STATE CHECK
+      // ==========================
+      const addEventBtn = document.getElementById("addEventBtn");
+      const adminBtns = document.querySelectorAll(".admin-only");
+
+      onAuthStateChanged(auth, (user) => {
+        if (user && user.email === "vidyavihar.kmd@gmail.com") {
+          console.log("Admin Logged In");
+
+          document.body.classList.add("admin-mode");
+
+          adminBtns.forEach((btn) => (btn.style.display = "inline-block"));
+        } else {
+          console.log("Visitor Mode");
+
+          document.body.classList.remove("admin-mode");
+
+          adminBtns.forEach((btn) => (btn.style.display = "none"));
+        }
+      });
+      onAuthStateChanged(auth, (user) => {
+        if (user && user.email === "vidyavihar.kmd@gmail.com") {
+          console.log("Admin Logged In");
+
+          document.body.classList.add("admin-mode");
+
+          // ✅ Show admin buttons
+          adminBtns.forEach((btn) => (btn.style.display = "inline-block"));
+
+          // ✅ Change button text
+          adminBtn.textContent = "Logout";
+        } else {
+          console.log("Visitor Mode");
+
+          document.body.classList.remove("admin-mode");
+
+          // ❌ Hide admin buttons
+          adminBtns.forEach((btn) => (btn.style.display = "none"));
+
+          // ✅ Change button text back
+          adminBtn.textContent = "Admin Portal";
+        }
+      });
+      // ==========================
+      // 📅 EVENT MODAL
+      // ==========================
+      const eventModal = document.getElementById("eventModal");
+      const closeEventModal = document.getElementById("closeEventModal");
+      const saveEventBtn = document.getElementById("saveEvent");
+
+      addEventBtn.addEventListener("click", () => {
+        eventModal.style.display = "flex";
+      });
+
+      closeEventModal.addEventListener("click", () => {
+        eventModal.style.display = "none";
+      });
+
+      // ==========================
+      // ➕ ADD EVENT
+      // ==========================
+      saveEventBtn.addEventListener("click", async () => {
         const title = document.getElementById("eventTitle").value;
         const desc = document.getElementById("eventDesc").value;
         const date = document.getElementById("eventDate").value;
 
-        if (!title || !desc || !date) {
-          alert("Fill all fields");
+        if (!title || !date) {
+          alert("Title & Date required");
           return;
         }
 
-        await db.collection("events").add({
-          title,
-          description: desc,
-          date,
+        try {
+          await addDoc(collection(db, "events"), {
+            title,
+            desc,
+            date,
+            createdAt: new Date(),
+          });
+
+          alert("Event Added Successfully");
+
+          eventModal.style.display = "none";
+          loadEvents();
+        } catch (err) {
+          alert("Error: " + err.message);
+        }
+      });
+
+      // ==========================
+      // 📥 LOAD EVENTS
+      // ==========================
+      const eventList = document.getElementById("eventList");
+
+      async function loadEvents() {
+        eventList.innerHTML = "Loading...";
+
+        try {
+          const q = query(collection(db, "events"), orderBy("date"));
+          const snapshot = await getDocs(q);
+
+          allEvents = [];
+
+          snapshot.forEach((docSnap) => {
+            allEvents.push({ id: docSnap.id, ...docSnap.data() });
+          });
+
+          renderEvents();
+          renderCalendar(currentDate); // 🔥 update calendar with dots
+        } catch (err) {
+          console.error(err);
+          eventList.innerHTML = "Error loading events";
+        }
+      }
+
+      // ==========================
+      // 🚀 INIT LOAD
+      // ==========================
+      loadEvents();
+
+      // ==========================
+      // 🔘 OPEN LOGIN FROM BUTTON
+      // ==========================
+      document.querySelectorAll(".admin-btn-text").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          loginModal.style.display = "flex";
+        });
+      });
+      const calendarBody = document.getElementById("calendarBody");
+      const currentMonthYear = document.getElementById("currentMonthYear");
+
+      let currentDate = new Date();
+
+      function renderCalendar(date) {
+        calendarBody.innerHTML = "";
+
+        const year = date.getFullYear();
+        const month = date.getMonth();
+
+        const firstDay = new Date(year, month, 1).getDay();
+        const totalDays = new Date(year, month + 1, 0).getDate();
+
+        currentMonthYear.textContent = date.toLocaleString("default", {
+          month: "long",
+          year: "numeric",
         });
 
-        alert("Event Added!");
-      };
+        let row = document.createElement("tr");
+
+        for (let i = 0; i < firstDay; i++) {
+          row.innerHTML += `<td class="empty"></td>`;
+        }
+
+        for (let day = 1; day <= totalDays; day++) {
+          const fullDate = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+
+          const hasEvent = allEvents.some((e) => e.date === fullDate);
+
+          let className = "calendar-day";
+
+          if (selectedDate === fullDate) {
+            className += " selected";
+          }
+
+          row.innerHTML += `
+      <td class="${className}" data-date="${fullDate}">
+        ${day}
+        ${hasEvent ? '<div class="event-dot"></div>' : ""}
+      </td>
+    `;
+
+          if ((firstDay + day) % 7 === 0) {
+            calendarBody.appendChild(row);
+            row = document.createElement("tr");
+          }
+        }
+
+        calendarBody.appendChild(row);
+
+        // 👉 Add click listeners
+        document.querySelectorAll(".calendar-day").forEach((cell) => {
+          cell.addEventListener("click", () => {
+            selectedDate = cell.getAttribute("data-date");
+            renderCalendar(currentDate);
+            renderEvents();
+          });
+        });
+      }
+      function renderEvents() {
+        eventList.innerHTML = "";
+
+        let filtered = selectedDate
+          ? allEvents.filter((e) => e.date === selectedDate)
+          : allEvents;
+
+        if (filtered.length === 0) {
+          eventList.innerHTML =
+            "<p style='text-align:center;color:#999'>No events</p>";
+          return;
+        }
+
+        filtered.forEach((event) => {
+          const card = document.createElement("div");
+          card.className = "event-card";
+
+          card.innerHTML = `
+      <div class="event-card-content">
+        <h4>${event.title}</h4>
+        <p>${event.desc || ""}</p>
+       <div class="event-date-tag">${formatDate(event.date)}</div>
+
+        <div class="admin-actions">
+          <button class="btn btn-admin btn-sm delete-btn" data-id="${event.id}">
+            Delete
+          </button>
+        </div>
+      </div>
+    `;
+
+          eventList.appendChild(card);
+        });
+
+        // delete logic
+        document.querySelectorAll(".delete-btn").forEach((btn) => {
+          btn.addEventListener("click", async (e) => {
+            const id = e.target.getAttribute("data-id");
+            await deleteDoc(doc(db, "events", id));
+            loadEvents();
+          });
+        });
+      }
+      function formatDate(dateStr) {
+        const [year, month, day] = dateStr.split("-");
+        return `${day}/${month}/${year}`;
+      }
+      // Navigation
+      document.getElementById("prevMonth").addEventListener("click", () => {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        renderCalendar(currentDate);
+      });
+
+      document.getElementById("nextMonth").addEventListener("click", () => {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        renderCalendar(currentDate);
+      });
+
+      // Initial load
+      renderCalendar(currentDate);
     </script>
   </body>
 </html>
