@@ -2811,14 +2811,14 @@
         <p>${slot.time}</p>
         <p>${slot.teacher}</p>
 
-        ${
-          isAdmin
-            ? `
-          <button class="edit">Edit</button>
-          <button class="del">Delete</button>
-        `
-            : ""
-        }
+       ${
+  isAdmin
+    ? `
+      <button class="edit">Edit</button>
+      <button class="del">Delete</button>
+    `
+    : ""
+}
       `;
 
             if (isAdmin) {
