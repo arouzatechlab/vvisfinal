@@ -2755,16 +2755,7 @@
 
       ${isAdmin ? `<button onclick="deleteEvent('${e.id}')">Delete</button>` : ""}
     `;
-          slot.innerHTML = `
-  <h4>${subject}</h4>
-  <p>${time}</p>
-  <p>${teacher}</p>
-
-  <div class="admin-actions">
-    <button class="edit">Edit</button>
-    <button class="del">Delete</button>
-  </div>
-`;
+     
           eventList.appendChild(div);
         });
       }
