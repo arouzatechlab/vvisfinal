@@ -472,6 +472,211 @@
         }
       }
 
+      /* ---------------------------------------------------------------
+      ---------------------------------------------------------------
+      --------------------------------------------------------------- */
+
+      /* .timetable-section {
+        padding: 80px 5%;
+        background: #f9f9f9;
+      }
+
+      .grade-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        margin-bottom: 30px;
+      }
+
+      .tab {
+        padding: 10px 18px;
+        border: 2px solid #ccc;
+        background: white;
+        cursor: pointer;
+        border-radius: 6px;
+        font-weight: 600;
+      }
+
+      .tab.active {
+        border-color: #2e7d32;
+        color: #2e7d32;
+      }
+
+      .timetable-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 15px;
+      }
+
+      .day-column {
+        background: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .day-header {
+        background: #eee;
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
+      }
+
+      .slot {
+        padding: 15px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .slot.green {
+        background: #2e7d32;
+        color: white;
+      }
+
+      .slot h4 {
+        margin-bottom: 5px;
+        font-size: 14px;
+      }
+
+      .slot p {
+        font-size: 12px;
+        margin: 2px 0;
+      }
+
+      @media (max-width: 900px) {
+        .timetable-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      } */
+      /* --- Timetable Responsive Styling --- */
+      #timetableGrid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+      } /* Day Column Styling */
+      .day-column {
+        background: #fdfdfd;
+        border-radius: 12px;
+        border: 1px solid #eee;
+        overflow: hidden;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+      }
+      .day-header {
+        background: var(--primary-bg, #a1105d);
+        color: white;
+        padding: 14px 18px;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.95rem;
+        letter-spacing: 0.5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer; /* Indicates it's clickable */
+        user-select: none;
+      } /* Toggle Icon Styling */
+      .toggle-icon {
+        font-size: 1.2rem;
+        transition: transform 0.3s ease;
+      } /* Content Container */
+      .slots-container {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.3s ease-out,
+          padding 0.3s ease;
+      } /* When expanded (Mobile) /
+.day-column.active .slots-container {
+max-height: 1000px; / Large enough to fit content */
+      /* border-top: 1px solid #eee; */
+      /* Individual Slot Styling */
+      .slot {
+        padding: 15px;
+        border-bottom: 1px solid #f0f0f0;
+        transition: background 0.2s;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .slot:last-child {
+        border-bottom: none;
+      }
+      .slot.green {
+        background-color: #f9fbf9;
+      }
+      .slot h4 {
+        margin: 0;
+        font-size: 1rem;
+        color: var(--primary-bg, #a1105d);
+        font-weight: 600;
+      }
+      .slot p {
+        margin: 0;
+        font-size: 0.85rem;
+        color: #444;
+      } /* Desktop View: Show everything and remove accordion behavior */
+      @media (min-width: 768px) {
+        #timetableGrid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.5rem;
+        } /* Show all slots by default on desktop */
+        .slots-container {
+          max-height: none !important;
+          overflow: visible;
+        } /* Hide the toggle icons on desktop as they aren't needed */
+        .toggle-icon {
+          display: none;
+        }
+        .day-header {
+          cursor: default;
+        }
+      }
+      @media (min-width: 1024px) {
+        #timetableGrid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      @media (min-width: 1440px) {
+        #timetableGrid {
+          grid-template-columns: repeat(6, 1fr);
+          gap: 10px;
+        }
+        .day-header {
+          font-size: 0.8rem;
+          padding: 10px;
+        }
+      } /* Tabs Styling */
+      .tabs-container {
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 12px;
+        margin-bottom: 10px;
+        -webkit-overflow-scrolling: touch;
+        gap: 10px;
+        scrollbar-width: none;
+      }
+      .tabs-container::-webkit-scrollbar {
+        display: none;
+      }
+      .tab {
+        flex: 0 0 auto;
+        padding: 8px 22px;
+        border-radius: 25px;
+        background: #f0f0f0;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+      .tab.active {
+        background: var(--primary-bg, #a1105d);
+        color: white;
+      }
+
       /* --- CTA Section --- */
       .cta {
         position: relative;
@@ -1846,7 +2051,26 @@
         </div>
       </div>
     </section>
+    <section class="timetable-section">
+      <h2 class="section-title">Timetable</h2>
 
+      <!-- Grade Tabs -->
+      <div class="grade-tabs" id="gradeTabs">
+        <button class="tab active" data-grade="1">1st Grade</button>
+        <button class="tab" data-grade="2">2nd Grade</button>
+        <button class="tab" data-grade="3">3rd Grade</button>
+        <button class="tab" data-grade="4">4th Grade</button>
+        <button class="tab" data-grade="5">5th Grade</button>
+        <button class="tab" data-grade="6">6th Grade</button>
+        <button class="tab" data-grade="7">7th Grade</button>
+        <button class="tab" data-grade="8">8th Grade</button>
+        <button class="tab" data-grade="9">9th Grade</button>
+        <button class="tab" data-grade="10">10th Grade</button>
+      </div>
+
+      <!-- Timetable Grid -->
+      <div class="timetable-grid" id="timetableGrid"></div>
+    </section>
     <!-- Parents Review Section -->
     <section id="arzreviews">
       <div class="arzsection-title">
@@ -2442,11 +2666,6 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
     <script type="module">
-      let allEvents = [];
-      let selectedDate = null;
-      // ==========================
-      // 🔥 FIREBASE CONFIG
-      // ==========================
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
       import {
         getAuth,
@@ -2461,11 +2680,16 @@
         getDocs,
         deleteDoc,
         doc,
+        getDoc,
+        updateDoc,
+        setDoc,
         query,
         orderBy,
       } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-      // 👉 Replace with your Firebase config
+      // ==========================
+      // 🔥 FIREBASE CONFIG
+      // ==========================
       const firebaseConfig = {
         apiKey: "AIzaSyBYX5BZGRvpdFE9OpbtjSGXGWw0359M2JA",
         authDomain: "vvis-bd919.firebaseapp.com",
@@ -2475,24 +2699,38 @@
         appId: "1:367433126112:web:17413f9a43349a189cc085",
       };
 
-      // ==========================
-      // 🔥 INIT
-      // ==========================
       const app = initializeApp(firebaseConfig);
       const auth = getAuth(app);
       const db = getFirestore(app);
 
       // ==========================
-      // 🔐 ADMIN LOGIN
+      // 🔐 STATE & GLOBALS
+      // ==========================
+      let allEvents = [];
+      let selectedDate = null;
+      let currentDate = new Date();
+      let currentGrade = "1";
+      const daysOfWeek = [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
+
+      // ==========================
+      // 🔐 ADMIN LOGIN / AUTH
       // ==========================
       const loginModal = document.getElementById("loginModal");
       const submitLogin = document.getElementById("submitLogin");
       const closeLogin = document.getElementById("closeLogin");
+      const adminBtn = document.getElementById("adminBtn");
+      const adminBtns = document.querySelectorAll(".admin-only");
 
-      submitLogin.addEventListener("click", async () => {
+      submitLogin?.addEventListener("click", async () => {
         const email = document.getElementById("adminEmail").value;
         const password = document.getElementById("adminPassword").value;
-
         try {
           await signInWithEmailAndPassword(auth, email, password);
           alert("Login Successful");
@@ -2502,100 +2740,57 @@
         }
       });
 
-      closeLogin.addEventListener("click", () => {
+      closeLogin?.addEventListener("click", () => {
         loginModal.style.display = "none";
       });
-      const adminBtn = document.getElementById("adminBtn");
 
-      // Handle button click
-      adminBtn.addEventListener("click", () => {
-        const user = auth.currentUser;
-
-        if (user) {
-          // 👉 LOGOUT
+      adminBtn?.addEventListener("click", () => {
+        if (auth.currentUser) {
           signOut(auth)
-            .then(() => {
-              alert("Logged out successfully");
-            })
-            .catch((err) => {
-              alert("Logout Error: " + err.message);
-            });
+            .then(() => alert("Logged out successfully"))
+            .catch((err) => alert("Error: " + err.message));
         } else {
-          // 👉 OPEN LOGIN MODAL
           loginModal.style.display = "flex";
         }
       });
-      // ==========================
-      // 🔐 AUTH STATE CHECK
-      // ==========================
-      const addEventBtn = document.getElementById("addEventBtn");
-      const adminBtns = document.querySelectorAll(".admin-only");
 
       onAuthStateChanged(auth, (user) => {
-        if (user && user.email === "vidyavihar.kmd@gmail.com") {
-          console.log("Admin Logged In");
-
+        const isAdmin = user && user.email === "vidyavihar.kmd@gmail.com";
+        if (isAdmin) {
           document.body.classList.add("admin-mode");
-
           adminBtns.forEach((btn) => (btn.style.display = "inline-block"));
+          if (adminBtn) adminBtn.textContent = "Logout";
         } else {
-          console.log("Visitor Mode");
-
           document.body.classList.remove("admin-mode");
-
           adminBtns.forEach((btn) => (btn.style.display = "none"));
+          if (adminBtn) adminBtn.textContent = "Admin Portal";
         }
+        // Re-render both to update admin actions visibility
+        renderEvents();
+        loadTimetable(currentGrade);
       });
-      onAuthStateChanged(auth, (user) => {
-        if (user && user.email === "vidyavihar.kmd@gmail.com") {
-          console.log("Admin Logged In");
 
-          document.body.classList.add("admin-mode");
-
-          // ✅ Show admin buttons
-          adminBtns.forEach((btn) => (btn.style.display = "inline-block"));
-
-          // ✅ Change button text
-          adminBtn.textContent = "Logout";
-        } else {
-          console.log("Visitor Mode");
-
-          document.body.classList.remove("admin-mode");
-
-          // ❌ Hide admin buttons
-          adminBtns.forEach((btn) => (btn.style.display = "none"));
-
-          // ✅ Change button text back
-          adminBtn.textContent = "Admin Portal";
-        }
-      });
       // ==========================
-      // 📅 EVENT MODAL
+      // 📅 EVENTS LOGIC
       // ==========================
       const eventModal = document.getElementById("eventModal");
-      const closeEventModal = document.getElementById("closeEventModal");
+      const addEventBtn = document.getElementById("addEventBtn");
       const saveEventBtn = document.getElementById("saveEvent");
+      const eventList = document.getElementById("eventList");
 
-      addEventBtn.addEventListener("click", () => {
-        eventModal.style.display = "flex";
-      });
+      addEventBtn?.addEventListener(
+        "click",
+        () => (eventModal.style.display = "flex"),
+      );
+      document
+        .getElementById("closeEventModal")
+        ?.addEventListener("click", () => (eventModal.style.display = "none"));
 
-      closeEventModal.addEventListener("click", () => {
-        eventModal.style.display = "none";
-      });
-
-      // ==========================
-      // ➕ ADD EVENT
-      // ==========================
-      saveEventBtn.addEventListener("click", async () => {
+      saveEventBtn?.addEventListener("click", async () => {
         const title = document.getElementById("eventTitle").value;
         const desc = document.getElementById("eventDesc").value;
         const date = document.getElementById("eventDate").value;
-
-        if (!title || !date) {
-          alert("Title & Date required");
-          return;
-        }
+        if (!title || !date) return alert("Title & Date required");
 
         try {
           await addDoc(collection(db, "events"), {
@@ -2604,9 +2799,7 @@
             date,
             createdAt: new Date(),
           });
-
-          alert("Event Added Successfully");
-
+          alert("Event Added");
           eventModal.style.display = "none";
           loadEvents();
         } catch (err) {
@@ -2614,107 +2807,27 @@
         }
       });
 
-      // ==========================
-      // 📥 LOAD EVENTS
-      // ==========================
-      const eventList = document.getElementById("eventList");
-
       async function loadEvents() {
-        eventList.innerHTML = "Loading...";
-
         try {
           const q = query(collection(db, "events"), orderBy("date"));
           const snapshot = await getDocs(q);
-
           allEvents = [];
-
-          snapshot.forEach((docSnap) => {
-            allEvents.push({ id: docSnap.id, ...docSnap.data() });
-          });
-
+          snapshot.forEach((docSnap) =>
+            allEvents.push({ id: docSnap.id, ...docSnap.data() }),
+          );
           renderEvents();
-          renderCalendar(currentDate); // 🔥 update calendar with dots
+          renderCalendar(currentDate);
         } catch (err) {
           console.error(err);
-          eventList.innerHTML = "Error loading events";
         }
       }
 
-      // ==========================
-      // 🚀 INIT LOAD
-      // ==========================
-      loadEvents();
-
-      // ==========================
-      // 🔘 OPEN LOGIN FROM BUTTON
-      // ==========================
-      document.querySelectorAll(".admin-btn-text").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          loginModal.style.display = "flex";
-        });
-      });
-      const calendarBody = document.getElementById("calendarBody");
-      const currentMonthYear = document.getElementById("currentMonthYear");
-
-      let currentDate = new Date();
-
-      function renderCalendar(date) {
-        calendarBody.innerHTML = "";
-
-        const year = date.getFullYear();
-        const month = date.getMonth();
-
-        const firstDay = new Date(year, month, 1).getDay();
-        const totalDays = new Date(year, month + 1, 0).getDate();
-
-        currentMonthYear.textContent = date.toLocaleString("default", {
-          month: "long",
-          year: "numeric",
-        });
-
-        let row = document.createElement("tr");
-
-        for (let i = 0; i < firstDay; i++) {
-          row.innerHTML += `<td class="empty"></td>`;
-        }
-
-        for (let day = 1; day <= totalDays; day++) {
-          const fullDate = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-
-          const hasEvent = allEvents.some((e) => e.date === fullDate);
-
-          let className = "calendar-day";
-
-          if (selectedDate === fullDate) {
-            className += " selected";
-          }
-
-          row.innerHTML += `
-      <td class="${className}" data-date="${fullDate}">
-        ${day}
-        ${hasEvent ? '<div class="event-dot"></div>' : ""}
-      </td>
-    `;
-
-          if ((firstDay + day) % 7 === 0) {
-            calendarBody.appendChild(row);
-            row = document.createElement("tr");
-          }
-        }
-
-        calendarBody.appendChild(row);
-
-        // 👉 Add click listeners
-        document.querySelectorAll(".calendar-day").forEach((cell) => {
-          cell.addEventListener("click", () => {
-            selectedDate = cell.getAttribute("data-date");
-            renderCalendar(currentDate);
-            renderEvents();
-          });
-        });
-      }
       function renderEvents() {
+        if (!eventList) return;
         eventList.innerHTML = "";
+        const isAdmin =
+          auth.currentUser &&
+          auth.currentUser.email === "vidyavihar.kmd@gmail.com";
 
         let filtered = selectedDate
           ? allEvents.filter((e) => e.date === selectedDate)
@@ -2729,68 +2842,262 @@
         filtered.forEach((event) => {
           const card = document.createElement("div");
           card.className = "event-card";
-
           card.innerHTML = `
-      <div class="event-card-content">
-        <h4>${event.title}</h4>
-        <p>${event.desc || ""}</p>
-       <div class="event-date-tag">${formatDate(event.date)}</div>
-
-        <div class="admin-actions">
-          <button class="btn btn-admin btn-sm delete-btn" data-id="${event.id}">
-            Delete
-          </button>
-        </div>
-      </div>
-    `;
-
+            <div class="event-card-content">
+                <h4>${event.title}</h4>
+                <p>${event.desc || ""}</p>
+                <div class="event-date-tag">${event.date.split("-").reverse().join("/")}</div>
+                <div class="admin-actions" style="margin-top: 10px; display: ${isAdmin ? "block" : "none"}">
+                    <button class="delete-btn" style="background: #ff4444; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;" onclick="window.deleteEvent('${event.id}')">
+                        <i class="fas fa-trash"></i> Delete Event
+                    </button>
+                </div>
+            </div>`;
           eventList.appendChild(card);
         });
+      }
 
-        // delete logic
-        document.querySelectorAll(".delete-btn").forEach((btn) => {
-          btn.addEventListener("click", async (e) => {
-            const id = e.target.getAttribute("data-id");
-            await deleteDoc(doc(db, "events", id));
-            loadEvents();
+      window.deleteEvent = async (id) => {
+        if (!confirm("Are you sure you want to delete this event?")) return;
+        try {
+          await deleteDoc(doc(db, "events", id));
+          alert("Event Deleted");
+          loadEvents();
+        } catch (err) {
+          alert("Delete failed: " + err.message);
+        }
+      };
+
+      // ==========================
+      // 🗓️ CALENDAR LOGIC
+      // ==========================
+      function renderCalendar(date) {
+        const calendarBody = document.getElementById("calendarBody");
+        const currentMonthYear = document.getElementById("currentMonthYear");
+        if (!calendarBody) return;
+        calendarBody.innerHTML = "";
+        const year = date.getFullYear();
+        const month = date.getMonth();
+        const firstDay = new Date(year, month, 1).getDay();
+        const totalDays = new Date(year, month + 1, 0).getDate();
+
+        currentMonthYear.textContent = date.toLocaleString("default", {
+          month: "long",
+          year: "numeric",
+        });
+        let row = document.createElement("tr");
+        for (let i = 0; i < firstDay; i++)
+          row.innerHTML += `<td class="empty"></td>`;
+
+        for (let day = 1; day <= totalDays; day++) {
+          const fullDate = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+          const hasEvent = allEvents.some((e) => e.date === fullDate);
+          let className =
+            "calendar-day" + (selectedDate === fullDate ? " selected" : "");
+          row.innerHTML += `<td class="${className}" data-date="${fullDate}">${day}${hasEvent ? '<div class="event-dot"></div>' : ""}</td>`;
+          if ((firstDay + day) % 7 === 0) {
+            calendarBody.appendChild(row);
+            row = document.createElement("tr");
+          }
+        }
+        calendarBody.appendChild(row);
+        document.querySelectorAll(".calendar-day").forEach((cell) => {
+          cell.addEventListener("click", () => {
+            selectedDate = cell.getAttribute("data-date");
+            renderCalendar(currentDate);
+            renderEvents();
           });
         });
       }
-      function formatDate(dateStr) {
-        const [year, month, day] = dateStr.split("-");
-        return `${day}/${month}/${year}`;
-      }
-      // Navigation
-      document.getElementById("prevMonth").addEventListener("click", () => {
+
+      document.getElementById("prevMonth")?.addEventListener("click", () => {
         currentDate.setMonth(currentDate.getMonth() - 1);
         renderCalendar(currentDate);
       });
-
-      document.getElementById("nextMonth").addEventListener("click", () => {
+      document.getElementById("nextMonth")?.addEventListener("click", () => {
         currentDate.setMonth(currentDate.getMonth() + 1);
         renderCalendar(currentDate);
       });
 
-      // Initial load
-      renderCalendar(currentDate);
+      // ==========================
+      // 📅 TIMETABLE CRUD LOGIC
+      // ==========================
+      const timetableGrid = document.getElementById("timetableGrid");
+
+      async function loadTimetable(grade) {
+        currentGrade = grade;
+        if (!timetableGrid) return;
+        timetableGrid.innerHTML = "Loading...";
+        try {
+          const docRef = doc(db, "timetables", `grade_${grade}`);
+          const docSnap = await getDoc(docRef);
+          const data = docSnap.exists() ? docSnap.data() : {};
+          renderTimetableUI(data);
+        } catch (err) {
+          timetableGrid.innerHTML = "Error loading timetable";
+        }
+      }
+
+      async function renderTimetableUI(data) {
+        timetableGrid.innerHTML = "";
+        const isAdmin = auth.currentUser?.email === "vidyavihar.kmd@gmail.com";
+
+        daysOfWeek.forEach((day) => {
+          const column = document.createElement("div");
+          column.className = "day-column";
+
+          // Create the Header
+          const header = document.createElement("div");
+          header.className = "day-header";
+          header.innerHTML = `
+      <span>${day}</span>
+      <div class="flex items-center gap-2">
+        ${isAdmin ? `<button class="add-slot-btn text-xs bg-white text-primary px-2 py-0.5 rounded shadow-sm">+Add</button>` : ""}
+        <span class="toggle-icon">+</span>
+      </div>
+    `;
+
+          // Create the Slots Container
+          const container = document.createElement("div");
+          container.className = "slots-container";
+
+          // Setup Toggle Logic for Mobile
+          header.onclick = () => {
+            // Only toggle if we are on mobile (checked via window width)
+            if (window.innerWidth < 768) {
+              const isActive = column.classList.toggle("active");
+              const icon = header.querySelector(".toggle-icon");
+              icon.textContent = isActive ? "-" : "+";
+
+              // Explicitly handle height for smooth transition
+              if (isActive) {
+                container.style.maxHeight = container.scrollHeight + "px";
+                container.style.paddingBottom = "10px";
+              } else {
+                container.style.maxHeight = "0px";
+                container.style.paddingBottom = "0px";
+              }
+            }
+          };
+
+          // Handle Admin Add Button specifically to prevent bubbling
+          const addBtn = header.querySelector(".add-slot-btn");
+          if (addBtn) {
+            addBtn.onclick = (e) => {
+              e.stopPropagation();
+              window.addSlotUI(day);
+            };
+          }
+
+          // Populate Slots
+          const slots = Array.isArray(data[day]) ? data[day] : [];
+          if (slots.length === 0) {
+            container.innerHTML = `<p class="p-4 text-center text-gray-400 text-sm italic">No classes scheduled</p>`;
+          } else {
+            slots.forEach((slot, i) => {
+              const div = document.createElement("div");
+              div.className = "slot " + (i % 2 === 0 ? "green" : "");
+              div.innerHTML = `
+          <div class="flex justify-between items-start">
+            <div style="flex: 1;">
+              <h4 style="margin:0; font-weight:600; font-size: 1rem;">${slot.subject}</h4>
+              <p style="margin:2px 0; font-size:0.85rem; color: #555;"><i class="far fa-clock mr-1"></i> ${slot.time}</p>
+              <p class="text-xs italic" style="margin:0; color: #888;"><i class="far fa-user mr-1"></i> ${slot.teacher || "Staff"}</p>
+            </div>
+            ${
+              isAdmin
+                ? `
+            <div class="flex flex-col gap-2" style="margin-left: 10px;">
+              <button onclick="event.stopPropagation(); window.editSlotUI('${day}', ${i})" class="p-1 text-blue-500 hover:bg-blue-50 rounded" title="Edit"><i class="fas fa-edit"></i></button>
+              <button onclick="event.stopPropagation(); window.deleteSlotDB('${day}', ${i})" class="p-1 text-red-500 hover:bg-red-50 rounded" title="Delete"><i class="fas fa-trash"></i></button>
+            </div>`
+                : ""
+            }
+          </div>`;
+              container.appendChild(div);
+            });
+          }
+
+          column.appendChild(header);
+          column.appendChild(container);
+          timetableGrid.appendChild(column);
+        });
+      }
+
+      window.addSlotUI = async (day) => {
+        const subject = prompt("Enter Subject:");
+        const time = prompt("Enter Time (e.g. 09:00-10:00):");
+        const teacher = prompt("Enter Instructor Name:");
+        if (!subject || !time) return;
+
+        const docRef = doc(db, "timetables", `grade_${currentGrade}`);
+        const snap = await getDoc(docRef);
+        let data = snap.exists() ? snap.data() : {};
+        if (!data[day]) data[day] = [];
+        data[day].push({ subject, time, teacher });
+        await setDoc(docRef, data);
+        loadTimetable(currentGrade);
+      };
+
+      window.editSlotUI = async (day, index) => {
+        const docRef = doc(db, "timetables", `grade_${currentGrade}`);
+        const snap = await getDoc(docRef);
+        let data = snap.data();
+        const slot = data[day][index];
+
+        const subject = prompt("Edit Subject:", slot.subject);
+        const time = prompt("Edit Time:", slot.time);
+        const teacher = prompt("Edit Instructor:", slot.teacher);
+
+        if (subject && time) {
+          data[day][index] = { subject, time, teacher };
+          await setDoc(docRef, data);
+          loadTimetable(currentGrade);
+        }
+      };
+
+      window.deleteSlotDB = async (day, index) => {
+        if (!confirm("Delete this slot?")) return;
+        const docRef = doc(db, "timetables", `grade_${currentGrade}`);
+        const snap = await getDoc(docRef);
+        let data = snap.data();
+        data[day].splice(index, 1);
+        await setDoc(docRef, data);
+        loadTimetable(currentGrade);
+      };
+
+      // ==========================
+      // 📽️ SLIDER LOGIC
+      // ==========================
       const slides = document.querySelectorAll(".slide");
       let currentSlide = 0;
-
       function showSlide(index) {
-        slides.forEach((slide, i) => {
-          slide.classList.remove("active");
+        slides.forEach((s) => s.classList.remove("active"));
+        if (slides[index]) slides[index].classList.add("active");
+      }
+      setInterval(() => {
+        if (slides.length > 0) {
+          currentSlide = (currentSlide + 1) % slides.length;
+          showSlide(currentSlide);
+        }
+      }, 4000);
+
+      // ==========================
+      // 🚀 INITIALIZATION
+      // ==========================
+      document.querySelectorAll(".tab").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".tab")
+            .forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          loadTimetable(btn.dataset.grade);
         });
+      });
 
-        slides[index].classList.add("active");
-      }
-
-      function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-      }
-
-      // Auto change every 4 seconds
-      setInterval(nextSlide, 4000);
+      loadEvents();
+      loadTimetable(1);
+      renderCalendar(currentDate);
     </script>
   </body>
 </html>
